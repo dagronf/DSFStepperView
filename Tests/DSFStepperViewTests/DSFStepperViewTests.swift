@@ -1,12 +1,11 @@
 import XCTest
-@testable import DSFStepperField
+@testable import DSFStepperView
 
-final class DSFStepperFieldTests: XCTestCase {
+final class DSFStepperViewTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(DSFStepperField().text, "Hello, World!")
     }
 
     static var allTests = [
