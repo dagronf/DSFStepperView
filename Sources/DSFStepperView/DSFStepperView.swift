@@ -30,22 +30,28 @@
 import AppKit
 
 @objc public protocol DSFStepperViewDelegateProtocol {
+	/// Called when the value in the stepper changes
+	/// - Parameters:
+	///   - view: the stepper view that changed value
+	///   - value: the new value, or nil if the value is empty
 	@objc func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?)
 }
 
 @IBDesignable
 public class DSFStepperView: NSView {
-	public var delegate: DSFStepperViewDelegateProtocol? = nil
+	// MARK: - Delegate
 
-	// The CGFloat value that indicates 'empty' for the control
-	static let OptionalIndicatorValue = CGFloat.greatestFiniteMagnitude
+	/// The (optional) callback delegate
+	public var delegate: DSFStepperViewDelegateProtocol?
 
-	// Custom edit field
-	private lazy var editField: DSFStepperTextField = {
-		let e = DSFStepperTextField()
-		e.translatesAutoresizingMaskIntoConstraints = false
-		return e
-	}()
+	// MARK: Properties
+
+	/// Enable or disable the control
+	@objc public var isEnabled: Bool = true {
+		didSet {
+			self.editField.fieldEnabled = self.isEnabled
+		}
+	}
 
 	/// Does this control allow an 'empty' value?
 	@IBInspectable public var allowsEmpty: Bool = true {
@@ -124,7 +130,7 @@ public class DSFStepperView: NSView {
 		}
 	}
 
-	// MARK: - Value
+	// MARK: Value
 
 	/// The value being displayed in the control.  nil represents an 'empty' value, so you can display 'inherited' or 'default' depending on your needs.
 	@objc public dynamic var floatValue: NSNumber? {
@@ -133,31 +139,42 @@ public class DSFStepperView: NSView {
 			self.delegate?.stepperView(self, didChangeValueTo: self.floatValue)
 		}
 	}
+
+	// MARK: Private
+
+	// Custom edit field
+	private lazy var editField: DSFStepperTextField = {
+		let e = DSFStepperTextField()
+		e.translatesAutoresizingMaskIntoConstraints = false
+		return e
+	}()
 }
 
-extension DSFStepperView {
-	override public func prepareForInterfaceBuilder() {
+public extension DSFStepperView {
+	override func prepareForInterfaceBuilder() {
 		self.setup()
 		self.editField.setup()
 	}
 
-	override public func viewWillMove(toWindow newWindow: NSWindow?) {
+	override func viewWillMove(toWindow newWindow: NSWindow?) {
 		super.viewWillMove(toWindow: newWindow)
 		if let _ = newWindow {
 			self.setup()
 		}
 	}
 
-	override public var intrinsicContentSize: NSSize {
+	override var intrinsicContentSize: NSSize {
 		var s = self.editField.intrinsicContentSize
-		//s.height += 4
+		s.height += 4
 		return s
 	}
 }
 
 private extension DSFStepperView {
-	func setup() {
+	// The CGFloat value that indicates 'empty' for the control
+	static let OptionalIndicatorValue = CGFloat.greatestFiniteMagnitude
 
+	func setup() {
 		if self.editField.isReady {
 			return
 		}

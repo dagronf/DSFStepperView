@@ -39,6 +39,17 @@ class DSFStepperTextField: NSTextField {
 		return self.cell as? DSFStepperViewTextFieldCell
 	}
 
+	var fieldEnabled: Bool {
+		get {
+			return super.isEnabled
+		}
+		set {
+			super.isEnabled = newValue
+			self.decrementButton.isEnabled = newValue
+			self.incrementButton.isEnabled = newValue
+		}
+	}
+
 	/// Returns true if the setup() function has been called
 	var isReady: Bool {
 		return self.customCell != nil
@@ -118,7 +129,9 @@ class DSFStepperTextField: NSTextField {
 	// MARK: - Decrement Button definition
 
 	lazy var decrementImage: NSImage = {
-		NSImage(named: "NSRemoveTemplate")!.resizeImage(maxSize: NSSize(width: 8, height: 8))
+		let i = NSImage(named: "NSRemoveTemplate")!.resizeImage(maxSize: NSSize(width: 8, height: 8))
+		i.isTemplate = true
+		return i
 	}()
 
 	lazy var decrementButton: NSButton = {
@@ -146,7 +159,9 @@ class DSFStepperTextField: NSTextField {
 	// MARK: - Increment Button definition
 
 	lazy var incrementImage: NSImage = {
-		NSImage(named: "NSAddTemplate")!.resizeImage(maxSize: NSSize(width: 8, height: 8))
+		let i = NSImage(named: "NSAddTemplate")!.resizeImage(maxSize: NSSize(width: 8, height: 8))
+		i.isTemplate = true
+		return i
 	}()
 
 	lazy var incrementButton: NSButton = {
@@ -174,8 +189,8 @@ class DSFStepperTextField: NSTextField {
 
 extension DSFStepperTextField {
 	private func enableDisable() {
-		self.decrementButton.isEnabled = self.current != self.minimum
-		self.incrementButton.isEnabled = self.current != self.maximum
+		self.decrementButton.isEnabled = self.current != self.minimum && self.isEnabled
+		self.incrementButton.isEnabled = self.current != self.maximum && self.isEnabled
 	}
 
 	private func clamped(_ value: CGFloat) -> CGFloat {
@@ -355,6 +370,7 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 		else {
 			NSColor.white.setFill()
 		}
+
 		pth.fill()
 
 		super.drawInterior(withFrame: self.tweak(cellFrame), in: controlView)

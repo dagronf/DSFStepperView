@@ -14,6 +14,7 @@ class ViewController: NSViewController {
 	@IBOutlet weak var stepper2: DSFStepperView!
 	
 	@IBOutlet weak var stepper3: DSFStepperView!
+	@IBOutlet weak var ordinalStepper: DSFStepperView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -21,7 +22,7 @@ class ViewController: NSViewController {
 		// Do any additional setup after loading the view.
 
 		stepper3.delegate = self
-
+		ordinalStepper.isEnabled = false
 	}
 
 	override var representedObject: Any? {
@@ -30,6 +31,9 @@ class ViewController: NSViewController {
 		}
 	}
 
+	@IBAction func enabledDidChange(_ sender: NSButton) {
+		self.ordinalStepper.isEnabled = (sender.state == .on)
+	}
 
 }
 

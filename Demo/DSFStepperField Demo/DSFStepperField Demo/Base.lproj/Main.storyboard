@@ -707,11 +707,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="DSFStepperField_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="322"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="7vQ-IV-pA5" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="222" width="180" height="28"/>
+                                <rect key="frame" x="20" y="274" width="180" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="QqQ-Le-XgE"/>
                                     <constraint firstAttribute="height" constant="28" id="gy4-lc-9rn"/>
@@ -731,7 +731,7 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="O6a-eq-xMP" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="186" width="180" height="28"/>
+                                <rect key="frame" x="20" y="238" width="180" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="4xi-31-sWH"/>
                                 </constraints>
@@ -743,13 +743,13 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sa8-pT-1cr">
-                                <rect key="frame" x="20" y="142" width="180" height="32"/>
+                                <rect key="frame" x="20" y="190" width="180" height="36"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="100" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QS0-Co-EkH">
-                                        <rect key="frame" x="0.0" y="0.0" width="87" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="87" height="36"/>
                                         <subviews>
                                             <customView horizontalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="PCj-mc-OPz" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="13" width="87" height="19"/>
+                                                <rect key="frame" x="0.0" y="13" width="87" height="23"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Default"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="increment">
@@ -789,10 +789,10 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="100" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVX-RW-ExP">
-                                        <rect key="frame" x="93" y="0.0" width="87" height="32"/>
+                                        <rect key="frame" x="93" y="0.0" width="87" height="36"/>
                                         <subviews>
                                             <customView horizontalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="Bie-ia-geh" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="13" width="87" height="19"/>
+                                                <rect key="frame" x="0.0" y="13" width="87" height="23"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Default"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="increment">
@@ -845,7 +845,7 @@
                                 </customSpacing>
                             </stackView>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DG6-5L-IUk">
-                                <rect key="frame" x="226" y="189" width="104" height="21"/>
+                                <rect key="frame" x="226" y="241" width="104" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="yO2-Ry-xe5">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -857,7 +857,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9g-az-fzw">
-                                <rect key="frame" x="226" y="225" width="104" height="21"/>
+                                <rect key="frame" x="226" y="277" width="104" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="vuA-sI-OOO">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -869,7 +869,7 @@
                                 </connections>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ExR-tA-ZHP" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="72" width="180" height="42"/>
+                                <rect key="frame" x="20" y="116" width="180" height="46"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Inherited"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="increment">
@@ -891,22 +891,62 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="VwU-y2-Hda" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
+                                <rect key="frame" x="20" y="85" width="101" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="101" id="AUz-oo-d4A"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimum">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximum">
+                                        <real key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="increment">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="initialValue">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEmpty" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="ordinal"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="numberFormatter" destination="b1S-ex-hKN" id="Vg2-YQ-KQl"/>
+                                </connections>
+                            </customView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iq9-fF-Cwo">
+                                <rect key="frame" x="137" y="88" width="65" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="fdD-43-fbD">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="enabledDidChange:" target="XfG-lQ-9wD" id="VId-XH-KbC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="VwU-y2-Hda" firstAttribute="top" secondItem="ExR-tA-ZHP" secondAttribute="bottom" constant="8" symbolic="YES" id="1Ko-r3-img"/>
                             <constraint firstItem="sa8-pT-1cr" firstAttribute="top" secondItem="O6a-eq-xMP" secondAttribute="bottom" constant="12" id="9ke-YS-UmW"/>
                             <constraint firstItem="O6a-eq-xMP" firstAttribute="top" secondItem="7vQ-IV-pA5" secondAttribute="bottom" constant="8" symbolic="YES" id="A4s-IO-mte"/>
                             <constraint firstItem="7vQ-IV-pA5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="AzZ-Cy-xrL"/>
                             <constraint firstItem="ExR-tA-ZHP" firstAttribute="leading" secondItem="sa8-pT-1cr" secondAttribute="leading" id="EFK-GY-UgM"/>
                             <constraint firstItem="sa8-pT-1cr" firstAttribute="leading" secondItem="O6a-eq-xMP" secondAttribute="leading" id="ItY-x4-Nef"/>
                             <constraint firstItem="7vQ-IV-pA5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="Oy6-K4-Ez5"/>
+                            <constraint firstItem="VwU-y2-Hda" firstAttribute="leading" secondItem="ExR-tA-ZHP" secondAttribute="leading" id="QKj-La-ZDU"/>
                             <constraint firstItem="O6a-eq-xMP" firstAttribute="leading" secondItem="7vQ-IV-pA5" secondAttribute="leading" id="TaL-nh-29B"/>
                             <constraint firstItem="ExR-tA-ZHP" firstAttribute="top" secondItem="sa8-pT-1cr" secondAttribute="bottom" constant="28" id="Xi6-hO-aJl"/>
                             <constraint firstItem="ExR-tA-ZHP" firstAttribute="width" secondItem="O6a-eq-xMP" secondAttribute="width" id="YBA-o2-fDr"/>
+                            <constraint firstItem="iq9-fF-Cwo" firstAttribute="leading" secondItem="VwU-y2-Hda" secondAttribute="trailing" constant="19" id="ZZV-i2-tUH"/>
+                            <constraint firstItem="iq9-fF-Cwo" firstAttribute="centerY" secondItem="VwU-y2-Hda" secondAttribute="centerY" id="cv6-cA-Mp1"/>
                             <constraint firstItem="sa8-pT-1cr" firstAttribute="trailing" secondItem="O6a-eq-xMP" secondAttribute="trailing" id="l9l-eM-EXu"/>
                             <constraint firstItem="O6a-eq-xMP" firstAttribute="trailing" secondItem="7vQ-IV-pA5" secondAttribute="trailing" id="zpV-Ru-KZb"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ordinalStepper" destination="VwU-y2-Hda" id="B65-LS-qkh"/>
                         <outlet property="stepper1" destination="7vQ-IV-pA5" id="3ZK-dy-YrP"/>
                         <outlet property="stepper2" destination="O6a-eq-xMP" id="LDf-ek-eH6"/>
                         <outlet property="stepper3" destination="ExR-tA-ZHP" id="wmZ-0n-jy8"/>
@@ -914,25 +954,29 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <numberFormatter formatterBehavior="custom10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" maximumFractionDigits="1" id="E3E-B2-RQX" userLabel="Width Height Formatter"/>
+                <numberFormatter formatterBehavior="default10_4" numberStyle="ordinal" usesGroupingSeparator="NO" roundingMode="ceiling" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="0" id="b1S-ex-hKN" userLabel="Fancy Formatter"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="681"/>
         </scene>
     </scenes>
     <designables>
         <designable name="7vQ-IV-pA5">
-            <size key="intrinsicContentSize" width="-1" height="19"/>
+            <size key="intrinsicContentSize" width="-1" height="23"/>
         </designable>
         <designable name="Bie-ia-geh">
-            <size key="intrinsicContentSize" width="-1" height="19"/>
+            <size key="intrinsicContentSize" width="-1" height="23"/>
         </designable>
         <designable name="ExR-tA-ZHP">
-            <size key="intrinsicContentSize" width="-1" height="42"/>
+            <size key="intrinsicContentSize" width="-1" height="46"/>
         </designable>
         <designable name="O6a-eq-xMP">
-            <size key="intrinsicContentSize" width="-1" height="19"/>
+            <size key="intrinsicContentSize" width="-1" height="23"/>
         </designable>
         <designable name="PCj-mc-OPz">
-            <size key="intrinsicContentSize" width="-1" height="19"/>
+            <size key="intrinsicContentSize" width="-1" height="23"/>
+        </designable>
+        <designable name="VwU-y2-Hda">
+            <size key="intrinsicContentSize" width="-1" height="23"/>
         </designable>
     </designables>
 </document>
