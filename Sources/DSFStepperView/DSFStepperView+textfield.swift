@@ -30,7 +30,7 @@
 import Cocoa
 
 /// A stepper text field
-class DSFStepperTextField: NSTextField {
+internal class DSFStepperTextField: NSTextField {
 	static let HitTargetWidth: CGFloat = 20
 
 	fileprivate var isInCurrentUpdate: Bool = false
@@ -293,7 +293,9 @@ private extension DSFStepperTextField {
 	private func createButton() -> NSButton {
 		let b = DSFDelayedRepeatingButton(frame: .zero)
 		b.translatesAutoresizingMaskIntoConstraints = false
+        b.setButtonType(.momentaryChange)
 		b.isBordered = false
+        b.wantsLayer = true
 		b.target = self
 		return b
 	}

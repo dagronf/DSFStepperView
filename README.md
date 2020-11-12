@@ -85,6 +85,7 @@ These properties can all be configured via Interface Builder or programatically.
 
 ## History
 
+* `1.0.1`: Fixed Bug #1 regarding disappearing button labels on Big Sur
 * `1.0.0`: Initial release
 
 ## License
