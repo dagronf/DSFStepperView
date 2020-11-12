@@ -35,6 +35,13 @@ import AppKit
 	///   - view: the stepper view that changed value
 	///   - value: the new value, or nil if the value is empty
 	@objc func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?)
+
+	/// Called to retrieve the tooltip text for the control (optional)
+	/// - Parameters:
+	///   - view: the stepper view
+	///   - segment: the segment of the control to retreive tooltip text for
+	/// - Returns the string to display for the control segment, or nil if no tooltip should be displayed
+	@objc optional func stepperView(_ view: DSFStepperView, wantsTooltipTextforSegment segment: DSFStepperView.ToolTipSegment) -> String?
 }
 
 @IBDesignable
@@ -42,7 +49,12 @@ public class DSFStepperView: NSView {
 	// MARK: - Delegate
 
 	/// The (optional) callback delegate
-	public var delegate: DSFStepperViewDelegateProtocol?
+	public var delegate: DSFStepperViewDelegateProtocol? {
+		didSet {
+			// Need to make sure the tooltip hit targets are created and checked
+			self.needsLayout = true
+		}
+	}
 
 	// MARK: Properties
 
@@ -123,6 +135,8 @@ public class DSFStepperView: NSView {
 		}
 	}
 
+	// MARK: - Formatter
+
 	/// A number formatter for display and validation within the control (optional)
 	@IBOutlet var numberFormatter: NumberFormatter! {
 		didSet {
@@ -148,6 +162,11 @@ public class DSFStepperView: NSView {
 		e.translatesAutoresizingMaskIntoConstraints = false
 		return e
 	}()
+
+	// Tooltip handling callback tags
+	private var tooltipIncrementButton: NSView.ToolTipTag?
+	private var tooltipDecrementButton: NSView.ToolTipTag?
+	private var tooltipTextValue: NSView.ToolTipTag?
 }
 
 public extension DSFStepperView {
@@ -167,6 +186,11 @@ public extension DSFStepperView {
 		var s = self.editField.intrinsicContentSize
 		s.height += 4
 		return s
+	}
+
+	override func layout() {
+		super.layout()
+		self.updateTooltipHitTargets()
 	}
 }
 
@@ -206,6 +230,77 @@ private extension DSFStepperView {
 		else {
 			self.editField.current = nil
 		}
+	}
+}
+
+// MARK: - Tooltip callback
+
+extension DSFStepperView: NSViewToolTipOwner {
+	/// The tooltip string types
+	@objc public enum ToolTipSegment: Int {
+		/// The tooltip for the decrement button
+		case decrementButton = 0
+		/// The tooltip for the 'value' (the text part of the button)
+		case value = 1
+		/// The tooltip for the increment button
+		case incrementButton = 2
+	}
+
+	private func updateTooltipHitTargets() {
+		// We always need to remove the hit targets on an update, even when removing the delegate
+
+		if let t = self.tooltipDecrementButton {
+			self.removeToolTip(t)
+			self.tooltipDecrementButton = nil
+		}
+
+		if let t = self.tooltipTextValue {
+			self.removeToolTip(t)
+			self.tooltipTextValue = nil
+		}
+
+		if let t = self.tooltipIncrementButton {
+			self.removeToolTip(t)
+			self.tooltipIncrementButton = nil
+		}
+
+		// If we don't have a delegate, we're done
+		guard let _ = self.delegate else {
+			return
+		}
+
+		// Decrement hit target
+		let decr = self.bounds.divided(atDistance: DSFStepperTextField.HitTargetWidth, from: .minXEdge).slice
+		self.tooltipDecrementButton = self.addToolTip(decr, owner: self, userData: nil)
+
+		// Value hit target
+		var valueRect: CGRect = self.bounds
+		valueRect.origin.x += DSFStepperTextField.HitTargetWidth
+		valueRect.size.width -= 2 * DSFStepperTextField.HitTargetWidth
+		self.tooltipTextValue = self.addToolTip(valueRect, owner: self, userData: nil)
+
+		// Increment hit target
+		let incr = self.bounds.divided(atDistance: DSFStepperTextField.HitTargetWidth, from: .maxXEdge).slice
+		self.tooltipIncrementButton = self.addToolTip(incr, owner: self, userData: nil)
+	}
+
+	public func view(_: NSView, stringForToolTip tag: NSView.ToolTipTag, point _: NSPoint, userData _: UnsafeMutableRawPointer?) -> String {
+		guard let delegate = self.delegate else {
+			// No delegate, no tooltip request
+			return ""
+		}
+
+		let segment: DSFStepperView.ToolTipSegment
+		if tag == self.tooltipDecrementButton {
+			segment = .decrementButton
+		}
+		else if tag == self.tooltipTextValue {
+			segment = .value
+		}
+		else {
+			segment = .incrementButton
+		}
+		return delegate.stepperView?(self, wantsTooltipTextforSegment: segment) ?? ""
 	}
 }
 

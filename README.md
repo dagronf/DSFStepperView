@@ -21,6 +21,7 @@ I like the visual approach used with the SwiftUI settings pane, rather than havi
 * Font name/size/color
 * Optionally specify a NumberFormatter to display the value in the format you wish (for example, always showing 2 decimal places)
 * Specify a delegate to receive value change updates, or bind to the field's value.
+* Optional delegate to request tooltip strings depending on whether hovering over increment/decrement/text segments
 * Fully auto-layout managed
 
 ## Usage
@@ -46,9 +47,30 @@ stepperView.floatValue = 0.5
 stepperView.floatValue = nil
 ```
 
+### Receiving value changes
+
+There are two methods for dynamically receiving value updates.
+
+#### Receiving value changes via a method on the delegate.
+
+```swift
+func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?)
+```
+
+#### Binding to `floatValue` on an instance of the control.
+
+```swift
+self.stepperObserver = self.observe(\.stepper.floatValue, options: [.new], changeHandler: { (_, value) in
+   guard let val = value.newValue else { return }
+   Swift.print("\(val)")
+})
+```
+
 ### Number Formatting
 
-If you want to allow non-integer values (such as 0.5), you will need to provide a `NumberFormatter` instance to format and/or validate the value in the field. `DSFStepperView` provides a default NumberFormatter which provides integer only values in the range  (-∞ ... ∞) which you can override.
+If you want to allow non-integer values (such as 0.5), you will need to provide a `NumberFormatter` instance to format and validate the value in the field. `DSFStepperView` provides a default NumberFormatter which provides integer only values in the range  (-∞ ... ∞) which you can override.
+
+Using a number formatter also allows you to have a stepper that supports (for example) 1st, 2nd, 3rd, 4th when displaying.
 
 ```swift
 let format = NumberFormatter()
@@ -62,8 +84,27 @@ format.maximumFractionDigits = 1
 stepperView.numberFormatter = format
 ```
 
-Using a number formatter also allows you to have a stepper that supports (for example) 1st, 2nd, 3rd, 4th when displaying.
+In Interface Builder you can hook your instance's `numberFormatter` outlet to an instance of NumberFormatter in xib or storyboard.
 
+### Tooltips
+
+You can specify a tooltip for the entire control the usual way using Interface Builder or programatically via 
+
+```swift
+myStepperInstance.toolTip = "groovy!"
+```
+
+You can also provide individual tooltips for the components of the stepper via an optional function on the delegate.
+
+```swift
+@objc optional func stepperView(_ view: DSFStepperView, wantsTooltipTextforSegment segment: DSFStepperView.ToolTipSegment) -> String?
+```
+
+Using this method you can provide custom tooltips for the following stepper sections
+
+* The decrement button
+* The increment button
+* The value text field
 
 ## Customizations
 

@@ -16,6 +16,8 @@ class ViewController: NSViewController {
 	@IBOutlet weak var stepper3: DSFStepperView!
 	@IBOutlet weak var ordinalStepper: DSFStepperView!
 
+	var stepper2Observer: NSKeyValueObservation?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -23,6 +25,12 @@ class ViewController: NSViewController {
 
 		stepper3.delegate = self
 		ordinalStepper.isEnabled = false
+
+		// Bind to the second stepper to receive change notifications
+		self.stepper2Observer = self.observe(\.stepper2.floatValue, options: [.new], changeHandler: { (_, value) in
+			guard let val = value.newValue??.floatValue else { return }
+			Swift.print("\(val)")
+		})
 	}
 
 	override var representedObject: Any? {
@@ -52,6 +60,14 @@ extension ViewController: DSFStepperViewDelegateProtocol {
 		}
 		else {
 			view.foregroundColor = .systemRed
+		}
+	}
+
+	func stepperView(_ view: DSFStepperView, wantsTooltipTextforSegment segment: DSFStepperView.ToolTipSegment) -> String? {
+		switch segment {
+		case .decrementButton: return "Decrement the value"
+		case .incrementButton: return "Increment the value"
+		case .value: return "The amount of the value"
 		}
 	}
 }

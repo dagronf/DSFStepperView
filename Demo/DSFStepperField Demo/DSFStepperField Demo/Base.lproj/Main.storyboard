@@ -920,7 +920,7 @@
                                 <rect key="frame" x="137" y="88" width="65" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="fdD-43-fbD">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="system" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="enabledDidChange:" target="XfG-lQ-9wD" id="VId-XH-KbC"/>
