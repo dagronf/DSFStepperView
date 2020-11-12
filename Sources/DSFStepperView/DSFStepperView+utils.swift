@@ -29,7 +29,7 @@
 
 import AppKit
 
-extension NSAppearance {
+internal extension NSAppearance {
 	/// Is the app running in dark mode?
 	@inlinable var isDarkMode: Bool {
 		if #available(macOS 10.14, *),
@@ -41,7 +41,7 @@ extension NSAppearance {
 	}
 }
 
-extension NSImage {
+internal extension NSImage {
 	/// Scale the image proportionally to fit to the target size, returning a new image
 	func resizeImage(maxSize: NSSize) -> NSImage {
 		var ratio: Float = 0.0
@@ -80,7 +80,7 @@ extension NSImage {
 }
 
 // A simple NSButton that supports a delayed button repeat if the user clicks and holds the button
-class DSFDelayedRepeatingButton: NSButton {
+internal class DSFDelayedRepeatingButton: NSButton {
 	override var acceptsFirstResponder: Bool {
 		// For the purposes of this stepper view, we don't want to allow focus on the button
 		return false
@@ -133,6 +133,8 @@ class DSFDelayedRepeatingButton: NSButton {
 
 		self.eventTimer?.invalidate()
 		self.eventTimer = nil
+
+		self.needsDisplay = true
 	}
 
 	@objc func initialTimerCallback(_ timer: Timer) {
