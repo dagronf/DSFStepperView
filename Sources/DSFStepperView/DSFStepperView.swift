@@ -27,6 +27,7 @@
 
 #if os(macOS)
 
+import Carbon.HIToolbox
 import AppKit
 
 @objc public protocol DSFStepperViewDelegateProtocol {
@@ -47,6 +48,10 @@ import AppKit
 @IBDesignable
 public class DSFStepperView: NSView {
 	// MARK: - Delegate
+
+	public override var acceptsFirstResponder: Bool {
+		return self.allowsKeyboardInput == false
+	}
 
 	/// The (optional) callback delegate
 	public var delegate: DSFStepperViewDelegateProtocol? {
@@ -69,6 +74,13 @@ public class DSFStepperView: NSView {
 	@IBInspectable public var allowsEmpty: Bool = true {
 		didSet {
 			self.editField.allowsEmpty = self.allowsEmpty
+		}
+	}
+
+	/// Allow the user to manually enter text
+	@IBInspectable public var allowsKeyboardInput: Bool = true {
+		didSet {
+			self.editField.isEditable = self.allowsKeyboardInput
 		}
 	}
 
@@ -135,6 +147,18 @@ public class DSFStepperView: NSView {
 		}
 	}
 
+	/// The font for the control.
+	public var font: NSFont? {
+		get {
+			return self.editField.font
+		}
+		set {
+			self.editField.font = newValue
+			self.editField.invalidateIntrinsicContentSize()
+			self.editField.needsLayout = true
+		}
+	}
+
 	// MARK: - Formatter
 
 	/// A number formatter for display and validation within the control (optional)
@@ -167,6 +191,35 @@ public class DSFStepperView: NSView {
 	private var tooltipIncrementButton: NSView.ToolTipTag?
 	private var tooltipDecrementButton: NSView.ToolTipTag?
 	private var tooltipTextValue: NSView.ToolTipTag?
+}
+
+// MARK: - Handle no-edit focus keyboard support
+
+extension DSFStepperView {
+	var drawnBorder: CGRect {
+		return self.bounds.insetBy(dx: 0, dy: 2)
+	}
+
+	public override var focusRingMaskBounds: NSRect {
+		return self.drawnBorder
+	}
+
+	public override func drawFocusRingMask() {
+		let pth = NSBezierPath(roundedRect: self.drawnBorder, xRadius: 4, yRadius: 4)
+		pth.fill()
+	}
+
+	public override func keyDown(with event: NSEvent) {
+		if event.keyCode == kVK_UpArrow || event.keyCode == kVK_RightArrow {
+			self.editField.increment(self)
+		}
+		else if event.keyCode == kVK_DownArrow || event.keyCode == kVK_LeftArrow {
+			self.editField.decrement(self)
+		}
+		else {
+			super.keyDown(with: event)
+		}
+	}
 }
 
 public extension DSFStepperView {

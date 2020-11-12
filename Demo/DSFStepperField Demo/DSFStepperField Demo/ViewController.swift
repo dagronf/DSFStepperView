@@ -16,6 +16,9 @@ class ViewController: NSViewController {
 	@IBOutlet weak var stepper3: DSFStepperView!
 	@IBOutlet weak var ordinalStepper: DSFStepperView!
 
+	@IBOutlet weak var noEditStepper: DSFStepperView!
+
+
 	var stepper2Observer: NSKeyValueObservation?
 
 	override func viewDidLoad() {
@@ -31,6 +34,8 @@ class ViewController: NSViewController {
 			guard let val = value.newValue??.floatValue else { return }
 			Swift.print("\(val)")
 		})
+
+		self.noEditStepper.font = NSFont.boldSystemFont(ofSize: 50)
 	}
 
 	override var representedObject: Any? {
