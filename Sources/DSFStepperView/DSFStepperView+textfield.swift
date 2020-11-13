@@ -250,6 +250,8 @@ extension DSFStepperTextField {
 		newCell.alignment = .center
 		newCell.textColor = oldCell.textColor
 
+		newCell.formatter = oldCell.formatter
+
 		self.isBordered = false
 		self.isBezeled = false
 		self.drawsBackground = false
