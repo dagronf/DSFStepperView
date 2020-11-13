@@ -15,6 +15,17 @@
 		2393EE03255B391F00AEB226 /* DSFStepperView+localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393EDFF255B391F00AEB226 /* DSFStepperView+localization.swift */; };
 		2393EE04255B391F00AEB226 /* DSFStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393EE00255B391F00AEB226 /* DSFStepperView.swift */; };
 		2393EE05255B391F00AEB226 /* DSFStepperView+textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393EE01255B391F00AEB226 /* DSFStepperView+textfield.swift */; };
+		23CD9748255E071F00DF00D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9747255E071F00DF00D6 /* AppDelegate.swift */; };
+		23CD974A255E071F00DF00D6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9749255E071F00DF00D6 /* ContentView.swift */; };
+		23CD974C255E072100DF00D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23CD974B255E072100DF00D6 /* Assets.xcassets */; };
+		23CD974F255E072100DF00D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23CD974E255E072100DF00D6 /* Preview Assets.xcassets */; };
+		23CD9752255E072100DF00D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CD9750255E072100DF00D6 /* Main.storyboard */; };
+		23CD975D255E079200DF00D6 /* DSFStepperView+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD975C255E079200DF00D6 /* DSFStepperView+SwiftUI.swift */; };
+		23CD9766255E07F800DF00D6 /* DSFStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9761255E07F800DF00D6 /* DSFStepperView.swift */; };
+		23CD9767255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9762255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift */; };
+		23CD9768255E07F800DF00D6 /* DSFStepperView+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9763255E07F800DF00D6 /* DSFStepperView+utils.swift */; };
+		23CD9769255E07F800DF00D6 /* DSFStepperView+textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9764255E07F800DF00D6 /* DSFStepperView+textfield.swift */; };
+		23CD976A255E07F800DF00D6 /* DSFStepperView+localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9765255E07F800DF00D6 /* DSFStepperView+localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,10 +40,31 @@
 		2393EDFF255B391F00AEB226 /* DSFStepperView+localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+localization.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+localization.swift"; sourceTree = "<group>"; };
 		2393EE00255B391F00AEB226 /* DSFStepperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DSFStepperView.swift; path = ../../../Sources/DSFStepperView/DSFStepperView.swift; sourceTree = "<group>"; };
 		2393EE01255B391F00AEB226 /* DSFStepperView+textfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+textfield.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+textfield.swift"; sourceTree = "<group>"; };
+		23CD9745255E071F00DF00D6 /* DSFStepperView SwiftUI Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSFStepperView SwiftUI Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		23CD9747255E071F00DF00D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		23CD9749255E071F00DF00D6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		23CD974B255E072100DF00D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		23CD974E255E072100DF00D6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		23CD9751255E072100DF00D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		23CD9753255E072100DF00D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23CD9754255E072100DF00D6 /* DSFStepperView_SwiftUI_Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSFStepperView_SwiftUI_Demo.entitlements; sourceTree = "<group>"; };
+		23CD975C255E079200DF00D6 /* DSFStepperView+SwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+SwiftUI.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+SwiftUI.swift"; sourceTree = "<group>"; };
+		23CD9761255E07F800DF00D6 /* DSFStepperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DSFStepperView.swift; path = ../../../Sources/DSFStepperView/DSFStepperView.swift; sourceTree = "<group>"; };
+		23CD9762255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+SwiftUI.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+SwiftUI.swift"; sourceTree = "<group>"; };
+		23CD9763255E07F800DF00D6 /* DSFStepperView+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+utils.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+utils.swift"; sourceTree = "<group>"; };
+		23CD9764255E07F800DF00D6 /* DSFStepperView+textfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+textfield.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+textfield.swift"; sourceTree = "<group>"; };
+		23CD9765255E07F800DF00D6 /* DSFStepperView+localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+localization.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+localization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2349765E2559EAC000FDFB40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23CD9742255E071F00DF00D6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				234976632559EAC000FDFB40 /* DSFStepperField Demo */,
+				23CD9746255E071F00DF00D6 /* DSFStepperView SwiftUI Demo */,
 				234976622559EAC000FDFB40 /* Products */,
 				234976782559EAEA00FDFB40 /* Frameworks */,
 			);
@@ -55,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				234976612559EAC000FDFB40 /* DSFStepperField Demo.app */,
+				23CD9745255E071F00DF00D6 /* DSFStepperView SwiftUI Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,8 +119,44 @@
 			children = (
 				2393EE00255B391F00AEB226 /* DSFStepperView.swift */,
 				2393EDFF255B391F00AEB226 /* DSFStepperView+localization.swift */,
+				23CD975C255E079200DF00D6 /* DSFStepperView+SwiftUI.swift */,
 				2393EE01255B391F00AEB226 /* DSFStepperView+textfield.swift */,
 				2393EDFE255B391F00AEB226 /* DSFStepperView+utils.swift */,
+			);
+			name = DSFStepperView;
+			sourceTree = "<group>";
+		};
+		23CD9746255E071F00DF00D6 /* DSFStepperView SwiftUI Demo */ = {
+			isa = PBXGroup;
+			children = (
+				23CD9760255E07E900DF00D6 /* DSFStepperView */,
+				23CD9747255E071F00DF00D6 /* AppDelegate.swift */,
+				23CD9749255E071F00DF00D6 /* ContentView.swift */,
+				23CD974B255E072100DF00D6 /* Assets.xcassets */,
+				23CD9750255E072100DF00D6 /* Main.storyboard */,
+				23CD9753255E072100DF00D6 /* Info.plist */,
+				23CD9754255E072100DF00D6 /* DSFStepperView_SwiftUI_Demo.entitlements */,
+				23CD974D255E072100DF00D6 /* Preview Content */,
+			);
+			path = "DSFStepperView SwiftUI Demo";
+			sourceTree = "<group>";
+		};
+		23CD974D255E072100DF00D6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				23CD974E255E072100DF00D6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		23CD9760255E07E900DF00D6 /* DSFStepperView */ = {
+			isa = PBXGroup;
+			children = (
+				23CD9761255E07F800DF00D6 /* DSFStepperView.swift */,
+				23CD9765255E07F800DF00D6 /* DSFStepperView+localization.swift */,
+				23CD9762255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift */,
+				23CD9764255E07F800DF00D6 /* DSFStepperView+textfield.swift */,
+				23CD9763255E07F800DF00D6 /* DSFStepperView+utils.swift */,
 			);
 			name = DSFStepperView;
 			sourceTree = "<group>";
@@ -113,6 +183,23 @@
 			productReference = 234976612559EAC000FDFB40 /* DSFStepperField Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		23CD9744255E071F00DF00D6 /* DSFStepperView SwiftUI Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23CD9755255E072100DF00D6 /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI Demo" */;
+			buildPhases = (
+				23CD9741255E071F00DF00D6 /* Sources */,
+				23CD9742255E071F00DF00D6 /* Frameworks */,
+				23CD9743255E071F00DF00D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DSFStepperView SwiftUI Demo";
+			productName = "DSFStepperView SwiftUI Demo";
+			productReference = 23CD9745255E071F00DF00D6 /* DSFStepperView SwiftUI Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -123,6 +210,9 @@
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					234976602559EAC000FDFB40 = {
+						CreatedOnToolsVersion = 12.1;
+					};
+					23CD9744255E071F00DF00D6 = {
 						CreatedOnToolsVersion = 12.1;
 					};
 				};
@@ -141,6 +231,7 @@
 			projectRoot = "";
 			targets = (
 				234976602559EAC000FDFB40 /* DSFStepperField Demo */,
+				23CD9744255E071F00DF00D6 /* DSFStepperView SwiftUI Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -155,6 +246,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23CD9743255E071F00DF00D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23CD9752255E072100DF00D6 /* Main.storyboard in Resources */,
+				23CD974F255E072100DF00D6 /* Preview Assets.xcassets in Resources */,
+				23CD974C255E072100DF00D6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -163,11 +264,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				2393EE05255B391F00AEB226 /* DSFStepperView+textfield.swift in Sources */,
+				23CD975D255E079200DF00D6 /* DSFStepperView+SwiftUI.swift in Sources */,
 				2393EE04255B391F00AEB226 /* DSFStepperView.swift in Sources */,
 				234976672559EAC000FDFB40 /* ViewController.swift in Sources */,
 				2393EE03255B391F00AEB226 /* DSFStepperView+localization.swift in Sources */,
 				2393EE02255B391F00AEB226 /* DSFStepperView+utils.swift in Sources */,
 				234976652559EAC000FDFB40 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23CD9741255E071F00DF00D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23CD9769255E07F800DF00D6 /* DSFStepperView+textfield.swift in Sources */,
+				23CD9768255E07F800DF00D6 /* DSFStepperView+utils.swift in Sources */,
+				23CD9767255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift in Sources */,
+				23CD976A255E07F800DF00D6 /* DSFStepperView+localization.swift in Sources */,
+				23CD974A255E071F00DF00D6 /* ContentView.swift in Sources */,
+				23CD9748255E071F00DF00D6 /* AppDelegate.swift in Sources */,
+				23CD9766255E07F800DF00D6 /* DSFStepperView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +294,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				2349766B2559EAC000FDFB40 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		23CD9750255E072100DF00D6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23CD9751255E072100DF00D6 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -308,7 +432,7 @@
 				CODE_SIGN_ENTITLEMENTS = "DSFStepperField Demo/DSFStepperField_Demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "DSFStepperField Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -329,7 +453,7 @@
 				CODE_SIGN_ENTITLEMENTS = "DSFStepperField Demo/DSFStepperField_Demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "DSFStepperField Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -337,6 +461,54 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.darrenford.DSFStepperField-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		23CD9756255E072100DF00D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DSFStepperView SwiftUI Demo/DSFStepperView_SwiftUI_Demo.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"DSFStepperView SwiftUI Demo/Preview Content\"";
+				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "DSFStepperView SwiftUI Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darrenford.DSFStepperView-SwiftUI-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		23CD9757255E072100DF00D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DSFStepperView SwiftUI Demo/DSFStepperView_SwiftUI_Demo.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"DSFStepperView SwiftUI Demo/Preview Content\"";
+				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "DSFStepperView SwiftUI Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darrenford.DSFStepperView-SwiftUI-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -359,6 +531,15 @@
 			buildConfigurations = (
 				234976722559EAC000FDFB40 /* Debug */,
 				234976732559EAC000FDFB40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23CD9755255E072100DF00D6 /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23CD9756255E072100DF00D6 /* Debug */,
+				23CD9757255E072100DF00D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
