@@ -55,23 +55,29 @@ internal class DSFStepperTextField: NSTextField {
 		return self.customCell != nil
 	}
 
-	lazy var valueFormatter: NumberFormatter = {
+	/// The default number formatter (-∞ … ∞), no floating point
+	private static let DefaultFormatter: NumberFormatter = {
 		let format = NumberFormatter()
 		format.numberStyle = .decimal
-		format.maximumIntegerDigits = Int.max
 		format.minimumIntegerDigits = 1
 		format.allowsFloats = false
 		return format
-	}() {
-		didSet {
-			self.cell?.formatter = self.valueFormatter
+	}()
+
+	/// The value formatter for the field. If nil, provides a default formatter
+	var valueFormatter: NumberFormatter? {
+		get {
+			return self.cell?.formatter as? NumberFormatter ?? DSFStepperTextField.DefaultFormatter
+		}
+		set {
+			self.cell?.formatter = newValue ?? DSFStepperTextField.DefaultFormatter
 		}
 	}
 
-	var allowsEmpty: Bool = true {
-		didSet {}
-	}
+	// Does the field support empty values?
+	var allowsEmpty: Bool = true
 
+	// The value of the field BEFORE the edit started.  Allows for hitting 'esc' during edit to cancel the change
 	private var beforeEditValue: CGFloat?
 
 	var lastNonEmptyValue: CGFloat = 0
@@ -111,7 +117,7 @@ internal class DSFStepperTextField: NSTextField {
 
 			let v = self.clamped(curr)
 			let val = Float(v)
-			self.stringValue = self.valueFormatter.string(from: NSNumber(value: val)) ?? ""
+			self.stringValue = self.valueFormatter?.string(from: NSNumber(value: val)) ?? ""
 			self.enableDisable()
 
 			self.lastNonEmptyValue = v
@@ -269,7 +275,7 @@ extension DSFStepperTextField {
 		self.delegate = self
 
 		if let curr = self.current {
-			self.stringValue = self.valueFormatter.string(from: NSNumber(value: Float(curr))) ?? ""
+			self.stringValue = self.valueFormatter?.string(from: NSNumber(value: Float(curr))) ?? ""
 		}
 		else {
 			self.stringValue = ""
@@ -318,7 +324,7 @@ extension DSFStepperTextField: NSTextFieldDelegate {
 			return
 		}
 
-		if let v = self.valueFormatter.number(from: self.stringValue)?.floatValue {
+		if let v = self.valueFormatter?.number(from: self.stringValue)?.floatValue {
 			self.current = self.clamped(CGFloat(v))
 		}
 	}
@@ -327,7 +333,7 @@ extension DSFStepperTextField: NSTextFieldDelegate {
 		if self.stringValue.isEmpty {
 			return self.allowsEmpty
 		}
-		return self.valueFormatter.number(from: self.stringValue) != nil
+		return self.valueFormatter?.number(from: self.stringValue) != nil
 	}
 }
 

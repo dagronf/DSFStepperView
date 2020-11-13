@@ -126,6 +126,7 @@ These properties can all be configured via Interface Builder or programatically.
 
 ## History
 
+* `1.0.2`: Fixed Issue where 10.14 and earlier didn't display the value (NumberFormatter changes)
 * `1.0.1`: Fixed Bug #1 regarding disappearing button labels on Big Sur
 * `1.0.0`: Initial release
 
