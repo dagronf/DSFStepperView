@@ -30,105 +30,116 @@
 import SwiftUI
 
 @available(macOS 10.15, *)
-public struct DSFStepperViewUI: NSViewRepresentable {
+extension DSFStepperView {
+	public struct SwiftUI: NSViewRepresentable {
+		public typealias NSViewType = DSFStepperView
 
-	public typealias NSViewType = DSFStepperView
+		public struct Configuration {
+			let minimum: CGFloat
+			let maximum: CGFloat
+			let increment: CGFloat
 
-	public struct Configuration {
-		let minimum: CGFloat
-		let maximum: CGFloat
-		let increment: CGFloat
+			let initialValue: CGFloat?
+			var placeholderText: String?
 
-		let initialValue: CGFloat?
-		var placeholderText: String?
+			var numberFormatter: NumberFormatter?
 
-		var numberFormatter: NumberFormatter?
-	}
-
-	/// The initial configuration for the stepper view
-	@Binding public var configuration: Configuration
-
-	/// The current value for the control
-	@Binding public var floatValue: CGFloat?
-
-	/// The enabled state for the control
-	@Binding public var isEnabled: Bool
-
-	@Binding public var font: NSFont?
-
-	public func makeCoordinator() -> Coordinator {
-		Coordinator(self)
-	}
-
-	public func makeNSView(context: Context) -> DSFStepperView {
-		let stepper = DSFStepperView(frame: .zero)
-		stepper.translatesAutoresizingMaskIntoConstraints = false
-
-		stepper.initialValue = configuration.initialValue ?? 0
-		stepper.numberFormatter = configuration.numberFormatter
-
-		stepper.isEnabled = self.isEnabled
-
-		if let nsFont = font {
-			stepper.font = nsFont
+			var allowsKeyboardInput = true
 		}
 
-		return stepper
-	}
+		/// The initial configuration for the stepper view
+		@Binding public var configuration: Configuration
 
-	public func updateNSView(_ nsView: DSFStepperView, context: Context) {
+		/// The current value for the control
+		@Binding public var floatValue: CGFloat?
 
-		nsView.delegate = context.coordinator
+		/// The enabled state for the control
+		@Binding public var isEnabled: Bool
 
-		if nsView.minimum != configuration.minimum {
-			nsView.minimum = configuration.minimum
-		}
-		if nsView.maximum != configuration.maximum {
-			nsView.maximum = configuration.maximum
-		}
-		if nsView.increment != configuration.increment {
-			nsView.increment = configuration.increment
+		@Binding public var font: NSFont?
+
+		public func makeCoordinator() -> Coordinator {
+			Coordinator(self)
 		}
 
-		if nsView.placeholder != configuration.placeholderText {
-			nsView.placeholder = configuration.placeholderText
-		}
+		public func makeNSView(context: Context) -> DSFStepperView {
+			let stepper = DSFStepperView(frame: .zero)
+			stepper.translatesAutoresizingMaskIntoConstraints = false
 
-		if nsView.isEnabled != self.isEnabled {
-			nsView.isEnabled = self.isEnabled
-		}
+			stepper.initialValue = configuration.initialValue ?? 0
+			stepper.numberFormatter = configuration.numberFormatter
 
-		if nsView.numberFormatter !== configuration.numberFormatter {
-			nsView.numberFormatter = configuration.numberFormatter
-		}
+			stepper.isEnabled = self.isEnabled
 
-		if let newFont = self.font {
-			nsView.font = newFont
-		}
-		else {
-			nsView.font = nil
-		}
-
-		let newNSNumber = self.floatValue == nil ? nil : NSNumber(value: Float(self.floatValue!))
-		if !(newNSNumber?.isEqual(to: nsView.floatValue) ?? true) {
-			nsView.floatValue = newNSNumber
-		}
-	}
-
-	public class Coordinator: NSObject, DSFStepperViewDelegateProtocol {
-		let parent: DSFStepperViewUI
-		init(_ stepper: DSFStepperViewUI) {
-			self.parent = stepper
-		}
-
-		public func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?) {
-			var newValue: CGFloat? = nil
-			if let v = value?.floatValue {
-				newValue = CGFloat(v)
+			if let nsFont = font {
+				stepper.font = nsFont
 			}
 
-			DispatchQueue.main.async { [weak self] in
-				self?.parent.floatValue = newValue
+			return stepper
+		}
+
+		@inlinable func updateIfNotEqual<T>(result: inout T, val: T) where T: Equatable {
+			if result != val {
+				result = val
+			}
+		}
+
+		public func updateNSView(_ nsView: DSFStepperView, context: Context) {
+
+			nsView.delegate = context.coordinator
+
+			if nsView.minimum != configuration.minimum {
+				nsView.minimum = configuration.minimum
+			}
+			if nsView.maximum != configuration.maximum {
+				nsView.maximum = configuration.maximum
+			}
+			if nsView.increment != configuration.increment {
+				nsView.increment = configuration.increment
+			}
+
+			if nsView.placeholder != configuration.placeholderText {
+				nsView.placeholder = configuration.placeholderText
+			}
+
+			if nsView.isEnabled != self.isEnabled {
+				nsView.isEnabled = self.isEnabled
+			}
+
+			if nsView.numberFormatter !== configuration.numberFormatter {
+				nsView.numberFormatter = configuration.numberFormatter
+			}
+
+			updateIfNotEqual(result: &nsView.allowsKeyboardInput, val: configuration.allowsKeyboardInput)
+
+			if let newFont = self.font {
+				nsView.font = newFont
+			}
+			else {
+				nsView.font = nil
+			}
+
+			let newNSNumber = self.floatValue == nil ? nil : NSNumber(value: Float(self.floatValue!))
+			if !(newNSNumber?.isEqual(to: nsView.floatValue) ?? true) {
+				nsView.floatValue = newNSNumber
+			}
+		}
+
+		public class Coordinator: NSObject, DSFStepperViewDelegateProtocol {
+			let parent: DSFStepperView.SwiftUI
+			init(_ stepper: DSFStepperView.SwiftUI) {
+				self.parent = stepper
+			}
+
+			public func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?) {
+				var newValue: CGFloat? = nil
+				if let v = value?.floatValue {
+					newValue = CGFloat(v)
+				}
+
+				DispatchQueue.main.async { [weak self] in
+					self?.parent.floatValue = newValue
+				}
 			}
 		}
 	}

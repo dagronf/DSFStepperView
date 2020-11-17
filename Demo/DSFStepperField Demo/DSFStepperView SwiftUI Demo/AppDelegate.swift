@@ -26,8 +26,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		window.isReleasedWhenClosed = false
 		window.center()
 		window.setFrameAutosaveName("Main Window")
+		window.autorecalculatesKeyViewLoop = true
 		window.contentView = NSHostingView(rootView: contentView)
 		window.makeKeyAndOrderFront(nil)
+
+		window.recalculateKeyViewLoop()
 	}
 
 	func applicationWillTerminate(_ aNotification: Notification) {

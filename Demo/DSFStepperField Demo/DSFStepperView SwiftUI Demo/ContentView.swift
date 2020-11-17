@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
 	@State private var currentValue: CGFloat? = 23
 	@State private var isEnabled: Bool = true
-	var demoConfig = DSFStepperViewUI.Configuration(
+	var demoConfig = DSFStepperView.SwiftUI.Configuration(
 		minimum: 0, maximum: 100, increment: 1, initialValue: 23, numberFormatter: nil
 	)
 
@@ -28,7 +28,7 @@ struct ContentView: View {
 	}()
 
 	@State private var currentValue2: CGFloat? = -3.5
-	var demoConfig2 = DSFStepperViewUI.Configuration(
+	var demoConfig2 = DSFStepperView.SwiftUI.Configuration(
 		minimum: -10, maximum: 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter
 	)
 
@@ -36,7 +36,7 @@ struct ContentView: View {
 		VStack (spacing: 16) {
 			Toggle("Enabled", isOn: $isEnabled)
 			HStack(alignment: .center, spacing: 20) {
-				DSFStepperViewUI(configuration: .constant(demoConfig),
+				DSFStepperView.SwiftUI(configuration: .constant(demoConfig),
 								 floatValue: $currentValue,
 								 isEnabled: $isEnabled,
 								 font: .constant(nil))
@@ -46,7 +46,7 @@ struct ContentView: View {
 			}
 
 			HStack(alignment: .center, spacing: 20) {
-				DSFStepperViewUI(configuration: .constant(demoConfig2),
+				DSFStepperView.SwiftUI(configuration: .constant(demoConfig2),
 								 floatValue: $currentValue2,
 								 isEnabled: .constant(true),
 								 font: .constant(NSFont.systemFont(ofSize: 24)))
