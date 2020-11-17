@@ -192,7 +192,7 @@ internal class DSFDelayedRepeatingButton: NSButton {
 	private func createBaseFadeAnimation() -> CABasicAnimation {
 		let b = CABasicAnimation(keyPath: "backgroundColor")
 		b.autoreverses = false
-		b.duration = 0.2
+		b.duration = Accessibility.reduceMotion ? 0.01 : 0.2
 		b.isRemovedOnCompletion = false
 		b.fillMode = .forwards
 		return b
@@ -202,10 +202,7 @@ internal class DSFDelayedRepeatingButton: NSButton {
 		super.mouseEntered(with: event)
 		if !self.isEnabled  { return }
 		let anim = self.createBaseFadeAnimation()
-		anim.toValue = NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency
-			? NSColor.gridColor.cgColor
-			: CGColor(gray: 0.5, alpha: 0.15)
-
+		anim.toValue = Accessibility.reduceTransparency ? NSColor.gridColor.cgColor : CGColor(gray: 0.5, alpha: 0.15)
 		self.layer?.add(anim, forKey: "fadecolor")
 	}
 
@@ -214,6 +211,21 @@ internal class DSFDelayedRepeatingButton: NSButton {
 		let anim = self.createBaseFadeAnimation()
 		anim.toValue = nil
 		self.layer?.add(anim, forKey: "fadecolor")
+	}
+}
+
+// Simple accessibility wrapper
+internal class Accessibility {
+	@inlinable static var reduceTransparency: Bool {
+		return NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency
+	}
+
+	@inlinable static var reduceMotion: Bool {
+		return NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
+	}
+
+	@inlinable static var increaseContrast: Bool {
+		return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
 	}
 }
 

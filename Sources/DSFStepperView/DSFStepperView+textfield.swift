@@ -384,7 +384,7 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 			pth.lineWidth = 1.5
 		}
 
-		if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast {
+		if Accessibility.increaseContrast {
 			NSColor.textColor.setStroke()
 		}
 		else {
