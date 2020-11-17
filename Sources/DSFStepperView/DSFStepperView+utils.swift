@@ -86,9 +86,36 @@ internal class DSFDelayedRepeatingButton: NSButton {
 		return false
 	}
 
+	override init(frame frameRect: NSRect) {
+		super.init(frame: frameRect)
+		self.setup()
+	}
+
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		self.setup()
+	}
+
+	private func setup() {
+		self.wantsLayer = true
+		self.layer?.cornerRadius = 3
+	}
+
 	override func resetCursorRects() {
 		// Add the hand cursor when we're over the button
 		self.addCursorRect(bounds, cursor: .pointingHand)
+	}
+
+	var mouseOverTrack: NSTrackingArea?
+	override func layout() {
+		super.layout()
+
+		if let t = self.mouseOverTrack {
+			self.removeTrackingArea(t)
+		}
+
+		self.mouseOverTrack = NSTrackingArea(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInActiveApp], owner: self, userInfo: nil)
+		self.addTrackingArea(self.mouseOverTrack!)
 	}
 
 	deinit {
@@ -158,6 +185,35 @@ internal class DSFDelayedRepeatingButton: NSButton {
 		}
 
 		self.sendAction(self.action, to: self.target)
+	}
+
+	// MARK: - Mouse Tracking
+
+	private func createBaseFadeAnimation() -> CABasicAnimation {
+		let b = CABasicAnimation(keyPath: "backgroundColor")
+		b.autoreverses = false
+		b.duration = 0.2
+		b.isRemovedOnCompletion = false
+		b.fillMode = .forwards
+		return b
+	}
+
+	override func mouseEntered(with event: NSEvent) {
+		super.mouseEntered(with: event)
+		if !self.isEnabled  { return }
+		let anim = self.createBaseFadeAnimation()
+		anim.toValue = NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency
+			? NSColor.gridColor.cgColor
+			: CGColor(gray: 0.5, alpha: 0.15)
+
+		self.layer?.add(anim, forKey: "fadecolor")
+	}
+
+	override func mouseExited(with event: NSEvent) {
+		super.mouseExited(with: event)
+		let anim = self.createBaseFadeAnimation()
+		anim.toValue = nil
+		self.layer?.add(anim, forKey: "fadecolor")
 	}
 }
 

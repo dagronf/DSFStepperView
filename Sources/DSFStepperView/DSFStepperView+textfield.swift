@@ -262,16 +262,16 @@ extension DSFStepperTextField {
 
 		self.addSubview(self.decrementButton)
 		self.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0))
-		self.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 3))
-		self.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -3))
+		self.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 2))
+		self.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -2))
 		self.decrementButton.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: DSFStepperTextField.HitTargetWidth))
 
 		// Right (increment) button constraints
 
 		self.addSubview(self.incrementButton)
 		self.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: 0))
-		self.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 3))
-		self.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -3))
+		self.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 2))
+		self.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -2))
 		self.incrementButton.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: DSFStepperTextField.HitTargetWidth))
 
 		self.delegate = self
@@ -371,7 +371,21 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 	override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
 		// Drawing code here.
 		let pth = NSBezierPath(roundedRect: cellFrame.insetBy(dx: 1, dy: 1), xRadius: 4, yRadius: 4)
-		NSColor.quaternaryLabelColor.setStroke()
+
+		if NSAppearance.current?.isDarkMode ?? true {
+			pth.lineWidth = 1.0
+		}
+		else {
+			pth.lineWidth = 1.5
+		}
+
+		if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast {
+			NSColor.textColor.setStroke()
+		}
+		else {
+			NSColor.quaternaryLabelColor.setStroke()
+		}
+
 		pth.stroke()
 
 		if NSAppearance.current?.isDarkMode ?? false {
