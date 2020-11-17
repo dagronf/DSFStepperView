@@ -23,6 +23,8 @@ I like the visual approach used with the SwiftUI settings pane, rather than havi
 * Specify a delegate to receive value change updates, or bind to the field's value.
 * Optional delegate to request tooltip strings depending on whether hovering over increment/decrement/text segments
 * Fully auto-layout managed
+* Support for Combine publishing
+* Preliminary SwiftUI support
 
 ## Usage
 
@@ -47,23 +49,44 @@ stepperView.floatValue = 0.5
 stepperView.floatValue = nil
 ```
 
-### Receiving value changes
+## Receiving value changes
 
-There are two methods for dynamically receiving value updates.
+There are three methods for dynamically receiving value updates.
 
-#### Receiving value changes via a method on the delegate.
+### Receiving value changes via a method on the delegate.
 
 ```swift
 func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?)
 ```
 
-#### Binding to `floatValue` on an instance of the control.
+### Binding to `floatValue` on an instance of the control.
 
 ```swift
 self.stepperObserver = self.observe(\.stepper.floatValue, options: [.new], changeHandler: { (_, value) in
    guard let val = value.newValue else { return }
    Swift.print("\(val)")
 })
+```
+
+### Using the Combine framework on 10.15 and later
+
+You can use the Combine framework to subscribe to changes in the control.  On 10.15 and later the control exposes the publisher `publishedValue` from which you can subscribe to changes.
+
+```swift
+self.cancellable = myStepper.publishedValue.sink(receiveValue: { currentValue in
+   if let c = currentValue {
+      print("stepper is currently at \(c)")
+   }
+   else {
+      print("stepper is currently empty")
+   }
+})
+```
+
+Additionally, you can set the value on the control via the publisher too.
+
+```swift
+myStepper.publishedValue.send(44.5)
 ```
 
 ### Number Formatting
@@ -123,9 +146,12 @@ These properties can all be configured via Interface Builder or programatically.
 * `foregroundColor` : The color of the font displaying the value (`NSColor`)
 * `numberFormatter` : An optional number formatter for formatting/validating values in the view
 * `isEnabled` : Enable or disable the control
+* `font` : The font for the text field
+* 
 
 ## History
 
+* `1.1.0`: Added mouseover highlight for buttons, Combine publisher (10.15+), SwiftUI wrapper
 * `1.0.2`: Fixed Issue where 10.14 and earlier didn't display the value (NumberFormatter changes)
 * `1.0.1`: Fixed Bug #1 regarding disappearing button labels on Big Sur
 * `1.0.0`: Initial release

@@ -31,9 +31,13 @@ import Cocoa
 
 /// A stepper text field
 internal class DSFStepperTextField: NSTextField {
-	static let HitTargetWidth: CGFloat = 20
+	static let HitTargetWidth: CGFloat = 24
 
 	fileprivate var isInCurrentUpdate: Bool = false
+
+	@inlinable var parent: DSFStepperView? {
+		return (self.superview as? DSFStepperView)
+	}
 
 	fileprivate var customCell: DSFStepperViewTextFieldCell? {
 		return self.cell as? DSFStepperViewTextFieldCell
@@ -112,6 +116,7 @@ internal class DSFStepperTextField: NSTextField {
 
 			guard let curr = current else {
 				self.stringValue = ""
+				self.parent?.floatValue = nil
 				return
 			}
 
@@ -122,7 +127,7 @@ internal class DSFStepperTextField: NSTextField {
 
 			self.lastNonEmptyValue = v
 
-			(superview as? DSFStepperView)?.floatValue = NSNumber(value: val)
+			self.parent?.floatValue = NSNumber(value: val)
 		}
 	}
 
@@ -135,7 +140,7 @@ internal class DSFStepperTextField: NSTextField {
 	// MARK: - Decrement Button definition
 
 	lazy var decrementImage: NSImage = {
-		let i = NSImage(named: "NSRemoveTemplate")!.resizeImage(maxSize: NSSize(width: 8, height: 8))
+		let i = NSImage(named: "NSRemoveTemplate")!.resizeImage(maxSize: NSSize(width: 10, height: 10))
 		i.isTemplate = true
 		return i
 	}()
@@ -165,7 +170,7 @@ internal class DSFStepperTextField: NSTextField {
 	// MARK: - Increment Button definition
 
 	lazy var incrementImage: NSImage = {
-		let i = NSImage(named: "NSAddTemplate")!.resizeImage(maxSize: NSSize(width: 8, height: 8))
+		let i = NSImage(named: "NSAddTemplate")!.resizeImage(maxSize: NSSize(width: 10, height: 10))
 		i.isTemplate = true
 		return i
 	}()
@@ -355,7 +360,7 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 		}
 
 		// Bring in the edges so they don't overlap the increment/decrement buttons
-		newRect.size.width -= (2 * DSFStepperTextField.HitTargetWidth)
+		newRect.size.width -= (2 * DSFStepperTextField.HitTargetWidth) + 4
 		newRect.origin.x += DSFStepperTextField.HitTargetWidth
 		return newRect
 	}

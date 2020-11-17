@@ -30,6 +30,8 @@
 import Carbon.HIToolbox
 import AppKit
 
+import Combine
+
 @objc public protocol DSFStepperViewDelegateProtocol {
 	/// Called when the value in the stepper changes
 	/// - Parameters:
@@ -48,10 +50,6 @@ import AppKit
 @IBDesignable
 public class DSFStepperView: NSView {
 	// MARK: - Delegate
-
-	public override var acceptsFirstResponder: Bool {
-		return self.allowsKeyboardInput == false
-	}
 
 	/// The (optional) callback delegate
 	public var delegate: DSFStepperViewDelegateProtocol? {
@@ -159,6 +157,11 @@ public class DSFStepperView: NSView {
 		}
 	}
 
+	// We only want to allow focus if 'allowsKeyboardInput' is true
+	public override var acceptsFirstResponder: Bool {
+		return self.allowsKeyboardInput == false
+	}
+
 	// MARK: - Formatter
 
 	/// A number formatter for display and validation within the control (optional)
@@ -173,12 +176,39 @@ public class DSFStepperView: NSView {
 	/// The value being displayed in the control.  nil represents an 'empty' value, so you can display 'inherited' or 'default' depending on your needs.
 	@objc public dynamic var floatValue: NSNumber? {
 		didSet {
-			self.pushFloatValue()
+			// Update the displayed value in the control
+			self.updateEditFieldValue()
+
+			// Update the published value for Combine
+			if !self.isSettingPublishedValue {
+				self.updatePublishedValue()
+			}
+
+			// If there's a delegate set, call the change method
 			self.delegate?.stepperView(self, didChangeValueTo: self.floatValue)
 		}
 	}
 
-	// MARK: Private
+	/// A CurrentValueSubject for the stepper.
+	@available(OSX 10.15, *)
+	public var publishedValue: CurrentValueSubject<CGFloat?, Never> {
+		return self.observableCurrentObject as! CurrentValueSubject<CGFloat?, Never>
+	}
+
+	// Update the publisher value for combine. Does nothing for < 10.15
+	private func updatePublishedValue() {
+		if #available(OSX 10.15, *) {
+			let f = self.floatValue?.floatValue
+			if let f = f {
+				self.publishedValue.value = CGFloat(f)
+			}
+			else {
+				self.publishedValue.value = nil
+			}
+		}
+	}
+
+	// MARK: - Embedded edit field
 
 	// Custom edit field
 	private lazy var editField: DSFStepperTextField = {
@@ -187,10 +217,36 @@ public class DSFStepperView: NSView {
 		return e
 	}()
 
-	// Tooltip handling callback tags
+	// MARK: - Tooltip handling callback tags
 	private var tooltipIncrementButton: NSView.ToolTipTag?
 	private var tooltipDecrementButton: NSView.ToolTipTag?
 	private var tooltipTextValue: NSView.ToolTipTag?
+
+	// MARK: - Publisher handling for combine
+
+	// Unfortunately, we don't have the ability in swift to use #available for stored properties.
+	// So we have a hacky workaround - dynamically create the CurrentValueSubject and obscure the
+	// type behind an AnyObject.
+
+	private var isSettingPublishedValue = false
+	private var cancellable: AnyObject?
+	lazy private var observableCurrentObject: AnyObject? = {
+		if #available(OSX 10.15, *) {
+			return CurrentValueSubject<CGFloat?, Never>(nil)
+		}
+		return nil
+	}()
+
+	// MARK: - Cleanup
+
+	deinit {
+		if let cancel = self.cancellable as? AnyCancellable {
+			cancel.cancel()
+			self.cancellable = nil
+		}
+		self.observableCurrentObject = nil
+	}
+
 }
 
 // MARK: - Handle no-edit focus keyboard support
@@ -266,7 +322,7 @@ private extension DSFStepperView {
 		self.editField.increment = self.increment
 
 		// Push down the initial value
-		self.pushFloatValue()
+		self.updateEditFieldValue()
 
 		if let f = self.numberFormatter {
 			self.editField.valueFormatter = f
@@ -274,9 +330,31 @@ private extension DSFStepperView {
 
 		self.needsUpdateConstraints = true
 		self.needsLayout = true
+
+		self.configurePublisher()
 	}
 
-	func pushFloatValue() {
+	func configurePublisher() {
+		if #available(OSX 10.15, *) {
+			self.cancellable = self.publishedValue.sink(receiveValue: { [weak self] currentValue in
+				guard let `self` = self else { return }
+				if !self.isSettingPublishedValue {
+					self.isSettingPublishedValue = true
+
+					if let cv = currentValue {
+						self.floatValue = NSNumber(value: Float(cv))
+					}
+					else {
+						self.floatValue = nil
+					}
+					self.isSettingPublishedValue = false
+				}
+			})
+		}
+	}
+
+
+	func updateEditFieldValue() {
 		if let val = self.floatValue {
 			self.editField.current = CGFloat(truncating: val)
 		}

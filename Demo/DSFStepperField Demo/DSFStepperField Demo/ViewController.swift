@@ -7,6 +7,8 @@
 
 import Cocoa
 
+import Combine
+
 class ViewController: NSViewController {
 
 
@@ -21,6 +23,8 @@ class ViewController: NSViewController {
 
 	var stepper2Observer: NSKeyValueObservation?
 
+	var cancellable: AnyCancellable?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -29,13 +33,24 @@ class ViewController: NSViewController {
 		stepper3.delegate = self
 		ordinalStepper.isEnabled = false
 
+		self.noEditStepper.font = NSFont.boldSystemFont(ofSize: 50)
+
+		/// Hook in the first stepper using Combine
+		self.cancellable = self.stepper1.publishedValue.sink(receiveValue: { currentValue in
+			if let c = currentValue {
+				print("stepper is currently at \(c)")
+			}
+			else {
+				print("stepper is currently empty")
+			}
+		})
+
 		// Bind to the second stepper to receive change notifications
 		self.stepper2Observer = self.observe(\.stepper2.floatValue, options: [.new], changeHandler: { (_, value) in
 			guard let val = value.newValue??.floatValue else { return }
 			Swift.print("\(val)")
 		})
 
-		self.noEditStepper.font = NSFont.boldSystemFont(ofSize: 50)
 	}
 
 	override var representedObject: Any? {
@@ -47,6 +62,11 @@ class ViewController: NSViewController {
 	@IBAction func enabledDidChange(_ sender: NSButton) {
 		self.ordinalStepper.isEnabled = (sender.state == .on)
 	}
+
+	@IBAction func resetValue(_ sender: Any) {
+		self.stepper1.publishedValue.send(44.5)
+	}
+
 
 }
 

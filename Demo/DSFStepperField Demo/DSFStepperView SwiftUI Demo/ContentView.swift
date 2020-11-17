@@ -40,9 +40,9 @@ struct ContentView: View {
 								 floatValue: $currentValue,
 								 isEnabled: $isEnabled,
 								 font: .constant(nil))
-					.frame(width: 100)
+					.frame(width: 120)
 				TextField("", value: $currentValue, formatter: NumberFormatter())
-					.frame(width: 100)
+					.frame(width: 120)
 			}
 
 			HStack(alignment: .center, spacing: 20) {
@@ -50,9 +50,9 @@ struct ContentView: View {
 								 floatValue: $currentValue2,
 								 isEnabled: .constant(true),
 								 font: .constant(NSFont.systemFont(ofSize: 24)))
-					.frame(width: 100)
+					.frame(width: 120)
 				TextField("", value: $currentValue2, formatter: ContentView.FloatFormatter)
-					.frame(width: 100)
+					.frame(width: 120)
 			}
 
 		}
