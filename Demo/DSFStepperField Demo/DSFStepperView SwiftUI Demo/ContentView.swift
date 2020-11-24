@@ -12,7 +12,7 @@ struct ContentView: View {
 	@State private var isEnabled: Bool = true
 	@State private var currentValue: CGFloat? = 23
 	let demoConfig = DSFStepperView.SwiftUI.DisplaySettings(
-		minimum: 0, maximum: 100, increment: 1, initialValue: 23, numberFormatter: nil
+		minimum: 0, maximum: 100, increment: 1
 	)
 
 	/// A stepper [-10 ... 10] stepping by 0.5
@@ -42,7 +42,7 @@ struct ContentView: View {
 			HStack(alignment: .center, spacing: 20) {
 				DSFStepperView.SwiftUI(configuration: self.demoConfig,
 									   isEnabled: self.isEnabled,
-									   floatValue: $currentValue)
+									   floatValue: self.$currentValue)
 					.frame(width: 120)
 				TextField("", value: $currentValue, formatter: NumberFormatter())
 					.frame(width: 120)
@@ -51,9 +51,9 @@ struct ContentView: View {
 			HStack(alignment: .center, spacing: 20) {
 				DSFStepperView.SwiftUI(configuration: self.demoConfig2,
 									   foregroundColor: self.foregroundColor,
-									   floatValue: $currentValue2,
+									   floatValue: self.$currentValue2,
 									   onValueChange: { value in
-										Swift.print("New value is \(value)")
+										Swift.print("New value is \(String(describing: value))")
 									   })
 
 					.frame(width: 120)

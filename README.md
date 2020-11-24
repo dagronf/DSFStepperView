@@ -30,6 +30,8 @@ I like the visual approach used with the SwiftUI settings pane, rather than havi
 
 Add `DSFStepperView` to your project via Swift Package Manager, or copy the sources in the Sources/DSFStepperView directly to your project
 
+Demos are available in the `Demo/DSFStepperField Demo` folder
+
 ### Via Interface Builder
 
 Add a new `NSView` instance using Interface Builder, then change the class type to `DSFStepperView`
@@ -147,11 +149,36 @@ These properties can all be configured via Interface Builder or programatically.
 * `numberFormatter` : An optional number formatter for formatting/validating values in the view
 * `isEnabled` : Enable or disable the control
 * `font` : The font for the text field
-* 
+
+## SwiftUI
+
+A SwiftUI container is also provided.
+
+```swift
+struct ContentView: View {
+
+   @State private var currentValue: CGFloat? = 23
+   @State private var isEnabled: Bool = true
+   	let demoConfig = DSFStepperView.SwiftUI.DisplaySettings(
+		minimum: 0, maximum: 100, increment: 1
+	)
+...
+   var body: some View {
+      DSFStepperView.SwiftUI(
+         configuration: self.demoConfig,
+         isEnabled: self.isEnabled,
+         floatValue: self.$currentValue,
+         onValueChange: { value in
+            Swift.print("New value is \(value)")
+         })
+      }
+   }
+}
+```
 
 ## History
 
-* `1.1.0`: Added mouseover highlight for buttons, Combine publisher (10.15+), SwiftUI wrapper
+* `1.1.0`: Added mouseover highlight for buttons, Combine publisher (10.15+), SwiftUI wrapper (10.15+).
 * `1.0.2`: Fixed Issue where 10.14 and earlier didn't display the value (NumberFormatter changes)
 * `1.0.1`: Fixed Bug #1 regarding disappearing button labels on Big Sur
 * `1.0.0`: Initial release

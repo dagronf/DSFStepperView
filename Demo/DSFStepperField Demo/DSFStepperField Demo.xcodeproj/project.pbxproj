@@ -6,6 +6,21 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		232E64E8256CD40B00617F13 /* All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 232E64EB256CD40B00617F13 /* Build configuration list for PBXAggregateTarget "All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				232E64F0256CD41300617F13 /* PBXTargetDependency */,
+				232E64F2256CD41300617F13 /* PBXTargetDependency */,
+			);
+			name = All;
+			productName = All;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		234976652559EAC000FDFB40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234976642559EAC000FDFB40 /* AppDelegate.swift */; };
 		234976672559EAC000FDFB40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234976662559EAC000FDFB40 /* ViewController.swift */; };
@@ -27,6 +42,23 @@
 		23CD9769255E07F800DF00D6 /* DSFStepperView+textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9764255E07F800DF00D6 /* DSFStepperView+textfield.swift */; };
 		23CD976A255E07F800DF00D6 /* DSFStepperView+localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9765255E07F800DF00D6 /* DSFStepperView+localization.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		232E64EF256CD41300617F13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 234976592559EAC000FDFB40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 234976602559EAC000FDFB40;
+			remoteInfo = "DSFStepperField Demo";
+		};
+		232E64F1256CD41300617F13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 234976592559EAC000FDFB40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23CD9744255E071F00DF00D6;
+			remoteInfo = "DSFStepperView SwiftUI Demo";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		234976612559EAC000FDFB40 /* DSFStepperField Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSFStepperField Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +241,9 @@
 				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
+					232E64E8256CD40B00617F13 = {
+						CreatedOnToolsVersion = 12.2;
+					};
 					234976602559EAC000FDFB40 = {
 						CreatedOnToolsVersion = 12.1;
 					};
@@ -232,6 +267,7 @@
 			targets = (
 				234976602559EAC000FDFB40 /* DSFStepperField Demo */,
 				23CD9744255E071F00DF00D6 /* DSFStepperView SwiftUI Demo */,
+				232E64E8256CD40B00617F13 /* All */,
 			);
 		};
 /* End PBXProject section */
@@ -289,6 +325,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		232E64F0256CD41300617F13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 234976602559EAC000FDFB40 /* DSFStepperField Demo */;
+			targetProxy = 232E64EF256CD41300617F13 /* PBXContainerItemProxy */;
+		};
+		232E64F2256CD41300617F13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23CD9744255E071F00DF00D6 /* DSFStepperView SwiftUI Demo */;
+			targetProxy = 232E64F1256CD41300617F13 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		2349766A2559EAC000FDFB40 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -309,6 +358,24 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		232E64E9256CD40B00617F13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		232E64EA256CD40B00617F13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		2349766F2559EAC000FDFB40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -519,6 +586,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		232E64EB256CD40B00617F13 /* Build configuration list for PBXAggregateTarget "All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				232E64E9256CD40B00617F13 /* Debug */,
+				232E64EA256CD40B00617F13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2349765C2559EAC000FDFB40 /* Build configuration list for PBXProject "DSFStepperField Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
