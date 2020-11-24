@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-	@State private var currentValue: CGFloat? = 23
+
 	@State private var isEnabled: Bool = true
-	var demoConfig = DSFStepperView.SwiftUI.Configuration(
+	@State private var currentValue: CGFloat? = 23
+	let demoConfig = DSFStepperView.SwiftUI.DisplaySettings(
 		minimum: 0, maximum: 100, increment: 1, initialValue: 23, numberFormatter: nil
 	)
 
@@ -28,28 +29,33 @@ struct ContentView: View {
 	}()
 
 	@State private var currentValue2: CGFloat? = -3.5
-	var demoConfig2 = DSFStepperView.SwiftUI.Configuration(
-		minimum: -10, maximum: 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter
+	@State private var foregroundColor: NSColor = NSColor.systemTeal
+
+	let demoConfig2 = DSFStepperView.SwiftUI.DisplaySettings(
+		minimum: -10, maximum: 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter,
+		font: NSFont.systemFont(ofSize: 24)
 	)
 
 	var body: some View {
 		VStack (spacing: 16) {
 			Toggle("Enabled", isOn: $isEnabled)
 			HStack(alignment: .center, spacing: 20) {
-				DSFStepperView.SwiftUI(configuration: .constant(demoConfig),
-								 floatValue: $currentValue,
-								 isEnabled: $isEnabled,
-								 font: .constant(nil))
+				DSFStepperView.SwiftUI(configuration: self.demoConfig,
+									   isEnabled: self.isEnabled,
+									   floatValue: $currentValue)
 					.frame(width: 120)
 				TextField("", value: $currentValue, formatter: NumberFormatter())
 					.frame(width: 120)
 			}
 
 			HStack(alignment: .center, spacing: 20) {
-				DSFStepperView.SwiftUI(configuration: .constant(demoConfig2),
-								 floatValue: $currentValue2,
-								 isEnabled: .constant(true),
-								 font: .constant(NSFont.systemFont(ofSize: 24)))
+				DSFStepperView.SwiftUI(configuration: self.demoConfig2,
+									   foregroundColor: self.foregroundColor,
+									   floatValue: $currentValue2,
+									   onValueChange: { value in
+										Swift.print("New value is \(value)")
+									   })
+
 					.frame(width: 120)
 				TextField("", value: $currentValue2, formatter: ContentView.FloatFormatter)
 					.frame(width: 120)

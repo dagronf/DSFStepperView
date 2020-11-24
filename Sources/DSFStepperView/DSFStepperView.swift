@@ -181,7 +181,9 @@ public class DSFStepperView: NSView {
 
 			// Update the published value for Combine
 			if !self.isSettingPublishedValue {
+				self.isSettingPublishedValue = true
 				self.updatePublishedValue()
+				self.isSettingPublishedValue = false
 			}
 
 			// If there's a delegate set, call the change method

@@ -10,16 +10,13 @@ import Cocoa
 import Combine
 
 class ViewController: NSViewController {
+	@IBOutlet var stepper1: DSFStepperView!
+	@IBOutlet var stepper2: DSFStepperView!
 
+	@IBOutlet var stepper3: DSFStepperView!
+	@IBOutlet var ordinalStepper: DSFStepperView!
 
-	@IBOutlet weak var stepper1: DSFStepperView!
-	@IBOutlet weak var stepper2: DSFStepperView!
-	
-	@IBOutlet weak var stepper3: DSFStepperView!
-	@IBOutlet weak var ordinalStepper: DSFStepperView!
-
-	@IBOutlet weak var noEditStepper: DSFStepperView!
-
+	@IBOutlet var noEditStepper: DSFStepperView!
 
 	var stepper2Observer: NSKeyValueObservation?
 
@@ -30,8 +27,8 @@ class ViewController: NSViewController {
 
 		// Do any additional setup after loading the view.
 
-		stepper3.delegate = self
-		ordinalStepper.isEnabled = false
+		self.stepper3.delegate = self
+		self.ordinalStepper.isEnabled = false
 
 		self.noEditStepper.font = NSFont.boldSystemFont(ofSize: 50)
 
@@ -46,16 +43,17 @@ class ViewController: NSViewController {
 		})
 
 		// Bind to the second stepper to receive change notifications
-		self.stepper2Observer = self.observe(\.stepper2.floatValue, options: [.new], changeHandler: { (_, value) in
+		self.stepper2Observer = self.observe(\.stepper2.floatValue, options: [.old, .new], changeHandler: { _, value in
 			guard let val = value.newValue??.floatValue else { return }
+			guard let oldVal = value.oldValue??.floatValue else { return }
+			guard val != oldVal else { return }
 			Swift.print("\(val)")
 		})
-
 	}
 
 	override var representedObject: Any? {
 		didSet {
-		// Update the view, if already loaded.
+			// Update the view, if already loaded.
 		}
 	}
 
@@ -63,17 +61,16 @@ class ViewController: NSViewController {
 		self.ordinalStepper.isEnabled = (sender.state == .on)
 	}
 
-	@IBAction func resetValue(_ sender: Any) {
+	@IBAction func resetValue(_: Any) {
 		self.stepper1.publishedValue.send(44.5)
 	}
-
-
 }
 
 extension ViewController: DSFStepperViewDelegateProtocol {
 	func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?) {
-		guard view === stepper3,
-			  let updated = value?.floatValue else {
+		guard view === self.stepper3,
+		      let updated = value?.floatValue else
+		{
 			return
 		}
 
@@ -88,7 +85,7 @@ extension ViewController: DSFStepperViewDelegateProtocol {
 		}
 	}
 
-	func stepperView(_ view: DSFStepperView, wantsTooltipTextforSegment segment: DSFStepperView.ToolTipSegment) -> String? {
+	func stepperView(_: DSFStepperView, wantsTooltipTextforSegment segment: DSFStepperView.ToolTipSegment) -> String? {
 		switch segment {
 		case .decrementButton: return "Decrement the value"
 		case .incrementButton: return "Increment the value"
