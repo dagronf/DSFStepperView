@@ -29,17 +29,40 @@
 
 import AppKit
 
+// MARK: - Dark Mode
+
 internal extension NSAppearance {
-	/// Is the app running in dark mode?
+	/// Is the appearance dark aqua?
 	@inlinable var isDarkMode: Bool {
-		if #available(macOS 10.14, *),
-		   self.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
-		{
+		if #available(macOS 10.14, *), self.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua {
 			return true
 		}
 		return false
 	}
 }
+
+internal extension NSView {
+	/// Is this view displaying in dark mode?
+	///
+	/// Note that just because the application is in dark mode doesn't mean that each view is displaying in dark mode.
+	/// The 'effective appearance' of the view depends on many elements, such as the parent and any effect view(s) that
+	/// contain it.
+	@inlinable var isDarkMode: Bool {
+		return self.effectiveAppearance.isDarkMode
+	}
+}
+
+/// A global method to determine if the system is running in dark mode.
+@inlinable func IsDarkMode() -> Bool {
+	if #available(OSX 10.14, *) {
+		if let style = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") {
+			return style.lowercased().contains("dark")
+		}
+	}
+	return false
+}
+
+// MARK: - Image scaling
 
 internal extension NSImage {
 	/// Scale the image proportionally to fit to the target size, returning a new image
@@ -79,7 +102,9 @@ internal extension NSImage {
 	}
 }
 
-// A simple NSButton that supports a delayed button repeat if the user clicks and holds the button
+// MARK: - Repeating button
+
+/// A simple NSButton that supports a delayed button repeat if the user clicks and holds the button
 internal class DSFDelayedRepeatingButton: NSButton {
 	override var acceptsFirstResponder: Bool {
 		// For the purposes of this stepper view, we don't want to allow focus on the button
@@ -187,12 +212,17 @@ internal class DSFDelayedRepeatingButton: NSButton {
 		self.sendAction(self.action, to: self.target)
 	}
 
-	// MARK: - Mouse Tracking
+	// MARK: Mouse Tracking
+
+	@inlinable internal var mouseOverColor: CGColor {
+		let alpha: CGFloat = Accessibility.reduceTransparency ? 0.3 : 0.1
+		return CGColor(gray: 0.5, alpha: alpha)
+	}
 
 	private func createBaseFadeAnimation() -> CABasicAnimation {
 		let b = CABasicAnimation(keyPath: "backgroundColor")
 		b.autoreverses = false
-		b.duration = Accessibility.reduceMotion ? 0.01 : 0.2
+		b.duration = Accessibility.reduceMotion ? 0.01 : 0.1
 		b.isRemovedOnCompletion = false
 		b.fillMode = .forwards
 		return b
@@ -200,9 +230,9 @@ internal class DSFDelayedRepeatingButton: NSButton {
 
 	override func mouseEntered(with event: NSEvent) {
 		super.mouseEntered(with: event)
-		if !self.isEnabled  { return }
+		if !self.isEnabled { return }
 		let anim = self.createBaseFadeAnimation()
-		anim.toValue = Accessibility.reduceTransparency ? NSColor.gridColor.cgColor : CGColor(gray: 0.5, alpha: 0.15)
+		anim.toValue = self.mouseOverColor
 		self.layer?.add(anim, forKey: "fadecolor")
 	}
 
@@ -214,8 +244,9 @@ internal class DSFDelayedRepeatingButton: NSButton {
 	}
 }
 
-// Simple accessibility wrapper
-internal class Accessibility {
+// MARK: - Simple accessibility wrapper
+
+internal enum Accessibility {
 	@inlinable static var reduceTransparency: Bool {
 		return NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency
 	}

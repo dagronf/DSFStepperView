@@ -377,12 +377,9 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 		// Drawing code here.
 		let pth = NSBezierPath(roundedRect: cellFrame.insetBy(dx: 1, dy: 1), xRadius: 4, yRadius: 4)
 
-		if NSAppearance.current?.isDarkMode ?? true {
-			pth.lineWidth = 1.0
-		}
-		else {
-			pth.lineWidth = 1.5
-		}
+		let darkMode = controlView.isDarkMode
+
+		pth.lineWidth = darkMode ? 1.0 : 1.5
 
 		if Accessibility.increaseContrast {
 			NSColor.textColor.setStroke()
@@ -393,7 +390,7 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 
 		pth.stroke()
 
-		if NSAppearance.current?.isDarkMode ?? false {
+		if darkMode {
 			NSColor.textColor.withAlphaComponent(0.05).setFill()
 		}
 		else {
