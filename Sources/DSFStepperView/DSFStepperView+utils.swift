@@ -215,14 +215,14 @@ internal class DSFDelayedRepeatingButton: NSButton {
 	// MARK: Mouse Tracking
 
 	@inlinable internal var mouseOverColor: CGColor {
-		let alpha: CGFloat = Accessibility.reduceTransparency ? 0.3 : 0.1
+		let alpha: CGFloat = Accessibility.ReduceTransparency ? 0.3 : 0.1
 		return CGColor(gray: 0.5, alpha: alpha)
 	}
 
 	private func createBaseFadeAnimation() -> CABasicAnimation {
 		let b = CABasicAnimation(keyPath: "backgroundColor")
 		b.autoreverses = false
-		b.duration = Accessibility.reduceMotion ? 0.01 : 0.1
+		b.duration = Accessibility.ReduceMotion ? 0.01 : 0.1
 		b.isRemovedOnCompletion = false
 		b.fillMode = .forwards
 		return b
@@ -246,17 +246,76 @@ internal class DSFDelayedRepeatingButton: NSButton {
 
 // MARK: - Simple accessibility wrapper
 
-internal enum Accessibility {
-	@inlinable static var reduceTransparency: Bool {
-		return NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency
+@objc internal class Accessibility: NSObject {
+
+	/// Get the current accessibility display option for reduce transparency. If this property's value is true, UI (mainly window) backgrounds should not be semi-transparent; they should be opaque.
+	///
+	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
+	///
+	/// See: `NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency`
+	@inlinable @objc static var ReduceTransparency: Bool {
+		if #available(OSX 10.10, *) {
+			return NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency
+		}
+		else {
+			return false
+		}
 	}
 
-	@inlinable static var reduceMotion: Bool {
-		return NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
+	/// Get the current accessibility display option for reduce motion. If this property's value is true, UI should avoid large animations, especially those that simulate the third dimension.
+	///
+	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
+	///
+	/// See: `NSWorkspace.shared.accessibilityDisplayShouldReduceMotion`.
+	@inlinable @objc static var ReduceMotion: Bool {
+		if #available(OSX 10.12, *) {
+			return NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
+		}
+		else {
+			// Fallback on earlier versions
+			return false
+		}
 	}
 
-	@inlinable static var increaseContrast: Bool {
-		return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+	/// Get the current accessibility display option for high-contrast UI.  If this is true, UI should be presented with high contrast such as utilizing a less subtle color palette or bolder lines.
+	///
+	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
+	///
+	/// See: `NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast`.
+	@inlinable @objc static var IncreaseContrast: Bool {
+		if #available(OSX 10.10, *) {
+			return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+		}
+		else {
+			return false
+		}
+	}
+	/// Get the current accessibility display option for differentiate without color. If this is true, UI should not convey information using color alone and instead should use shapes or glyphs to convey information.
+	///
+	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
+	///
+	/// See: `NSWorkspace.shared.accessibilityDisplayShouldDifferentiateWithoutColor`.
+	@inlinable @objc static var DifferentiateWithoutColor: Bool {
+		if #available(OSX 10.10, *) {
+			return NSWorkspace.shared.accessibilityDisplayShouldDifferentiateWithoutColor
+		}
+		else {
+			return false
+		}
+	}
+
+	/// Get the current accessibility display option for invert colors. If this property's value is true then the display will be inverted. In these cases it may be needed for UI drawing to be adjusted to in order to display optimally when inverted.
+	///
+	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
+	///
+	/// See: `NSWorkspace.shared.accessibilityDisplayShouldInvertColors`
+	@inlinable @objc static var InvertColors: Bool {
+		if #available(OSX 10.12, *) {
+			return NSWorkspace.shared.accessibilityDisplayShouldInvertColors
+		}
+		else {
+			return false
+		}
 	}
 }
 

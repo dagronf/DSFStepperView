@@ -919,7 +919,7 @@
                                 </connections>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iq9-fF-Cwo">
-                                <rect key="frame" x="137" y="88" width="65" height="18"/>
+                                <rect key="frame" x="139" y="89" width="64" height="16"/>
                                 <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="fdD-43-fbD">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -952,7 +952,7 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wJN-RF-6eb">
-                                <rect key="frame" x="350" y="271" width="75" height="32"/>
+                                <rect key="frame" x="349" y="271" width="69" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pjr-lr-AWT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
