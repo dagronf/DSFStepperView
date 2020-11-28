@@ -242,9 +242,11 @@ public class DSFStepperView: NSView {
 	// MARK: - Cleanup
 
 	deinit {
-		if let cancel = self.cancellable as? AnyCancellable {
-			cancel.cancel()
-			self.cancellable = nil
+		if #available(macOS 10.15, *) {
+			if let cancel = self.cancellable as? AnyCancellable {
+				cancel.cancel()
+				self.cancellable = nil
+			}
 		}
 		self.observableCurrentObject = nil
 	}
