@@ -1,6 +1,6 @@
 # DSFStepperView
 
-A custom macOS stepper text field.
+A custom macOS stepper text field (Swift/SwiftUI/Objective-C).
 
 <img src="https://github.com/dagronf/dagronf.github.io/blob/master/art/projects/DSFStepperView/DSFStepperView.jpg?raw=true" alt="drawing" width="406"/>
 
@@ -180,6 +180,7 @@ struct ContentView: View {
 
 ## History
 
+* `1.1.4`: Added Objc demo, fixed delegate visibility
 * `1.1.3`: Fixed issue with default SwiftUI initializer not exported.
 * `1.1.2`: Some updates for accessibility
 * `1.1.1`: Fixed issue with Combine not available before 10.15

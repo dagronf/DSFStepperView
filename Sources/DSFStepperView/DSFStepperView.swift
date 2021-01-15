@@ -52,7 +52,7 @@ public class DSFStepperView: NSView {
 	// MARK: - Delegate
 
 	/// The (optional) callback delegate
-	public var delegate: DSFStepperViewDelegateProtocol? {
+	@objc public var delegate: DSFStepperViewDelegateProtocol? {
 		didSet {
 			// Need to make sure the tooltip hit targets are created and checked
 			self.needsLayout = true
