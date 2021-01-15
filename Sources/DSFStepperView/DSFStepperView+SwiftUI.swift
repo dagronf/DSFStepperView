@@ -86,6 +86,19 @@ extension DSFStepperView {
 		/// An optional change value callback
 		public var onValueChange: OnValueChangeType? = nil
 
+		/// Initializer
+		public init(configuration: DisplaySettings,
+					isEnabled: Bool = true,
+					foregroundColor: NSColor? = nil,
+					floatValue: Binding<CGFloat?> = .constant(0),
+					onValueChange: OnValueChangeType? = nil) {
+
+			self.configuration = configuration
+			self.isEnabled = isEnabled
+			self.foregroundColor = foregroundColor
+			self._floatValue = floatValue
+			self.onValueChange = onValueChange
+		}
 	}
 }
 

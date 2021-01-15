@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -22,25 +22,17 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		231D06A025B2350B00B1E5BE /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 231D069F25B2350B00B1E5BE /* DSFStepperView */; };
+		231D06A225B2350F00B1E5BE /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 231D06A125B2350F00B1E5BE /* DSFStepperView */; };
 		234976652559EAC000FDFB40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234976642559EAC000FDFB40 /* AppDelegate.swift */; };
 		234976672559EAC000FDFB40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234976662559EAC000FDFB40 /* ViewController.swift */; };
 		234976692559EAC000FDFB40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 234976682559EAC000FDFB40 /* Assets.xcassets */; };
 		2349766C2559EAC000FDFB40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2349766A2559EAC000FDFB40 /* Main.storyboard */; };
-		2393EE02255B391F00AEB226 /* DSFStepperView+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393EDFE255B391F00AEB226 /* DSFStepperView+utils.swift */; };
-		2393EE03255B391F00AEB226 /* DSFStepperView+localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393EDFF255B391F00AEB226 /* DSFStepperView+localization.swift */; };
-		2393EE04255B391F00AEB226 /* DSFStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393EE00255B391F00AEB226 /* DSFStepperView.swift */; };
-		2393EE05255B391F00AEB226 /* DSFStepperView+textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2393EE01255B391F00AEB226 /* DSFStepperView+textfield.swift */; };
 		23CD9748255E071F00DF00D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9747255E071F00DF00D6 /* AppDelegate.swift */; };
 		23CD974A255E071F00DF00D6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9749255E071F00DF00D6 /* ContentView.swift */; };
 		23CD974C255E072100DF00D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23CD974B255E072100DF00D6 /* Assets.xcassets */; };
 		23CD974F255E072100DF00D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23CD974E255E072100DF00D6 /* Preview Assets.xcassets */; };
 		23CD9752255E072100DF00D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CD9750255E072100DF00D6 /* Main.storyboard */; };
-		23CD975D255E079200DF00D6 /* DSFStepperView+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD975C255E079200DF00D6 /* DSFStepperView+SwiftUI.swift */; };
-		23CD9766255E07F800DF00D6 /* DSFStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9761255E07F800DF00D6 /* DSFStepperView.swift */; };
-		23CD9767255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9762255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift */; };
-		23CD9768255E07F800DF00D6 /* DSFStepperView+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9763255E07F800DF00D6 /* DSFStepperView+utils.swift */; };
-		23CD9769255E07F800DF00D6 /* DSFStepperView+textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9764255E07F800DF00D6 /* DSFStepperView+textfield.swift */; };
-		23CD976A255E07F800DF00D6 /* DSFStepperView+localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD9765255E07F800DF00D6 /* DSFStepperView+localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		231D069B25B2350000B1E5BE /* DSFStepperView */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DSFStepperView; path = ../..; sourceTree = "<group>"; };
 		234976612559EAC000FDFB40 /* DSFStepperField Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSFStepperField Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		234976642559EAC000FDFB40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		234976662559EAC000FDFB40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,10 +61,6 @@
 		2349766B2559EAC000FDFB40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2349766D2559EAC000FDFB40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2349766E2559EAC000FDFB40 /* DSFStepperField_Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSFStepperField_Demo.entitlements; sourceTree = "<group>"; };
-		2393EDFE255B391F00AEB226 /* DSFStepperView+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+utils.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+utils.swift"; sourceTree = "<group>"; };
-		2393EDFF255B391F00AEB226 /* DSFStepperView+localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+localization.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+localization.swift"; sourceTree = "<group>"; };
-		2393EE00255B391F00AEB226 /* DSFStepperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DSFStepperView.swift; path = ../../../Sources/DSFStepperView/DSFStepperView.swift; sourceTree = "<group>"; };
-		2393EE01255B391F00AEB226 /* DSFStepperView+textfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+textfield.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+textfield.swift"; sourceTree = "<group>"; };
 		23CD9745255E071F00DF00D6 /* DSFStepperView SwiftUI Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSFStepperView SwiftUI Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23CD9747255E071F00DF00D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23CD9749255E071F00DF00D6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,12 +69,6 @@
 		23CD9751255E072100DF00D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		23CD9753255E072100DF00D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23CD9754255E072100DF00D6 /* DSFStepperView_SwiftUI_Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSFStepperView_SwiftUI_Demo.entitlements; sourceTree = "<group>"; };
-		23CD975C255E079200DF00D6 /* DSFStepperView+SwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+SwiftUI.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+SwiftUI.swift"; sourceTree = "<group>"; };
-		23CD9761255E07F800DF00D6 /* DSFStepperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DSFStepperView.swift; path = ../../../Sources/DSFStepperView/DSFStepperView.swift; sourceTree = "<group>"; };
-		23CD9762255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+SwiftUI.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+SwiftUI.swift"; sourceTree = "<group>"; };
-		23CD9763255E07F800DF00D6 /* DSFStepperView+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+utils.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+utils.swift"; sourceTree = "<group>"; };
-		23CD9764255E07F800DF00D6 /* DSFStepperView+textfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+textfield.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+textfield.swift"; sourceTree = "<group>"; };
-		23CD9765255E07F800DF00D6 /* DSFStepperView+localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DSFStepperView+localization.swift"; path = "../../../Sources/DSFStepperView/DSFStepperView+localization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231D06A025B2350B00B1E5BE /* DSFStepperView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231D06A225B2350F00B1E5BE /* DSFStepperView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +94,7 @@
 		234976582559EAC000FDFB40 = {
 			isa = PBXGroup;
 			children = (
+				231D069B25B2350000B1E5BE /* DSFStepperView */,
 				234976632559EAC000FDFB40 /* DSFStepperField Demo */,
 				23CD9746255E071F00DF00D6 /* DSFStepperView SwiftUI Demo */,
 				234976622559EAC000FDFB40 /* Products */,
@@ -128,7 +114,6 @@
 		234976632559EAC000FDFB40 /* DSFStepperField Demo */ = {
 			isa = PBXGroup;
 			children = (
-				2349767E2559EE7600FDFB40 /* DSFStepperView */,
 				234976642559EAC000FDFB40 /* AppDelegate.swift */,
 				234976662559EAC000FDFB40 /* ViewController.swift */,
 				234976682559EAC000FDFB40 /* Assets.xcassets */,
@@ -146,22 +131,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2349767E2559EE7600FDFB40 /* DSFStepperView */ = {
-			isa = PBXGroup;
-			children = (
-				2393EE00255B391F00AEB226 /* DSFStepperView.swift */,
-				2393EDFF255B391F00AEB226 /* DSFStepperView+localization.swift */,
-				23CD975C255E079200DF00D6 /* DSFStepperView+SwiftUI.swift */,
-				2393EE01255B391F00AEB226 /* DSFStepperView+textfield.swift */,
-				2393EDFE255B391F00AEB226 /* DSFStepperView+utils.swift */,
-			);
-			name = DSFStepperView;
-			sourceTree = "<group>";
-		};
 		23CD9746255E071F00DF00D6 /* DSFStepperView SwiftUI Demo */ = {
 			isa = PBXGroup;
 			children = (
-				23CD9760255E07E900DF00D6 /* DSFStepperView */,
 				23CD9747255E071F00DF00D6 /* AppDelegate.swift */,
 				23CD9749255E071F00DF00D6 /* ContentView.swift */,
 				23CD974B255E072100DF00D6 /* Assets.xcassets */,
@@ -181,18 +153,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		23CD9760255E07E900DF00D6 /* DSFStepperView */ = {
-			isa = PBXGroup;
-			children = (
-				23CD9761255E07F800DF00D6 /* DSFStepperView.swift */,
-				23CD9765255E07F800DF00D6 /* DSFStepperView+localization.swift */,
-				23CD9762255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift */,
-				23CD9764255E07F800DF00D6 /* DSFStepperView+textfield.swift */,
-				23CD9763255E07F800DF00D6 /* DSFStepperView+utils.swift */,
-			);
-			name = DSFStepperView;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -210,6 +170,7 @@
 			);
 			name = "DSFStepperField Demo";
 			packageProductDependencies = (
+				231D069F25B2350B00B1E5BE /* DSFStepperView */,
 			);
 			productName = "DSFStepperField Demo";
 			productReference = 234976612559EAC000FDFB40 /* DSFStepperField Demo.app */;
@@ -228,6 +189,9 @@
 			dependencies = (
 			);
 			name = "DSFStepperView SwiftUI Demo";
+			packageProductDependencies = (
+				231D06A125B2350F00B1E5BE /* DSFStepperView */,
+			);
 			productName = "DSFStepperView SwiftUI Demo";
 			productReference = 23CD9745255E071F00DF00D6 /* DSFStepperView SwiftUI Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -299,12 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2393EE05255B391F00AEB226 /* DSFStepperView+textfield.swift in Sources */,
-				23CD975D255E079200DF00D6 /* DSFStepperView+SwiftUI.swift in Sources */,
-				2393EE04255B391F00AEB226 /* DSFStepperView.swift in Sources */,
 				234976672559EAC000FDFB40 /* ViewController.swift in Sources */,
-				2393EE03255B391F00AEB226 /* DSFStepperView+localization.swift in Sources */,
-				2393EE02255B391F00AEB226 /* DSFStepperView+utils.swift in Sources */,
 				234976652559EAC000FDFB40 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,13 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23CD9769255E07F800DF00D6 /* DSFStepperView+textfield.swift in Sources */,
-				23CD9768255E07F800DF00D6 /* DSFStepperView+utils.swift in Sources */,
-				23CD9767255E07F800DF00D6 /* DSFStepperView+SwiftUI.swift in Sources */,
-				23CD976A255E07F800DF00D6 /* DSFStepperView+localization.swift in Sources */,
 				23CD974A255E071F00DF00D6 /* ContentView.swift in Sources */,
 				23CD9748255E071F00DF00D6 /* AppDelegate.swift in Sources */,
-				23CD9766255E07F800DF00D6 /* DSFStepperView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +577,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		231D069F25B2350B00B1E5BE /* DSFStepperView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DSFStepperView;
+		};
+		231D06A125B2350F00B1E5BE /* DSFStepperView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DSFStepperView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 234976592559EAC000FDFB40 /* Project object */;
 }

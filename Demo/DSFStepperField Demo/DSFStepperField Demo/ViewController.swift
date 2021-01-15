@@ -6,8 +6,9 @@
 //
 
 import Cocoa
-
 import Combine
+
+import DSFStepperView
 
 class ViewController: NSViewController {
 	@IBOutlet var stepper1: DSFStepperView!
@@ -30,8 +31,6 @@ class ViewController: NSViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		// Do any additional setup after loading the view.
 
 		self.stepper3.delegate = self
 		self.ordinalStepper.isEnabled = false

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -710,7 +710,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="322"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="7vQ-IV-pA5" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="7vQ-IV-pA5" customClass="DSFStepperView" customModule="DSFStepperView">
                                 <rect key="frame" x="20" y="274" width="180" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="500" constant="180" id="QqQ-Le-XgE"/>
@@ -730,7 +730,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEmpty" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="O6a-eq-xMP" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="O6a-eq-xMP" customClass="DSFStepperView" customModule="DSFStepperView">
                                 <rect key="frame" x="20" y="238" width="180" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="4xi-31-sWH"/>
@@ -748,7 +748,7 @@
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="100" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QS0-Co-EkH">
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="36"/>
                                         <subviews>
-                                            <customView horizontalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="PCj-mc-OPz" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
+                                            <customView horizontalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="PCj-mc-OPz" customClass="DSFStepperView" customModule="DSFStepperView">
                                                 <rect key="frame" x="0.0" y="13" width="87" height="23"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Default"/>
@@ -791,7 +791,7 @@
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="100" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVX-RW-ExP">
                                         <rect key="frame" x="93" y="0.0" width="87" height="36"/>
                                         <subviews>
-                                            <customView horizontalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="Bie-ia-geh" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
+                                            <customView horizontalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="Bie-ia-geh" customClass="DSFStepperView" customModule="DSFStepperView">
                                                 <rect key="frame" x="0.0" y="13" width="87" height="23"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Default"/>
@@ -870,7 +870,7 @@
                                     <binding destination="XfG-lQ-9wD" name="value" keyPath="self.stepper1.floatValue" id="hfF-Kv-egu"/>
                                 </connections>
                             </textField>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ExR-tA-ZHP" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ExR-tA-ZHP" customClass="DSFStepperView" customModule="DSFStepperView">
                                 <rect key="frame" x="20" y="116" width="180" height="46"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Inherited"/>
@@ -893,7 +893,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="VwU-y2-Hda" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="VwU-y2-Hda" customClass="DSFStepperView" customModule="DSFStepperView">
                                 <rect key="frame" x="20" y="85" width="101" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="101" id="AUz-oo-d4A"/>
@@ -928,7 +928,7 @@
                                     <action selector="enabledDidChange:" target="XfG-lQ-9wD" id="VId-XH-KbC"/>
                                 </connections>
                             </button>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="kx3-AD-SXT" customClass="DSFStepperView" customModule="DSFStepperField_Demo" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="kx3-AD-SXT" customClass="DSFStepperView" customModule="DSFStepperView">
                                 <rect key="frame" x="20" y="47" width="165" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="165" id="uvS-oX-P24"/>
