@@ -25,7 +25,7 @@
 //	SOFTWARE.
 //
 
-#if canImport(SwiftUI) && os(macOS)
+#if canImport(SwiftUI) && canImport(AppKit) && os(macOS)
 
 import SwiftUI
 

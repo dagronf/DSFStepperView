@@ -25,9 +25,9 @@
 //	SOFTWARE.
 //
 
-#if os(macOS)
+#if canImport(AppKit) && os(macOS)
 
-import Cocoa
+import AppKit
 
 /// A stepper text field
 internal class DSFStepperTextField: NSTextField {

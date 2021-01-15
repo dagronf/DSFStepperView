@@ -25,7 +25,7 @@
 //	SOFTWARE.
 //
 
-#if os(macOS)
+#if canImport(AppKit) && os(macOS)
 
 import Carbon.HIToolbox
 import AppKit
