@@ -1,6 +1,6 @@
 # DSFStepperView
 
-A custom stepper text field.
+A custom macOS stepper text field.
 
 <img src="https://github.com/dagronf/dagronf.github.io/blob/master/art/projects/DSFStepperView/DSFStepperView.jpg?raw=true" alt="drawing" width="406"/>
 
@@ -12,6 +12,8 @@ A custom stepper text field.
 I like the visual approach used with the SwiftUI settings pane, rather than having _really_ small hit targets via the conventional up/down stepper control.
 
 ## Features
+
+Note that DSFStepperView is only available for macOS targets.
 
 * `IBDesignable` support so you can see and configure your stepper views in Interface Builder
 * Increment decrement buttons with repeat (click and hold to continuously increment/decrement)
@@ -178,6 +180,9 @@ struct ContentView: View {
 
 ## History
 
+* `1.1.3`: Fixed issue with default SwiftUI initializer not exported.
+* `1.1.2`: Some updates for accessibility
+* `1.1.1`: Fixed issue with Combine not available before 10.15
 * `1.1.0`: Added mouseover highlight for buttons, Combine publisher (10.15+), SwiftUI wrapper (10.15+).
 * `1.0.2`: Fixed Issue where 10.14 and earlier didn't display the value (NumberFormatter changes)
 * `1.0.1`: Fixed Bug #1 regarding disappearing button labels on Big Sur
