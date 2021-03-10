@@ -28,6 +28,29 @@
 import Foundation
 import CoreGraphics
 
+#if os(macOS)
+import Cocoa
+public typealias DSFColor = NSColor
+public typealias DSFView = NSView
+public typealias DSFFont = NSFont
+#else
+import UIKit
+public typealias DSFColor = UIColor
+public typealias DSFView = UIView
+public typealias DSFFont = UIFont
+#endif
+
+#if canImport(SwiftUI)
+import SwiftUI
+#if os(macOS)
+@available(macOS 10.15, *)
+typealias DSFViewRepresentable = NSViewRepresentable
+#else
+@available(iOS 13.0, tvOS 13.0, *)
+typealias DSFViewRepresentable = UIViewRepresentable
+#endif
+#endif
+
 extension CGFloat {
 	var numberValue: NSNumber {
 		return NSNumber(value: Double(self))

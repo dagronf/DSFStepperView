@@ -4,25 +4,25 @@
 //  Created by Darren Ford on 10/3/21.
 //  Copyright © 2021 Darren Ford. All rights reserved.
 //
-//	MIT License
+//  MIT License
 //
-//	Permission is hereby granted, free of charge, to any person obtaining a copy
-//	of this software and associated documentation files (the "Software"), to deal
-//	in the Software without restriction, including without limitation the rights
-//	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//	copies of the Software, and to permit persons to whom the Software is
-//	furnished to do so, subject to the following conditions:
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
 //
-//	The above copyright notice and this permission notice shall be included in all
-//	copies or substantial portions of the Software.
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
 //
-//	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//	SOFTWARE.
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
 //
 
 #if canImport(UIKit)
@@ -36,7 +36,6 @@ public class DSFStepperView: UIView {
 
 	// The CGFloat value that indicates 'empty' for the control
 	static let OptionalIndicatorValue = CGFloat.greatestFiniteMagnitude
-
 
 	/// The (optional) callback delegate
 	@objc public var delegate: DSFStepperViewDelegateProtocol? {
@@ -83,7 +82,7 @@ public class DSFStepperView: UIView {
 	}
 
 	/// The color to draw the text
-	@IBInspectable public var foregroundColor: UIColor = UIColor.label {
+	@IBInspectable public var foregroundColor = UIColor.label {
 		didSet {
 			self.editField.textColor = self.foregroundColor
 			self.updateAvailability()
@@ -91,7 +90,7 @@ public class DSFStepperView: UIView {
 	}
 
 	/// The color to draw the indicator
-	@IBInspectable public var indicatorColor: UIColor = UIColor.systemBlue {
+	@IBInspectable public var indicatorColor = UIColor.systemBlue {
 		didSet {
 			self.indicatorLayer.backgroundColor = self.indicatorColor.cgColor
 		}
@@ -101,7 +100,8 @@ public class DSFStepperView: UIView {
 	@IBInspectable public var minimum: CGFloat = -CGFloat.greatestFiniteMagnitude {
 		didSet {
 			if let val = self.cgFloatValue,
-				val < self.minimum {
+				val < self.minimum
+			{
 				self.floatValue = self.minimum.numberValue
 			}
 			self.floatValueUpdated()
@@ -112,7 +112,8 @@ public class DSFStepperView: UIView {
 	@IBInspectable public var maximum: CGFloat = CGFloat.greatestFiniteMagnitude {
 		didSet {
 			if let val = self.cgFloatValue,
-				val > self.maximum {
+				val > self.maximum
+			{
 				self.floatValue = self.maximum.numberValue
 			}
 			self.floatValueUpdated()
@@ -125,7 +126,7 @@ public class DSFStepperView: UIView {
 	/// The initial value to be displayed in the control
 	@IBInspectable public var initialValue: CGFloat = 0 {
 		didSet {
-			if self.allowsEmpty && self.initialValue == DSFStepperView.OptionalIndicatorValue {
+			if self.allowsEmpty, self.initialValue == DSFStepperView.OptionalIndicatorValue {
 				self.floatValue = nil
 			}
 			else {
@@ -151,12 +152,11 @@ public class DSFStepperView: UIView {
 	private var fractionalPosition: CGFloat = 0
 	private var _previousValue: NSNumber?
 
-
 	fileprivate var cgFloatValue: CGFloat? {
-		return floatValue?.cgFloatValue
+		return self.floatValue?.cgFloatValue
 	}
 
-	@objc dynamic public var floatValue: NSNumber? {
+	@objc public dynamic var floatValue: NSNumber? {
 		didSet {
 			self.floatValueUpdated()
 		}
@@ -168,7 +168,7 @@ public class DSFStepperView: UIView {
 				self.editField.text = nil
 				return
 			}
-//			fatalError("Cannot set nil value when 'allowsEmpty' is false")
+			//			fatalError("Cannot set nil value when 'allowsEmpty' is false")
 			return
 		}
 
@@ -177,7 +177,7 @@ public class DSFStepperView: UIView {
 			self.editField.text = str
 		}
 		else {
-			//fatalError("Cannot set value for numberformatter")
+			// fatalError("Cannot set value for numberformatter")
 		}
 
 		self.updateAvailability()
@@ -185,7 +185,6 @@ public class DSFStepperView: UIView {
 
 		// Notify the delegate of the change
 		self.delegate?.stepperView(self, didChangeValueTo: self.floatValue)
-
 	}
 
 	private func updateAvailability() {
@@ -233,11 +232,12 @@ public class DSFStepperView: UIView {
 		}
 	}
 
-	let stack: UIStackView = {
-		let stack = UIStackView(frame: .zero)
-		stack.axis = .horizontal
-		return stack
-	}()
+	//	let stack: UIStackView = {
+	//		let stack = UIStackView(frame: .zero)
+	//		stack.axis = .horizontal
+	//		stack.distribution = .fillProportionally
+	//		return stack
+	//	}()
 
 	let editField = UITextField(frame: .zero)
 
@@ -245,12 +245,6 @@ public class DSFStepperView: UIView {
 	let minusButton = DSFDelayedRepeatingButton(frame: .zero)
 
 	let indicatorLayer = CALayer()
-
-	lazy var maskLayer: CAShapeLayer = {
-		let m = CAShapeLayer()
-		m.path = CGPath(roundedRect: self.bounds, cornerWidth: 6, cornerHeight: 6, transform: nil)
-		return m
-	}()
 
 	override public init(frame: CGRect) {
 		super.init(frame: frame)
@@ -265,11 +259,13 @@ public class DSFStepperView: UIView {
 	override public func layoutSubviews() {
 		super.layoutSubviews()
 
-		self.indicatorLayer.frame = self.bounds
+		let rect = self.bounds
+		self.minusButton.frame = CGRect(x: rect.minX, y: rect.minY, width: 50, height: rect.height)
+		self.editField.frame = CGRect(x: rect.minX + 50, y: rect.minY, width: rect.width - 100, height: rect.height)
+		self.plusButton.frame = CGRect(x: rect.maxX - 50, y: rect.minY, width: 50, height: rect.height)
 
 		CATransaction.begin()
 		CATransaction.setDisableActions(true)
-		self.maskLayer.path = CGPath(roundedRect: self.bounds, cornerWidth: 6, cornerHeight: 6, transform: nil)
 		self.updateIndicatorBar()
 		CATransaction.commit()
 	}
@@ -289,12 +285,21 @@ public class DSFStepperView: UIView {
 		}
 
 		var newRect = self.bounds
-		newRect.origin.y = self.bounds.height - 3.5
-		newRect.size.height = 3.5
+		newRect.origin.y = self.bounds.height - 2.5
+		newRect.size.height = 2.5
 		self.indicatorLayer.frame = newRect.divided(atDistance: newRect.width * self.fractionalPosition, from: .minXEdge).slice
 	}
 
+	private static let SuperLow = UILayoutPriority(10)
+
 	func setup() {
+
+		// The top level has to be autolayout-capable
+		self.translatesAutoresizingMaskIntoConstraints = false
+
+		// It's easier, for this simple layout, to just use autosizing masks.  And it's far less problematic
+		// when integrating into SwiftUI as well!
+
 		let f = NumberFormatter()
 		f.allowsFloats = false
 		self.numberFormatter = f
@@ -302,55 +307,40 @@ public class DSFStepperView: UIView {
 		self.indicatorLayer.backgroundColor = self.indicatorColor.cgColor
 		self.layer.addSublayer(self.indicatorLayer)
 
-		self.layer.mask = self.maskLayer
+		self.layer.masksToBounds = true
 
 		self.layer.cornerRadius = 6
 		self.layer.borderWidth = 0.5
 		self.layer.borderColor = self.borderColor.cgColor
 		self.layer.backgroundColor = self.borderBackground.cgColor
 
-		self.stack.translatesAutoresizingMaskIntoConstraints = false
-		self.addSubview(self.stack)
-
-		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stack]|",
-																			options: .alignAllCenterY,
-																			metrics: nil, views: ["stack": self.stack]))
-		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stack]|",
-																			options: .alignAllCenterX,
-																			metrics: nil, views: ["stack": self.stack]))
-
-		self.minusButton.translatesAutoresizingMaskIntoConstraints = false
 		self.minusButton.isAccessibilityElement = true
 		self.minusButton.accessibilityLabel = "Decrement stepper"
 		self.minusButton.setImage(UIImage(systemName: "minus"), for: .normal)
-		self.minusButton.addConstraint(NSLayoutConstraint(item: self.minusButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50))
 		self.minusButton.tintColor = self.editField.textColor
 		self.minusButton.actionBlock = { [weak self] in
 			self?.performDecrement()
 		}
 
-		self.editField.translatesAutoresizingMaskIntoConstraints = false
 		self.editField.textAlignment = .center
 		self.editField.delegate = self
 
 		self.plusButton.setImage(UIImage(systemName: "plus"), for: .normal)
-		self.plusButton.translatesAutoresizingMaskIntoConstraints = false
 		self.plusButton.isAccessibilityElement = true
 		self.plusButton.accessibilityLabel = "Increment stepper"
-		self.plusButton.addConstraint(NSLayoutConstraint(item: self.plusButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50))
 		self.plusButton.tintColor = self.editField.textColor
 
 		self.plusButton.actionBlock = { [weak self] in
 			self?.performIncrement()
 		}
 
-		self.stack.addArrangedSubview(self.minusButton)
-		self.stack.addArrangedSubview(self.editField)
-		self.stack.addArrangedSubview(self.plusButton)
+		self.addSubview(self.minusButton)
+		self.addSubview(self.editField)
+		self.addSubview(self.plusButton)
 
 		self.setupAccessibility()
 
-		if self.allowsEmpty && self.initialValue == DSFStepperView.OptionalIndicatorValue {
+		if self.allowsEmpty, self.initialValue == DSFStepperView.OptionalIndicatorValue {
 			self.floatValue = nil
 		}
 		else {
@@ -359,6 +349,8 @@ public class DSFStepperView: UIView {
 
 		self.updateAvailability()
 		self.updateIndicatorBar()
+
+		self.setNeedsLayout()
 	}
 
 	@objc func performIncrement() {
@@ -376,9 +368,8 @@ public class DSFStepperView: UIView {
 	}
 }
 
-extension DSFStepperView {
-
-	public override var accessibilityValue: String? {
+public extension DSFStepperView {
+	override var accessibilityValue: String? {
 		get {
 			if let f = self.floatValue {
 				return self.numberFormatter.string(from: f)
@@ -389,7 +380,8 @@ extension DSFStepperView {
 		}
 		set {
 			if let n = newValue,
-				let cg = self.numberFormatter.number(from: n) {
+				let cg = self.numberFormatter.number(from: n)
+			{
 				self.floatValue = cg
 			}
 			else {
@@ -398,16 +390,16 @@ extension DSFStepperView {
 		}
 	}
 
-	func setupAccessibility() {
+	internal func setupAccessibility() {
 		self.isAccessibilityElement = true
 		self.accessibilityLabel = "Stepper"
 	}
 
-	public override func accessibilityIncrement() {
+	override func accessibilityIncrement() {
 		self.performIncrement()
 	}
 
-	public override func accessibilityDecrement() {
+	override func accessibilityDecrement() {
 		self.performDecrement()
 	}
 }
@@ -436,7 +428,6 @@ extension DSFStepperView: UITextFieldDelegate {
 	}
 
 	public func textFieldDidEndEditing(_ textField: UITextField) {
-
 		if self.allowsEmpty, textField.text?.isEmpty ?? true {
 			self.floatValue = nil
 			return

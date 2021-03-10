@@ -17,51 +17,100 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gip-AU-CBc" customClass="DSFStepperView" customModule="DSFStepperView">
-                                <rect key="frame" x="20" y="88" width="374" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pYX-Ag-5fe">
+                                <rect key="frame" x="20" y="73" width="374" height="126"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gip-AU-CBc" customClass="DSFStepperView" customModule="DSFStepperView">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="bjB-fe-zyi"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimum">
+                                                <real key="value" value="-10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximum">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="increment">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEmpty" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Noodle"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" name="AccentColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsKeyboardInput" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJW-EL-1rx" customClass="DSFStepperView" customModule="DSFStepperView">
+                                        <rect key="frame" x="0.0" y="38" width="374" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="c8X-tD-8aj"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemGray4Color"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimum">
+                                                <real key="value" value="-1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximum">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="increment">
+                                                <real key="value" value="0.050000000000000003"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="initialValue">
+                                                <real key="value" value="0.34999999999999998"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsKeyboardInput" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-xK-1CZ" customClass="DSFStepperView" customModule="DSFStepperView">
+                                        <rect key="frame" x="0.0" y="86" width="374" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="aNf-As-WxR"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemGray4Color"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="increment">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEmpty" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsKeyboardInput" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Inherited"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E06-QK-lRC" customClass="DSFStepperView" customModule="DSFStepperView">
+                                <rect key="frame" x="20" y="282" width="374" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="bjB-fe-zyi"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minimum">
-                                        <real key="value" value="-10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maximum">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="increment">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEmpty" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Noodle"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" name="AccentColor"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsKeyboardInput" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJW-EL-1rx" customClass="DSFStepperView" customModule="DSFStepperView">
-                                <rect key="frame" x="20" y="126" width="374" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="c8X-tD-8aj"/>
+                                    <constraint firstAttribute="height" constant="100" id="4eb-yS-1Xj"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" systemColor="systemGray4Color"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="minimum">
-                                        <real key="value" value="-1"/>
+                                        <real key="value" value="-5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="maximum">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="increment">
-                                        <real key="value" value="0.050000000000000003"/>
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="initialValue">
-                                        <real key="value" value="0.34999999999999998"/>
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -69,12 +118,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CJW-EL-1rx" firstAttribute="trailing" secondItem="gip-AU-CBc" secondAttribute="trailing" id="1Dr-AC-U53"/>
-                            <constraint firstItem="CJW-EL-1rx" firstAttribute="top" secondItem="gip-AU-CBc" secondAttribute="bottom" constant="8" symbolic="YES" id="29t-7L-xFI"/>
-                            <constraint firstItem="gip-AU-CBc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="5qN-1M-TIy"/>
-                            <constraint firstItem="CJW-EL-1rx" firstAttribute="leading" secondItem="gip-AU-CBc" secondAttribute="leading" id="Im8-y7-GXy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gip-AU-CBc" secondAttribute="trailing" constant="20" id="f1X-nZ-rv0"/>
-                            <constraint firstItem="gip-AU-CBc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ziX-KO-Am3"/>
+                            <constraint firstItem="pYX-Ag-5fe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="29" id="4Ll-dK-jbv"/>
+                            <constraint firstItem="E06-QK-lRC" firstAttribute="leading" secondItem="pYX-Ag-5fe" secondAttribute="leading" id="7Vh-KM-hsi"/>
+                            <constraint firstItem="E06-QK-lRC" firstAttribute="trailing" secondItem="pYX-Ag-5fe" secondAttribute="trailing" id="Bh5-ce-2jz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pYX-Ag-5fe" secondAttribute="trailing" constant="20" id="S78-bb-i7Z"/>
+                            <constraint firstItem="E06-QK-lRC" firstAttribute="top" secondItem="pYX-Ag-5fe" secondAttribute="bottom" constant="83" id="WxY-uD-k3G"/>
+                            <constraint firstItem="pYX-Ag-5fe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kVR-Tu-WV9"/>
                         </constraints>
                     </view>
                     <connections>

@@ -1,0 +1,481 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		23430B4225F88DD600D235DB /* DSFStepperView_SwiftUI_CrossPlatformApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23430B2F25F88DD500D235DB /* DSFStepperView_SwiftUI_CrossPlatformApp.swift */; };
+		23430B4325F88DD600D235DB /* DSFStepperView_SwiftUI_CrossPlatformApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23430B2F25F88DD500D235DB /* DSFStepperView_SwiftUI_CrossPlatformApp.swift */; };
+		23430B4425F88DD600D235DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23430B3025F88DD500D235DB /* ContentView.swift */; };
+		23430B4525F88DD600D235DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23430B3025F88DD500D235DB /* ContentView.swift */; };
+		23430B4625F88DD600D235DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23430B3125F88DD600D235DB /* Assets.xcassets */; };
+		23430B4725F88DD600D235DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23430B3125F88DD600D235DB /* Assets.xcassets */; };
+		23430B5725F88E1B00D235DB /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 23430B5625F88E1B00D235DB /* DSFStepperView */; };
+		23430B5925F88E2000D235DB /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 23430B5825F88E2000D235DB /* DSFStepperView */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		23430B2F25F88DD500D235DB /* DSFStepperView_SwiftUI_CrossPlatformApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSFStepperView_SwiftUI_CrossPlatformApp.swift; sourceTree = "<group>"; };
+		23430B3025F88DD500D235DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		23430B3125F88DD600D235DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		23430B3625F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSFStepperView SwiftUI CrossPlatform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		23430B3925F88DD600D235DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23430B3E25F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSFStepperView SwiftUI CrossPlatform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		23430B4025F88DD600D235DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23430B4125F88DD600D235DB /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		23430B5225F88E0900D235DB /* DSFStepperView */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DSFStepperView; path = ../..; sourceTree = "<group>"; };
+		23430B5C25F8977E00D235DB /* DSFStepperView SwiftUI CrossPlatform.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DSFStepperView SwiftUI CrossPlatform.entitlements"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		23430B3325F88DD600D235DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23430B5725F88E1B00D235DB /* DSFStepperView in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23430B3B25F88DD600D235DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23430B5925F88E2000D235DB /* DSFStepperView in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23430B2925F88DD500D235DB = {
+			isa = PBXGroup;
+			children = (
+				23430B5C25F8977E00D235DB /* DSFStepperView SwiftUI CrossPlatform.entitlements */,
+				23430B5225F88E0900D235DB /* DSFStepperView */,
+				23430B2E25F88DD500D235DB /* Shared */,
+				23430B3825F88DD600D235DB /* iOS */,
+				23430B3F25F88DD600D235DB /* macOS */,
+				23430B3725F88DD600D235DB /* Products */,
+				23430B5525F88E1B00D235DB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		23430B2E25F88DD500D235DB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				23430B2F25F88DD500D235DB /* DSFStepperView_SwiftUI_CrossPlatformApp.swift */,
+				23430B3025F88DD500D235DB /* ContentView.swift */,
+				23430B3125F88DD600D235DB /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		23430B3725F88DD600D235DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23430B3625F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform.app */,
+				23430B3E25F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		23430B3825F88DD600D235DB /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				23430B3925F88DD600D235DB /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		23430B3F25F88DD600D235DB /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				23430B4025F88DD600D235DB /* Info.plist */,
+				23430B4125F88DD600D235DB /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		23430B5525F88E1B00D235DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		23430B3525F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23430B4A25F88DD600D235DB /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI CrossPlatform (iOS)" */;
+			buildPhases = (
+				23430B3225F88DD600D235DB /* Sources */,
+				23430B3325F88DD600D235DB /* Frameworks */,
+				23430B3425F88DD600D235DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DSFStepperView SwiftUI CrossPlatform (iOS)";
+			packageProductDependencies = (
+				23430B5625F88E1B00D235DB /* DSFStepperView */,
+			);
+			productName = "DSFStepperView SwiftUI CrossPlatform (iOS)";
+			productReference = 23430B3625F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform.app */;
+			productType = "com.apple.product-type.application";
+		};
+		23430B3D25F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23430B4D25F88DD600D235DB /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI CrossPlatform (macOS)" */;
+			buildPhases = (
+				23430B3A25F88DD600D235DB /* Sources */,
+				23430B3B25F88DD600D235DB /* Frameworks */,
+				23430B3C25F88DD600D235DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DSFStepperView SwiftUI CrossPlatform (macOS)";
+			packageProductDependencies = (
+				23430B5825F88E2000D235DB /* DSFStepperView */,
+			);
+			productName = "DSFStepperView SwiftUI CrossPlatform (macOS)";
+			productReference = 23430B3E25F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		23430B2A25F88DD500D235DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					23430B3525F88DD600D235DB = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					23430B3D25F88DD600D235DB = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 23430B2D25F88DD500D235DB /* Build configuration list for PBXProject "DSFStepperView SwiftUI CrossPlatform" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 23430B2925F88DD500D235DB;
+			productRefGroup = 23430B3725F88DD600D235DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				23430B3525F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform (iOS) */,
+				23430B3D25F88DD600D235DB /* DSFStepperView SwiftUI CrossPlatform (macOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		23430B3425F88DD600D235DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23430B4625F88DD600D235DB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23430B3C25F88DD600D235DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23430B4725F88DD600D235DB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		23430B3225F88DD600D235DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23430B4425F88DD600D235DB /* ContentView.swift in Sources */,
+				23430B4225F88DD600D235DB /* DSFStepperView_SwiftUI_CrossPlatformApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23430B3A25F88DD600D235DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23430B4525F88DD600D235DB /* ContentView.swift in Sources */,
+				23430B4325F88DD600D235DB /* DSFStepperView_SwiftUI_CrossPlatformApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		23430B4825F88DD600D235DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		23430B4925F88DD600D235DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		23430B4B25F88DD600D235DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DSFStepperView SwiftUI CrossPlatform.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darrenford.DSFSparkline.DSFStepperView-SwiftUI-CrossPlatform";
+				PRODUCT_NAME = "DSFStepperView SwiftUI CrossPlatform";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		23430B4C25F88DD600D235DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DSFStepperView SwiftUI CrossPlatform.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darrenford.DSFSparkline.DSFStepperView-SwiftUI-CrossPlatform";
+				PRODUCT_NAME = "DSFStepperView SwiftUI CrossPlatform";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		23430B4E25F88DD600D235DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darrenford.DSFSparkline.DSFStepperView-SwiftUI-CrossPlatform";
+				PRODUCT_NAME = "DSFStepperView SwiftUI CrossPlatform";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		23430B4F25F88DD600D235DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3L6RK3LGGW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.darrenford.DSFSparkline.DSFStepperView-SwiftUI-CrossPlatform";
+				PRODUCT_NAME = "DSFStepperView SwiftUI CrossPlatform";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		23430B2D25F88DD500D235DB /* Build configuration list for PBXProject "DSFStepperView SwiftUI CrossPlatform" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23430B4825F88DD600D235DB /* Debug */,
+				23430B4925F88DD600D235DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23430B4A25F88DD600D235DB /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI CrossPlatform (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23430B4B25F88DD600D235DB /* Debug */,
+				23430B4C25F88DD600D235DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23430B4D25F88DD600D235DB /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI CrossPlatform (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23430B4E25F88DD600D235DB /* Debug */,
+				23430B4F25F88DD600D235DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		23430B5625F88E1B00D235DB /* DSFStepperView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DSFStepperView;
+		};
+		23430B5825F88E2000D235DB /* DSFStepperView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DSFStepperView;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 23430B2A25F88DD500D235DB /* Project object */;
+}
