@@ -291,7 +291,7 @@ extension DSFStepperTextField {
 		self.enableDisable()
 
 		if let fn = self.font?.fontDescriptor,
-		   let sz = self.font?.fontDescriptor.pointSize
+			let sz = self.font?.fontDescriptor.pointSize
 		{
 			self.decrementButton.font = NSFont(descriptor: fn, size: sz - 2)
 			self.incrementButton.font = NSFont(descriptor: fn, size: sz - 2)
@@ -306,9 +306,9 @@ private extension DSFStepperTextField {
 	private func createButton() -> NSButton {
 		let b = DSFDelayedRepeatingButton(frame: .zero)
 		b.translatesAutoresizingMaskIntoConstraints = false
-        b.setButtonType(.momentaryChange)
+		b.setButtonType(.momentaryChange)
 		b.isBordered = false
-        b.wantsLayer = true
+		b.wantsLayer = true
 		b.target = self
 		return b
 	}
@@ -374,9 +374,8 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 	}
 
 	override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
-
 		let darkMode = controlView.isDarkMode
-
+		
 		let pth = NSBezierPath(roundedRect: cellFrame.insetBy(dx: 1, dy: 1), xRadius: 4, yRadius: 4)
 		pth.lineWidth = darkMode ? 1.0 : 1.5
 
