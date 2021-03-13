@@ -51,9 +51,21 @@ internal class DSFDelayedRepeatingButton: NSButton {
 		self.layer?.cornerRadius = 3
 	}
 
+	override var isEnabled: Bool {
+		get {
+			return super.isEnabled
+		}
+		set {
+			super.isEnabled = newValue
+			self.window?.invalidateCursorRects(for: self)
+		}
+	}
+
 	override func resetCursorRects() {
 		// Add the hand cursor when we're over the button
-		self.addCursorRect(bounds, cursor: .pointingHand)
+		if self.isEnabled {
+			self.addCursorRect(bounds, cursor: .pointingHand)
+		}
 	}
 
 	var mouseOverTrack: NSTrackingArea?
