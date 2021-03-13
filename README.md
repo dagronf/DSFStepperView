@@ -23,6 +23,7 @@ I like the visual approach used with the SwiftUI settings pane, rather than havi
 * Cross-platform SwiftUI and Catalyst support for a consistent look.
 * `IBDesignable` support so you can see and configure your stepper views in Interface Builder
 * Increment decrement buttons with repeat (click/press and hold to continuously increment/decrement)
+* Indicator bar to indicate the current fractional value of the control *(optional)*
 * Editable via keyboard *(optional)*
 * Empty field support (useful for items that are 'default' or 'inherited' values) *(optional)*
 * Set minimum/maximum and increment values. Support for float values (eg. increment by 0.01)
@@ -114,7 +115,7 @@ stepperView.numberFormatter = format
 
 In Interface Builder you can hook your instance's `numberFormatter` outlet to an instance of NumberFormatter in xib or storyboard.
 
-### Tooltips
+### Tooltips (macOS only)
 
 You can specify a tooltip for the entire control the usual way using Interface Builder or programatically via 
 
@@ -149,6 +150,7 @@ These properties can all be configured via Interface Builder or programatically.
 * `fontName` : The name of the font displaying the value (eg. Menlo). Defaults to the system font if the fontName cannot be resolved on the system. (`String`)
 * `fontSize` : The size (in pts) of the font displaying the value (`CGFloat`)
 * `foregroundColor` : The color of the font displaying the value (`NSColor`/`UIColor`)
+* `indicatorColor` : The color to draw the fractional value bar at the bottom of the control (`NSColor`/`UIColor`)
 * `numberFormatter` : An optional number formatter for formatting/validating values in the view
 * `isEnabled` : Enable or disable the control
 * `font` : The font for the text field

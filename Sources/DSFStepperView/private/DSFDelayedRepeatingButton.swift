@@ -2,7 +2,7 @@
 //  DSFDelayedRepeatingButton.swift
 //
 //  Created by Darren Ford on 10/11/20.
-//  Copyright © 2020 Darren Ford. All rights reserved.
+//  Copyright © 2021 Darren Ford. All rights reserved.
 //
 //  MIT License
 //
