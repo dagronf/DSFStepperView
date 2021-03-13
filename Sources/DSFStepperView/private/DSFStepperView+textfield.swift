@@ -156,11 +156,12 @@ internal class DSFStepperTextField: NSTextField {
 	// Set the foreground color for the text and buttons
 	var foregroundColor: NSColor? {
 		didSet {
-			self.textColor = self.foregroundColor
-			self.customCell.textColor = self.foregroundColor
+			let labelColor = self.foregroundColor ?? DSFStepperView.defaultLabelColor
+			self.textColor = labelColor
+			self.customCell.textColor = labelColor
 			if #available(OSX 10.14, *) {
-				self.incrementButton.contentTintColor = self.foregroundColor
-				self.decrementButton.contentTintColor = self.foregroundColor
+				self.incrementButton.contentTintColor = labelColor
+				self.decrementButton.contentTintColor = labelColor
 			}
 		}
 	}
@@ -169,6 +170,22 @@ internal class DSFStepperTextField: NSTextField {
 	var indicatorColor: NSColor? {
 		didSet {
 			self.customCell.indicatorColor = self.indicatorColor
+			self.needsDisplay = true
+		}
+	}
+
+	// Set the foreground color for the text and buttons
+	var borderColor: NSColor? {
+		didSet {
+			self.customCell.borderColor = self.borderColor
+			self.needsDisplay = true
+		}
+	}
+
+	// Set the foreground color for the text and buttons
+	var borderBackground: NSColor? {
+		didSet {
+			self.customCell.borderBackground = self.borderBackground
 			self.needsDisplay = true
 		}
 	}
@@ -235,9 +252,25 @@ internal class DSFStepperTextField: NSTextField {
 }
 
 extension DSFStepperTextField {
+	func setButtonLabelSize(sz: CGFloat) {
+		let add = NSImage(named: "NSAddTemplate")!.resizeImage(maxSize: NSSize(width: sz, height: sz))
+		add.isTemplate = true
+		self.incrementButton.image = add
+
+		let rem = NSImage(named: "NSRemoveTemplate")!.resizeImage(maxSize: NSSize(width: sz, height: sz))
+		rem.isTemplate = true
+		self.decrementButton.image = rem
+	}
+}
+
+
+extension DSFStepperTextField {
 	private func enableDisable() {
 		self.decrementButton.isEnabled = self.current != self.minimum && self.isEnabled
 		self.incrementButton.isEnabled = self.current != self.maximum && self.isEnabled
+
+		self.decrementButton.isHidden = !self.isEnabled
+		self.incrementButton.isHidden = !self.isEnabled
 	}
 
 	private func clamped(_ value: CGFloat) -> CGFloat {
@@ -247,14 +280,6 @@ extension DSFStepperTextField {
 	override func viewWillMove(toWindow newWindow: NSWindow?) {
 		super.viewWillMove(toWindow: newWindow)
 		self.setup()
-	}
-
-	override var isEnabled: Bool {
-		didSet {
-			super.isEnabled = self.isEnabled
-			self.decrementButton.isEnabled = self.isEnabled
-			self.incrementButton.isEnabled = self.isEnabled
-		}
 	}
 
 	override func drawFocusRingMask() {
@@ -387,10 +412,26 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 
 	fileprivate var indicatorColor: NSColor? = nil
 	fileprivate var fractionalValue: CGFloat = -1
+	fileprivate var borderColor: NSColor? = nil
+	fileprivate var borderBackground: NSColor? = nil
+
+	// Returns the color of the indicator if it has been set AND the control has a valid fractional value, else nil
+	@inlinable var validatedIndicatorColor: NSColor? {
+		if (0 ... 1).contains(self.fractionalValue),
+			let indColor = self.indicatorColor {
+			return indColor
+		}
+		return nil
+	}
 
 	private func tweak(_ theRect: CGRect) -> NSRect {
 		// Get the parent's idea of where we should draw
 		var newRect: NSRect = super.drawingRect(forBounds: theRect)
+
+		// If the indicator is shown, move the text up a bit
+		if self.validatedIndicatorColor != nil {
+			newRect.size.height -= 3
+		}
 
 		// Get our ideal size for current text
 		let textSize: NSSize = self.cellSize(forBounds: theRect)
@@ -409,19 +450,16 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 	}
 
 	override func select(withFrame rect: NSRect, in controlView: NSView, editor textObj: NSText, delegate: Any?, start selStart: Int, length selLength: Int) {
-		var textbounds = rect
-		if self.indicatorColor != nil, (0 ... 1).contains(self.fractionalValue) {
-			textbounds.size.height -= 3
-		}
-		super.select(withFrame: self.tweak(textbounds), in: controlView, editor: textObj, delegate: delegate, start: selStart, length: selLength)
+		super.select(withFrame: self.tweak(rect), in: controlView, editor: textObj, delegate: delegate, start: selStart, length: selLength)
 	}
 
 	override func edit(withFrame rect: NSRect, in controlView: NSView, editor textObj: NSText, delegate: Any?, event: NSEvent?) {
-		var textbounds = rect
-		if self.indicatorColor != nil, (0 ... 1).contains(self.fractionalValue) {
-			textbounds.size.height -= 3
-		}
-		super.edit(withFrame: self.tweak(textbounds), in: controlView, editor: textObj, delegate: delegate, event: event)
+		super.edit(withFrame: self.tweak(rect), in: controlView, editor: textObj, delegate: delegate, event: event)
+	}
+
+	// Returns the color as represented by the 'isEnabled' state (well, according to us anyway)
+	@inlinable func stateColor(_ color: NSColor) -> NSColor {
+		return self.isEnabled ? color : color.withAlphaComponent(color.alphaComponent / 2.2)
 	}
 
 	override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
@@ -430,27 +468,42 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 		let pth = NSBezierPath(roundedRect: cellFrame.insetBy(dx: 1, dy: 1), xRadius: 4, yRadius: 4)
 		pth.lineWidth = darkMode ? 1.0 : 1.5
 
-		if Accessibility.IncreaseContrast {
-			NSColor.textColor.setStroke()
-		}
-		else {
-			NSColor.quaternaryLabelColor.setStroke()
+		// Border
+
+		do {
+			let stroke: NSColor
+			if let s = self.borderColor {
+				stroke = s
+			}
+			else if Accessibility.IncreaseContrast {
+				stroke = NSColor.textColor
+			}
+			else {
+				stroke = NSColor.quaternaryLabelColor
+			}
+			stateColor(stroke).setStroke()
+			pth.stroke()
 		}
 
-		pth.stroke()
+		// Fill
 
-		if darkMode {
-			NSColor.textColor.withAlphaComponent(0.05).setFill()
+		do {
+			let fill: NSColor
+			if let f = self.borderBackground {
+				fill = f
+			}
+			else if darkMode {
+				fill = NSColor.textColor.withAlphaComponent(0.05)
+			}
+			else {
+				fill = NSColor.white
+			}
+			stateColor(fill).setFill()
+			pth.fill()
 		}
-		else {
-			NSColor.white.setFill()
-		}
 
-		pth.fill()
-
-		var textBounds = cellFrame
-		if let color = self.indicatorColor, (0 ... 1).contains(self.fractionalValue) {
-			let drawColor = self.isEnabled ? color : color.withAlphaComponent(0.4)
+		if let color = self.validatedIndicatorColor {
+			let drawColor = stateColor(color)
 			pth.setClip()
 			drawColor.setFill()
 			var bds = cellFrame
@@ -458,11 +511,9 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 			bds.size.height = 3
 			bds.size.width *= self.fractionalValue
 			bds.fill()
-
-			textBounds.size.height -= 3
 		}
 
-		super.drawInterior(withFrame: self.tweak(textBounds), in: controlView)
+		super.drawInterior(withFrame: self.tweak(cellFrame), in: controlView)
 	}
 }
 

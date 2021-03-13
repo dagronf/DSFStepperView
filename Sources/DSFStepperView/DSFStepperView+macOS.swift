@@ -131,16 +131,34 @@ public class DSFStepperView: NSView {
 	}
 
 	/// The font color (default is the standard text color)
-	@IBInspectable public var foregroundColor: NSColor = DSFStepperView.defaultLabelColor {
+	@IBInspectable public var foregroundColor: NSColor? {
 		didSet {
 			self.editField.foregroundColor = self.foregroundColor
 		}
 	}
 
-	/// The color to draw the indicator
-	@IBInspectable public var indicatorColor: NSColor? = DSFStepperView.defaultIndicatorColor {
+	/// The color to draw the indicator. If not set, then no indicator is drawn
+	@IBInspectable public var indicatorColor: NSColor? = nil {
 		didSet {
 			self.editField.indicatorColor = self.indicatorColor
+		}
+	}
+
+	/// The color to draw the border
+	///
+	/// NOTE: If you set this value, you will need to handle accessibility changes yourself.
+	@IBInspectable public var borderColor: NSColor? = nil {
+		didSet {
+			self.editField.borderColor = self.borderColor
+		}
+	}
+
+	/// The color to draw the control background.
+	///
+	/// NOTE: If you set this value, you will need to handle accessibility changes yourself.
+	@IBInspectable public var borderBackground: NSColor? = nil {
+		didSet {
+			self.editField.borderBackground = self.borderBackground
 		}
 	}
 

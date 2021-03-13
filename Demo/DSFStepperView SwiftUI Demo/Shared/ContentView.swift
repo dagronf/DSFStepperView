@@ -8,6 +8,15 @@
 import SwiftUI
 import DSFStepperView
 
+extension DSFColor {
+	static var random: DSFColor {
+		let randomRed: CGFloat = CGFloat(drand48())
+		let randomGreen: CGFloat = CGFloat(drand48())
+		let randomBlue: CGFloat = CGFloat(drand48())
+		return DSFColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+	}
+}
+
 struct ContentView: View {
 
 	@State private var isEnabled: Bool = true
@@ -16,7 +25,8 @@ struct ContentView: View {
 		range: 0 ... 100, increment: 1
 	)
 
-	@ObservedObject var style = DSFStepperView.SwiftUI.Style()
+	@State var style = DSFStepperView.SwiftUI.Style(textColor: DSFColor.systemTeal, indicatorColor: DSFColor.systemBlue)
+	@State var disabledStyle = DSFStepperView.SwiftUI.Style()
 
 	/// A stepper [-10 ... 10] stepping by 0.5
 
@@ -32,7 +42,6 @@ struct ContentView: View {
 	}()
 
 	@State private var currentValue2: CGFloat? = -3.5
-	@State private var foregroundColor: DSFColor = DSFColor.systemTeal
 
 	let demoConfig2 = DSFStepperView.SwiftUI.DisplaySettings(
 		range: -10 ... 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter,
@@ -48,6 +57,12 @@ struct ContentView: View {
 	)
 
 
+	@State private var currentValue4: CGFloat? = 0
+	let demoConfig4 = DSFStepperView.SwiftUI.DisplaySettings(
+		range: 0 ... 10, increment: 1, placeholderText: "inh", allowsEmptyValue: true
+	)
+
+
 	var body: some View {
 		VStack (spacing: 16) {
 			Toggle("Enabled", isOn: $isEnabled)
@@ -56,7 +71,7 @@ struct ContentView: View {
 											  isEnabled: self.isEnabled,
 											  floatValue: self.$currentValue)
 				TextField("", value: $currentValue, formatter: NumberFormatter())
-					.padding(3)
+					.padding()
 					.border(Color.gray, width: 1)
 			}
 			.frame(height: 30)
@@ -64,9 +79,8 @@ struct ContentView: View {
 			HStack(alignment: .center, spacing: 20) {
 				DSFStepperView.SwiftUI(
 					configuration: self.demoConfig2,
+					style: self.style,
 					isEnabled: self.isEnabled,
-					foregroundColor: self.foregroundColor,
-					indicatorColor: self.foregroundColor,
 					floatValue: self.$currentValue2,
 					onValueChange: { value in
 						Swift.print("New value is \(String(describing: value))")
@@ -74,6 +88,13 @@ struct ContentView: View {
 				TextField("", value: $currentValue2, formatter: ContentView.FloatFormatter)
 					.padding(3)
 					.border(Color.gray, width: 1)
+				Button("E") {
+					let cVal = DSFColor.random
+					self.style.textColor = cVal
+					self.style.strokeColor = cVal.withAlphaComponent(0.4)
+					self.style.fillColor = cVal.withAlphaComponent(0.1)
+					self.style.indicatorColor = cVal
+				}
 			}
 			.frame(height: 30)
 
@@ -81,6 +102,13 @@ struct ContentView: View {
 										  isEnabled: self.isEnabled,
 										  floatValue: self.$currentValue3)
 				.frame(height: 70)
+
+			HStack(alignment: .center, spacing: 0) {
+				DSFStepperView.SwiftUI(configuration: self.demoConfig4,
+											  isEnabled: self.isEnabled,
+											  floatValue: self.$currentValue4)
+					.frame(width: 120, height: 30)
+			}
 		}
 		.padding()
 	}

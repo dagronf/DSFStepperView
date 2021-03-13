@@ -71,28 +71,30 @@ public class DSFStepperView: UIView {
 	/// Placeholder text to display if the field is empty
 	@IBInspectable public var placeholder: String? = "Inherited" {
 		didSet {
-			if self.allowsEmpty {
-				self.editField.placeholder = self.placeholder
-			}
+			self.editField.placeholder = self.placeholder
 		}
 	}
 
 	/// The color to draw the border
-	@IBInspectable public var borderColor: UIColor = DSFStepperView.borderStrokeDefault {
+	///
+	/// NOTE: If you set this value, you will need to handle accessibility changes yourself.
+	@IBInspectable public var borderColor: UIColor? = nil {
 		didSet {
-			self.layer.borderColor = self.borderColor.cgColor
+			self.layer.borderColor = self.borderColor?.cgColor
 		}
 	}
 
-	/// The color to draw the background
-	@IBInspectable public var borderBackground: UIColor = DSFStepperView.borderFillDefault {
+	/// The color to draw the control background.
+	///
+	/// NOTE: If you set this value, you will need to handle accessibility changes yourself.
+	@IBInspectable public var borderBackground: UIColor? = nil {
 		didSet {
-			self.layer.backgroundColor = self.borderBackground.cgColor
+			self.layer.backgroundColor = self.borderBackground?.cgColor
 		}
 	}
 
 	/// The color to draw the text
-	@IBInspectable public var foregroundColor: UIColor = DSFStepperView.defaultLabelColor {
+	@IBInspectable public var foregroundColor: UIColor? {
 		didSet {
 			self.editField.textColor = self.foregroundColor
 			self.updateAvailability()
@@ -312,8 +314,8 @@ public class DSFStepperView: UIView {
 
 		self.layer.cornerRadius = 6
 		self.layer.borderWidth = 0.5
-		self.layer.borderColor = self.borderColor.cgColor
-		self.layer.backgroundColor = self.borderBackground.cgColor
+		self.layer.borderColor = self.borderColor?.cgColor ?? DSFStepperView.borderStrokeDefault.cgColor
+		self.layer.backgroundColor = self.borderBackground?.cgColor ?? DSFStepperView.borderFillDefault.cgColor
 
 		self.minusButton.isAccessibilityElement = true
 		self.minusButton.accessibilityLabel = "Decrement stepper"
@@ -398,8 +400,8 @@ private extension DSFStepperView {
 		}
 
 		var newRect = self.bounds
-		newRect.origin.y = self.bounds.height - 2.5
-		newRect.size.height = 2.5
+		newRect.origin.y = self.bounds.height - 3.0
+		newRect.size.height = 3.0
 		self.indicatorLayer.frame = newRect.divided(atDistance: newRect.width * self.fractionalPosition, from: .minXEdge).slice
 	}
 
@@ -416,20 +418,33 @@ private extension DSFStepperView {
 			canDecrease = false
 		}
 
+		let textColor = self.foregroundColor ?? DSFStepperView.defaultLabelColor
+		self.editField.textColor = textColor.stateColor(self.isEnabled)
+
 		self.plusButton.isEnabled = canIncrease
-		self.plusButton.tintColor = canIncrease ? self.editField.textColor : .lightGray
+		self.plusButton.isHidden = !self.isEnabled
+		self.plusButton.tintColor = textColor.stateColor(canIncrease)
 
 		self.minusButton.isEnabled = canDecrease
-		self.minusButton.tintColor = canDecrease ? self.editField.textColor : .lightGray
+		self.minusButton.isHidden = !self.isEnabled
+		self.minusButton.tintColor = textColor.stateColor(canDecrease)
 
 		self.editField.isEnabled = self.isEnabled
 
-		self.editField.textColor = self.isEnabled ? self.foregroundColor : .lightGray
+		// Fill color
+		let fc = self.borderBackground ?? DSFStepperView.borderFillDefault
+		self.layer.backgroundColor = fc.stateColor(self.isEnabled).cgColor
 
-		self.indicatorLayer.backgroundColor =
-			self.isEnabled ? self.indicatorColor?.cgColor : self.indicatorColor?.withAlphaComponent(0.4).cgColor
+		// Border color
+		let bc = self.borderColor ?? DSFStepperView.borderStrokeDefault
+		self.layer.borderColor = bc.stateColor(self.isEnabled).cgColor
+
+		// Indicator color
+		self.indicatorLayer.backgroundColor = self.indicatorColor?.stateColor(self.isEnabled).cgColor ?? nil
 	}
 }
+
+
 
 public extension DSFStepperView {
 	override var accessibilityValue: String? {
@@ -524,6 +539,17 @@ extension DSFStepperView: UITextFieldDelegate {
 		else {
 			textField.text = self.numberFormatter.string(for: self.numberValue)
 		}
+	}
+}
+
+// MARK: - State drawing helpers
+
+fileprivate extension UIColor {
+	func disabledColor() -> UIColor {
+		return self.withAlphaComponent(self.cgColor.alpha / 2.2)
+	}
+	func stateColor(_ isEnabled: Bool) -> UIColor {
+		return isEnabled ? self : self.disabledColor()
 	}
 }
 

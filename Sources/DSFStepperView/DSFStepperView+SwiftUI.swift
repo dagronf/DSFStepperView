@@ -40,20 +40,28 @@ extension DSFStepperView {
 
 		public typealias OnValueChangeType = ((CGFloat?) -> Void)
 
-		public class Style: ObservableObject {
+		public struct Style {
 			/// The color to draw the central value
-			@Published public var textColor: DSFColor? = nil
+			public var textColor: DSFColor?
 
 			/// The fill color
-			@Published public var fillColor: DSFColor? = nil
+			public var fillColor: DSFColor?
 
 			/// The border color
-			@Published public var strokeColor: DSFColor? = nil
+			public var strokeColor: DSFColor?
 
 			/// The color to draw the indicator
-			@Published public var indicatorColor: DSFColor? = nil
+			public var indicatorColor: DSFColor?
 
-			public init() { }
+			public init(textColor: DSFColor? = nil,
+							fillColor: DSFColor? = nil,
+							strokeColor: DSFColor? = nil,
+							indicatorColor: DSFColor? = nil) {
+				self.textColor = textColor
+				self.fillColor = fillColor
+				self.strokeColor = strokeColor
+				self.indicatorColor = indicatorColor
+			}
 		}
 
 		public struct DisplaySettings {
@@ -65,7 +73,8 @@ extension DSFStepperView {
 
 			var numberFormatter: NumberFormatter?
 
-			var allowsKeyboardInput = true
+			var allowsEmptyValue: Bool
+			var allowsKeyboardInput: Bool
 
 			let font: DSFFont?
 
@@ -76,6 +85,7 @@ extension DSFStepperView {
 				placeholderText: String? = nil,
 				numberFormatter: NumberFormatter? = nil,
 				allowsKeyboardInput: Bool = true,
+				allowsEmptyValue: Bool = false,
 				font: DSFFont? = nil
 			) {
 				self.range = range
@@ -84,6 +94,7 @@ extension DSFStepperView {
 				self.placeholderText = placeholderText
 				self.numberFormatter = numberFormatter
 				self.allowsKeyboardInput = allowsKeyboardInput
+				self.allowsEmptyValue = allowsEmptyValue
 				self.font = font
 			}
 		}
@@ -91,14 +102,11 @@ extension DSFStepperView {
 		/// The configuration for the stepper view
 		public let configuration: DisplaySettings
 
+		/// The style to draw the controls
+		public let style: Style
+
 		/// The enabled state for the control
 		public var isEnabled: Bool = true
-
-		/// The color to draw the central value
-		public var foregroundColor: DSFColor? = nil
-
-		/// The color to draw the indicator
-		public var indicatorColor: DSFColor? = nil
 
 		/// The current value for the control
 		@Binding public var floatValue: CGFloat?
@@ -108,16 +116,14 @@ extension DSFStepperView {
 
 		/// Initializer
 		public init(configuration: DisplaySettings,
+						style: Style = Style(),
 						isEnabled: Bool = true,
-						foregroundColor: DSFColor? = nil,
-						indicatorColor: DSFColor? = nil,
 						floatValue: Binding<CGFloat?> = .constant(0),
 						onValueChange: OnValueChangeType? = nil) {
 
 			self.configuration = configuration
+			self.style = style
 			self.isEnabled = isEnabled
-			self.foregroundColor = foregroundColor
-			self.indicatorColor = indicatorColor
 			self._floatValue = floatValue
 			self.onValueChange = onValueChange
 		}
@@ -194,20 +200,42 @@ extension DSFStepperView.SwiftUI {
 		if view.isEnabled != self.isEnabled { view.isEnabled = self.isEnabled }
 		if view.allowsKeyboardInput != configuration.allowsKeyboardInput { view.allowsKeyboardInput = configuration.allowsKeyboardInput }
 
-		let fc = self.foregroundColor ?? DSFStepperView.defaultLabelColor
+		if view.allowsEmpty != configuration.allowsEmptyValue { view.allowsEmpty = configuration.allowsEmptyValue }
+
+		let fc = self.style.textColor ?? DSFStepperView.defaultLabelColor
 		if !fc.isEqual(view.foregroundColor) {
 			view.foregroundColor = fc
 		}
 
 		// Indicator color
 
-		if let ic = self.indicatorColor {
+		if let ic = self.style.indicatorColor {
 			if !ic.isEqual(view.indicatorColor) {
 				view.indicatorColor = ic
 			}
 		}
 		else if view.indicatorColor != nil {
 			view.indicatorColor = nil
+		}
+
+		// stroke color
+
+		if let sc = self.style.strokeColor {
+			if !sc.isEqual(view.borderColor) {
+				view.borderColor = sc
+			}
+		}
+		else if view.borderColor != nil {
+			view.borderColor = nil
+		}
+
+		if let fc = self.style.fillColor {
+			if !fc.isEqual(view.borderBackground) {
+				view.borderBackground = fc
+			}
+		}
+		else if view.borderBackground != nil {
+			view.borderBackground = nil
 		}
 
 		if view.numberFormatter !== configuration.numberFormatter {

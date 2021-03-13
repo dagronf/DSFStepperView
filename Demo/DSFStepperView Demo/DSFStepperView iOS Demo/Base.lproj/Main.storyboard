@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pYX-Ag-5fe">
-                                <rect key="frame" x="20" y="73" width="374" height="126"/>
+                                <rect key="frame" x="20" y="73" width="374" height="234"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gip-AU-CBc" customClass="DSFStepperView" customModule="DSFStepperView">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -53,7 +53,7 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="systemGray4Color"/>
+                                                <color key="value" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimum">
                                                 <real key="value" value="-1"/>
@@ -68,6 +68,15 @@
                                                 <real key="value" value="0.34999999999999998"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="allowsKeyboardInput" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderBackground">
+                                                <color key="value" red="0.0" green="0.97680455450000003" blue="0.0" alpha="0.099145644203910616" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="foregroundColor">
+                                                <color key="value" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                                <color key="value" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-xK-1CZ" customClass="DSFStepperView" customModule="DSFStepperView">
@@ -89,41 +98,38 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Inherited"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E06-QK-lRC" customClass="DSFStepperView" customModule="DSFStepperView">
+                                        <rect key="frame" x="0.0" y="134" width="374" height="100"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="4eb-yS-1Xj"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemGray4Color"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimum">
+                                                <real key="value" value="-5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maximum">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="increment">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="initialValue">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E06-QK-lRC" customClass="DSFStepperView" customModule="DSFStepperView">
-                                <rect key="frame" x="20" y="282" width="374" height="100"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="4eb-yS-1Xj"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="systemGray4Color"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minimum">
-                                        <real key="value" value="-5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maximum">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="increment">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="initialValue">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pYX-Ag-5fe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="29" id="4Ll-dK-jbv"/>
-                            <constraint firstItem="E06-QK-lRC" firstAttribute="leading" secondItem="pYX-Ag-5fe" secondAttribute="leading" id="7Vh-KM-hsi"/>
-                            <constraint firstItem="E06-QK-lRC" firstAttribute="trailing" secondItem="pYX-Ag-5fe" secondAttribute="trailing" id="Bh5-ce-2jz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pYX-Ag-5fe" secondAttribute="trailing" constant="20" id="S78-bb-i7Z"/>
-                            <constraint firstItem="E06-QK-lRC" firstAttribute="top" secondItem="pYX-Ag-5fe" secondAttribute="bottom" constant="83" id="WxY-uD-k3G"/>
                             <constraint firstItem="pYX-Ag-5fe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kVR-Tu-WV9"/>
                         </constraints>
                     </view>
