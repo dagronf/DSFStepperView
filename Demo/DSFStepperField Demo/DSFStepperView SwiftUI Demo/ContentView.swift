@@ -5,15 +5,14 @@
 //  Created by Darren Ford on 13/11/20.
 //
 
-import SwiftUI
 import DSFStepperView
+import SwiftUI
 
 struct ContentView: View {
-
 	@State private var isEnabled: Bool = true
 	@State private var currentValue: CGFloat? = 23
 	let demoConfig = DSFStepperView.SwiftUI.DisplaySettings(
-		minimum: 0, maximum: 100, increment: 1
+		range: 0 ... 100, increment: 1
 	)
 
 	/// A stepper [-10 ... 10] stepping by 0.5
@@ -30,20 +29,20 @@ struct ContentView: View {
 	}()
 
 	@State private var currentValue2: CGFloat? = -3.5
-	@State private var foregroundColor: NSColor = NSColor.systemTeal
+	@State private var foregroundColor = NSColor.systemTeal
 
 	let demoConfig2 = DSFStepperView.SwiftUI.DisplaySettings(
-		minimum: -10, maximum: 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter,
+		range: -10 ... 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter,
 		font: NSFont.systemFont(ofSize: 24)
 	)
 
 	var body: some View {
-		VStack (spacing: 16) {
+		VStack(spacing: 16) {
 			Toggle("Enabled", isOn: $isEnabled)
 			HStack(alignment: .center, spacing: 20) {
 				DSFStepperView.SwiftUI(configuration: self.demoConfig,
-									   isEnabled: self.isEnabled,
-									   floatValue: self.$currentValue)
+											  isEnabled: self.isEnabled,
+											  floatValue: self.$currentValue)
 					.frame(idealWidth: 120)
 				TextField("", value: $currentValue, formatter: NumberFormatter())
 					.frame(width: 120)
@@ -51,18 +50,17 @@ struct ContentView: View {
 
 			HStack(alignment: .center, spacing: 20) {
 				DSFStepperView.SwiftUI(configuration: self.demoConfig2,
-									   foregroundColor: self.foregroundColor,
-										indicatorColor: self.foregroundColor,
-									   floatValue: self.$currentValue2,
-									   onValueChange: { value in
-										Swift.print("New value is \(String(describing: value))")
-									   })
+											  foregroundColor: self.foregroundColor,
+											  indicatorColor: self.foregroundColor,
+											  floatValue: self.$currentValue2,
+											  onValueChange: { value in
+												Swift.print("New value is \(String(describing: value))")
+											  })
 
 					.frame(idealWidth: 120)
 				TextField("", value: $currentValue2, formatter: ContentView.FloatFormatter)
 					.frame(width: 120)
 			}
-
 		}
 		.padding()
 	}

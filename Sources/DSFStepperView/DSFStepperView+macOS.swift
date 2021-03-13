@@ -2,7 +2,7 @@
 //  DSFStepperView.swift
 //
 //  Created by Darren Ford on 10/11/20.
-//  Copyright © 2020 Darren Ford. All rights reserved.
+//  Copyright © 2021 Darren Ford. All rights reserved.
 //
 //  MIT License
 //
@@ -157,7 +157,7 @@ public class DSFStepperView: NSView {
 	}
 
 	// The current range definition
-	private var range: ClosedRange<CGFloat> {
+	public var range: ClosedRange<CGFloat> {
 		return self.minimum ... self.maximum
 	}
 

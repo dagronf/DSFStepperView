@@ -13,7 +13,7 @@ struct ContentView: View {
 	@State private var isEnabled: Bool = true
 	@State private var currentValue: CGFloat? = 23
 	let demoConfig = DSFStepperView.SwiftUI.DisplaySettings(
-		minimum: 0, maximum: 100, increment: 1
+		range: 0 ... 100, increment: 1
 	)
 
 	/// A stepper [-10 ... 10] stepping by 0.5
@@ -33,14 +33,14 @@ struct ContentView: View {
 	@State private var foregroundColor: DSFColor = DSFColor.systemTeal
 
 	let demoConfig2 = DSFStepperView.SwiftUI.DisplaySettings(
-		minimum: -10, maximum: 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter,
+		range: -10 ... 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter,
 		font: DSFFont.monospacedSystemFont(ofSize: 18, weight: .regular)
 	)
 
 
 	@State private var currentValue3: CGFloat? = 5
 	let demoConfig3 = DSFStepperView.SwiftUI.DisplaySettings(
-		minimum: -10, maximum: 10, increment: 0.5,
+		range: -10 ... 10, increment: 0.5,
 		numberFormatter: FloatFormatter,
 		font: DSFFont.systemFont(ofSize: 24, weight: .heavy)
 	)
