@@ -853,7 +853,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.stepper2.floatValue" id="moN-4Y-pin"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.stepper2.numberValue" id="MeY-Dh-j1w"/>
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u9g-az-fzw">
@@ -867,7 +867,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.stepper1.floatValue" id="hfF-Kv-egu"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="self.stepper1.numberValue" id="hBp-8T-hDF"/>
                                 </connections>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ExR-tA-ZHP" customClass="DSFStepperView" customModule="DSFStepperView">

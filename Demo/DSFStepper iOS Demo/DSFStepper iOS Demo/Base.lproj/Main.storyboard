@@ -127,6 +127,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="combineListeningStepperView" destination="Peg-xK-1CZ" id="Ef0-y7-6sV"/>
                         <outlet property="s1" destination="gip-AU-CBc" id="8TU-wx-Ltr"/>
                         <outlet property="s2" destination="CJW-EL-1rx" id="c4T-85-b6e"/>
                     </connections>

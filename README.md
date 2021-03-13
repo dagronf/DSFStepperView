@@ -1,30 +1,35 @@
 # DSFStepperView
 
-A custom macOS stepper text field (Swift/SwiftUI/Objective-C).
+A custom stepper text field for macOS and iOS (Swift/SwiftUI/Objective-C/Catalyst).
 
 <img src="https://github.com/dagronf/dagronf.github.io/blob/master/art/projects/DSFStepperView/DSFStepperView.jpg?raw=true" alt="drawing" width="406"/>
 
-![](https://img.shields.io/github/v/tag/dagronf/DSFStepperView) ![](https://img.shields.io/badge/macOS-10.12+-blue) ![](https://img.shields.io/badge/Swift-5.0-orange.svg)
-![](https://img.shields.io/badge/License-MIT-lightgrey) [![](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager)
+![](https://img.shields.io/github/v/tag/dagronf/DSFStepperView) 
+![](https://img.shields.io/badge/macOS-10.12+-red)
+![](https://img.shields.io/badge/iOS-13+-blue)
+![](https://img.shields.io/badge/Swift-5.0-orange.svg)
+![](https://img.shields.io/badge/SwiftUI-1.0+-green)
+![](https://img.shields.io/badge/macCatalyst-13.0+-purple)
+![](https://img.shields.io/badge/License-MIT-lightgrey) 
+[![](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager)
 
 ## Why?
 
-I like the visual approach used with the SwiftUI settings pane, rather than having _really_ small hit targets via the conventional up/down stepper control.
+I like the visual approach used with the SwiftUI settings pane, rather than having _really_ small hit targets via the conventional up/down stepper control on macOS.
 
 ## Features
 
-Note that DSFStepperView is only available for macOS targets.
-
+* Support for macOS, iOS.
+* Cross-platform SwiftUI and Catalyst support for a consistent look.
 * `IBDesignable` support so you can see and configure your stepper views in Interface Builder
-* Increment decrement buttons with repeat (click and hold to continuously increment/decrement)
-* Editable via keyboard
-* Supports empty fields (useful for items that are 'default' or 'inherited' values)
+* Increment decrement buttons with repeat (click/press and hold to continuously increment/decrement)
+* Editable via keyboard *(optional)*
+* Empty field support (useful for items that are 'default' or 'inherited' values) *(optional)*
 * Set minimum/maximum and increment values. Support for float values (eg. increment by 0.01)
 * Font name/size/color
-* Optionally specify a NumberFormatter to display the value in the format you wish (for example, always showing 2 decimal places)
+* NumberFormatter support to display the value in the format you wish (for example, always showing 2 decimal places) *(optional)*
 * Specify a delegate to receive value change updates, or bind to the field's value.
 * Optional delegate to request tooltip strings depending on whether hovering over increment/decrement/text segments
-* Fully auto-layout managed
 * Support for Combine publishing
 * Preliminary SwiftUI support
 
@@ -36,7 +41,7 @@ Demos are available in the `Demo/DSFStepperField Demo` folder
 
 ### Via Interface Builder
 
-Add a new `NSView` instance using Interface Builder, then change the class type to `DSFStepperView`
+Add a new `NSView` or `UIView` instance using Interface Builder, then change the class type to `DSFStepperView`
 
 ### Programatically
 
@@ -63,18 +68,20 @@ There are three methods for dynamically receiving value updates.
 func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?)
 ```
 
-### Binding to `floatValue` on an instance of the control.
+### Binding to `numberValue` on an instance of the control.
+
+You can use bindings to observe the `numberValue` member variable.
 
 ```swift
-self.stepperObserver = self.observe(\.stepper.floatValue, options: [.new], changeHandler: { (_, value) in
+self.stepperObserver = self.observe(\.stepper.numberValue, options: [.new], changeHandler: { (_, value) in
    guard let val = value.newValue else { return }
    Swift.print("\(val)")
 })
 ```
 
-### Using the Combine framework on 10.15 and later
+### Using the Combine framework on macOS 10.15, iOS 13 and later
 
-You can use the Combine framework to subscribe to changes in the control.  On 10.15 and later the control exposes the publisher `publishedValue` from which you can subscribe to changes.
+You can use the Combine framework to subscribe to changes in the control.  On 10.15 and later the control exposes the publisher `publishedValue` from which you can subscribe to value changes.
 
 ```swift
 self.cancellable = myStepper.publishedValue.sink(receiveValue: { currentValue in
@@ -85,12 +92,6 @@ self.cancellable = myStepper.publishedValue.sink(receiveValue: { currentValue in
       print("stepper is currently empty")
    }
 })
-```
-
-Additionally, you can set the value on the control via the publisher too.
-
-```swift
-myStepper.publishedValue.send(44.5)
 ```
 
 ### Number Formatting
@@ -144,10 +145,10 @@ These properties can all be configured via Interface Builder or programatically.
 * `minimum` : The minimum value to be allowed in the view (`CGFloat`)
 * `maximum` : The maximum value to be allowed in the view (`CGFloat`)
 * `increment` : The amount to increment or decrement the count when using the buttons (`CGFloat`)
-* `initialValue` : The initial value to be displayed in the field (useful only for @IBDesignable support)
+* `initialValue` : The initial value to be displayed in the field (useful only for @IBDesignable support) (`CGFloat`)
 * `fontName` : The name of the font displaying the value (eg. Menlo). Defaults to the system font if the fontName cannot be resolved on the system. (`String`)
 * `fontSize` : The size (in pts) of the font displaying the value (`CGFloat`)
-* `foregroundColor` : The color of the font displaying the value (`NSColor`)
+* `foregroundColor` : The color of the font displaying the value (`NSColor`/`UIColor`)
 * `numberFormatter` : An optional number formatter for formatting/validating values in the view
 * `isEnabled` : Enable or disable the control
 * `font` : The font for the text field
@@ -180,6 +181,10 @@ struct ContentView: View {
 
 ## History
 
+* `2.0.0`:
+  - Added iOS implementation for cross-platform compatibility (both SwiftUI and Catalyst support)
+  - Separated `floatValue` into `floatValue` (Swift only) and `numberValue` (an NSNumber for objc). If you have used bindings in your XIB that previously observed `floatValue` you will need to update them to use `numberValue` instead.
+  - Removed the ability to *set* the value via the publisher in Combine.
 * `1.1.4`: Added Objc demo, fixed delegate visibility
 * `1.1.3`: Fixed issue with default SwiftUI initializer not exported.
 * `1.1.2`: Some updates for accessibility
@@ -191,10 +196,12 @@ struct ContentView: View {
 
 ## License
 
+MIT. Use it for anything you want, just attribute my work. Let me know if you do use it somewhere, I'd love to hear about it!
+
 ```
 MIT License
 
-Copyright (c) 2020 Darren Ford
+Copyright (c) 2021 Darren Ford
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

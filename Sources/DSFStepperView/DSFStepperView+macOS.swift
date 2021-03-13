@@ -34,6 +34,10 @@ import Combine
 
 @IBDesignable
 public class DSFStepperView: NSView {
+
+	// The default color for the text
+	static let defaultLabelColor: NSColor = NSColor.textColor
+
 	// MARK: - Delegate
 
 	/// The (optional) callback delegate
@@ -104,7 +108,7 @@ public class DSFStepperView: NSView {
 				self.floatValue = nil
 			}
 			else {
-				self.floatValue = NSNumber(value: Float(self.initialValue))
+				self.floatValue = self.initialValue
 			}
 		}
 	}
@@ -124,7 +128,7 @@ public class DSFStepperView: NSView {
 	}
 
 	/// The font color (default is the standard text color)
-	@IBInspectable public var foregroundColor: NSColor? = nil {
+	@IBInspectable public var foregroundColor: NSColor = DSFStepperView.defaultLabelColor {
 		didSet {
 			self.editField.textColor = self.foregroundColor
 		}
@@ -140,6 +144,11 @@ public class DSFStepperView: NSView {
 			self.editField.invalidateIntrinsicContentSize()
 			self.editField.needsLayout = true
 		}
+	}
+
+	// The current range definition
+	private var range: ClosedRange<CGFloat> {
+		return self.minimum ... self.maximum
 	}
 
 	// We only want to allow focus if 'allowsKeyboardInput' is true
@@ -159,7 +168,7 @@ public class DSFStepperView: NSView {
 	// MARK: Value
 
 	/// The value being displayed in the control.  nil represents an 'empty' value, so you can display 'inherited' or 'default' depending on your needs.
-	@objc public dynamic var floatValue: NSNumber? {
+	public dynamic var floatValue: CGFloat? {
 		didSet {
 			// Update the displayed value in the control
 			self.updateEditFieldValue()
@@ -171,8 +180,21 @@ public class DSFStepperView: NSView {
 				self.isSettingPublishedValue = false
 			}
 
+			self.willChangeValue(for: \.numberValue)
+			self.didChangeValue(for: \.numberValue)
+
 			// If there's a delegate set, call the change method
-			self.delegate?.stepperView(self, didChangeValueTo: self.floatValue)
+			self.delegate?.stepperView(self, didChangeValueTo: self.floatValue?.numberValue)
+		}
+	}
+
+	/// The value being displayed in the control.  nil represents an 'empty' value, so you can display 'inherited' or 'default' depending on your needs.
+	@objc public dynamic var numberValue: NSNumber? {
+		get {
+			return self.floatValue?.numberValue
+		}
+		set {
+			self.floatValue = newValue?.cgFloatValue
 		}
 	}
 
@@ -185,9 +207,8 @@ public class DSFStepperView: NSView {
 	// Update the publisher value for combine. Does nothing for < 10.15
 	private func updatePublishedValue() {
 		if #available(OSX 10.15, *) {
-			let f = self.floatValue?.floatValue
-			if let f = f {
-				self.publishedValue.value = CGFloat(f)
+			if let value = self.floatValue {
+				self.publishedValue.value = value
 			}
 			else {
 				self.publishedValue.value = nil
@@ -200,7 +221,7 @@ public class DSFStepperView: NSView {
 	// Custom edit field
 	private lazy var editField: DSFStepperTextField = {
 		let e = DSFStepperTextField()
-		e.translatesAutoresizingMaskIntoConstraints = false
+		//e.translatesAutoresizingMaskIntoConstraints = false
 		return e
 	}()
 
@@ -288,6 +309,9 @@ public extension DSFStepperView {
 
 	override func layout() {
 		super.layout()
+
+		self.editField.frame = self.bounds
+
 		self.updateTooltipHitTargets()
 	}
 }
@@ -297,13 +321,14 @@ private extension DSFStepperView {
 	static let OptionalIndicatorValue = CGFloat.greatestFiniteMagnitude
 
 	func setup() {
+
+		self.translatesAutoresizingMaskIntoConstraints = false
+
 		if self.editField.isReady {
 			return
 		}
 
 		self.addSubview(self.editField)
-		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-2-[item]-2-|", options: .alignAllCenterY, metrics: [:], views: ["item": self.editField]))
-		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-2-[item]-2-|", options: .alignAllCenterX, metrics: [:], views: ["item": self.editField]))
 
 		self.editField.placeholderString = self.placeholder
 		self.editField.minimum = self.minimum
@@ -317,7 +342,6 @@ private extension DSFStepperView {
 			self.editField.valueFormatter = f
 		}
 
-		self.needsUpdateConstraints = true
 		self.needsLayout = true
 
 		self.configurePublisher()
@@ -330,8 +354,8 @@ private extension DSFStepperView {
 				if !self.isSettingPublishedValue {
 					self.isSettingPublishedValue = true
 
-					if let cv = currentValue {
-						self.floatValue = NSNumber(value: Float(cv))
+					if let value = currentValue {
+						self.floatValue = value
 					}
 					else {
 						self.floatValue = nil
@@ -344,8 +368,8 @@ private extension DSFStepperView {
 
 
 	func updateEditFieldValue() {
-		if let val = self.floatValue {
-			self.editField.current = CGFloat(truncating: val)
+		if let value = self.floatValue {
+			self.editField.current = value
 		}
 		else {
 			self.editField.current = nil

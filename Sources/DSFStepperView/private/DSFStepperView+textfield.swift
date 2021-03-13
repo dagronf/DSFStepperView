@@ -127,7 +127,7 @@ internal class DSFStepperTextField: NSTextField {
 
 			self.lastNonEmptyValue = v
 
-			self.parent?.floatValue = NSNumber(value: val)
+			self.parent?.floatValue = CGFloat(val)
 		}
 	}
 
@@ -235,6 +235,19 @@ extension DSFStepperTextField {
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 	}
+
+	override func layout() {
+		super.layout()
+
+		var decRec = self.bounds.insetBy(dx: 2, dy: 2)
+		decRec.size.width = DSFStepperTextField.HitTargetWidth
+		self.decrementButton.frame = decRec
+
+		var incRec = self.bounds.insetBy(dx: 0, dy: 2)
+		incRec.origin.x = self.bounds.maxX - DSFStepperTextField.HitTargetWidth - 2
+		incRec.size.width = DSFStepperTextField.HitTargetWidth
+		self.incrementButton.frame = incRec
+	}
 }
 
 extension DSFStepperTextField {
@@ -263,21 +276,12 @@ extension DSFStepperTextField {
 
 		self.cell = newCell
 
-		// Left (decrement) button constraints
-
+		// Add the buttons.  Since these are not autolayout managed, we'll need to position them manually in layout()
+		// (The reason for not making these autolayout is
+		//   1. SwiftUI can be really tricky when it comes to autolayout and hosted views
+		//   2. This view is quite simple so its easier to manage the layout ourselves
 		self.addSubview(self.decrementButton)
-		self.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0))
-		self.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 2))
-		self.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -2))
-		self.decrementButton.addConstraint(NSLayoutConstraint(item: self.decrementButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: DSFStepperTextField.HitTargetWidth))
-
-		// Right (increment) button constraints
-
 		self.addSubview(self.incrementButton)
-		self.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: 0))
-		self.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 2))
-		self.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -2))
-		self.incrementButton.addConstraint(NSLayoutConstraint(item: self.incrementButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: DSFStepperTextField.HitTargetWidth))
 
 		self.delegate = self
 
@@ -305,7 +309,6 @@ extension DSFStepperTextField {
 private extension DSFStepperTextField {
 	private func createButton() -> NSButton {
 		let b = DSFDelayedRepeatingButton(frame: .zero)
-		b.translatesAutoresizingMaskIntoConstraints = false
 		b.setButtonType(.momentaryChange)
 		b.isBordered = false
 		b.wantsLayer = true

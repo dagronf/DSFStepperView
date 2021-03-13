@@ -51,16 +51,54 @@ typealias DSFViewRepresentable = UIViewRepresentable
 #endif
 #endif
 
+#if canImport(Combine)
+import Combine
+@available(macOS 10.15, *)
+extension Publisher {
+	 var erased: AnyPublisher<Output, Failure> { eraseToAnyPublisher() }
+}
+#endif
+
 extension CGFloat {
-	var numberValue: NSNumber {
+	/// Returns an NSNumber representation of this value
+	@inlinable var numberValue: NSNumber {
 		return NSNumber(value: Double(self))
+	}
+
+	/// Returns this value clamped within `minValue` and `maxValue`
+	@inlinable func clamped(_ minValue: CGFloat, _ maxValue: CGFloat) -> CGFloat {
+		return Swift.max(minValue, Swift.min(maxValue, self))
+	}
+
+	/// Returns this value clamped within `range`.
+	func clamped(to range: ClosedRange<CGFloat>) -> ClampedValue<CGFloat> {
+		return range.clamp(value: self)
+	}
+
+	@inlinable func isContained(in range: ClosedRange<CGFloat>) -> Bool {
+		return range.contains(self)
 	}
 }
 
 extension NSNumber {
-	var cgFloatValue: CGFloat {
+	@inlinable var cgFloatValue: CGFloat {
 		return CGFloat(self.doubleValue)
 	}
+
+	@inlinable func clamped(min: NSNumber, max: NSNumber) -> NSNumber {
+		if min.compare(self) == .orderedAscending {
+			return min
+		}
+		if max.compare(self) == .orderedDescending {
+			return max
+		}
+		return self
+	}
+
+	@inlinable func clamped(_ range: ClosedRange<CGFloat>) -> NSNumber {
+		return min(range.upperBound, max(range.lowerBound, self.cgFloatValue)).numberValue
+	}
+
 }
 
 #if canImport(AppKit) && os(macOS)

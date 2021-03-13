@@ -53,6 +53,8 @@ struct ContentView: View {
 											  isEnabled: self.isEnabled,
 											  floatValue: self.$currentValue)
 				TextField("", value: $currentValue, formatter: NumberFormatter())
+					.padding(3)
+					.border(Color.gray, width: 1)
 			}
 			.frame(height: 30)
 
@@ -65,14 +67,15 @@ struct ContentView: View {
 						Swift.print("New value is \(String(describing: value))")
 					})
 				TextField("", value: $currentValue2, formatter: ContentView.FloatFormatter)
+					.padding(3)
+					.border(Color.gray, width: 1)
 			}
 			.frame(height: 30)
 
 			DSFStepperView.SwiftUI(configuration: self.demoConfig3,
 										  isEnabled: self.isEnabled,
 										  floatValue: self.$currentValue3)
-				.frame(height: 50)
-
+				.frame(height: 70)
 		}
 		.padding()
 	}

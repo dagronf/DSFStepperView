@@ -28,11 +28,9 @@
 import Foundation
 
 /// Localizations for the stepper view
-#if os(macOS)
 internal extension DSFStepperView {
 	enum Localization {
 		public static let AccessibilityRole =
 			NSLocalizedString("incrementable edit text", comment: "The name of the accessibility role for the stepper control")
 	}
 }
-#endif

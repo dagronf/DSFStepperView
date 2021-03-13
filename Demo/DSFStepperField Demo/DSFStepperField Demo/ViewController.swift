@@ -50,7 +50,7 @@ class ViewController: NSViewController {
 		}
 
 		// Bind to the second stepper to receive change notifications
-		self.stepper2Observer = self.observe(\.stepper2.floatValue, options: [.old, .new], changeHandler: { _, value in
+		self.stepper2Observer = self.observe(\.stepper2?.numberValue, options: [.old, .new], changeHandler: { _, value in
 			guard let val = value.newValue??.floatValue else { return }
 			guard let oldVal = value.oldValue??.floatValue else { return }
 			guard val != oldVal else { return }

@@ -184,14 +184,16 @@ extension DSFStepperView.SwiftUI {
 @available(macOS 10.15, iOS 13, tvOS 13, macCatalyst 13, *)
 extension DSFStepperView.SwiftUI {
 	func updateView(_ view: DSFStepperView) {
-		updateIfNotEqual(result: &view.minimum, val: configuration.minimum)
-		updateIfNotEqual(result: &view.maximum, val: configuration.maximum)
-		updateIfNotEqual(result: &view.increment, val: configuration.increment)
-		updateIfNotEqual(result: &view.placeholder, val: configuration.placeholderText)
-		updateIfNotEqual(result: &view.isEnabled, val: self.isEnabled)
-		updateIfNotEqual(result: &view.allowsKeyboardInput, val: configuration.allowsKeyboardInput)
-		if let f = self.foregroundColor {
-			updateIfNotEqual(result: &view.foregroundColor, val: f)
+		if view.minimum != configuration.minimum { view.minimum = configuration.minimum }
+		if view.maximum != configuration.maximum { view.maximum = configuration.maximum }
+		if view.increment != configuration.increment { view.increment = configuration.increment }
+		if view.placeholder != configuration.placeholderText { view.placeholder = configuration.placeholderText }
+		if view.isEnabled != self.isEnabled { view.isEnabled = self.isEnabled }
+		if view.allowsKeyboardInput != configuration.allowsKeyboardInput { view.allowsKeyboardInput = configuration.allowsKeyboardInput }
+
+		let fc = self.foregroundColor ?? DSFStepperView.defaultLabelColor
+		if !fc.isEqual(view.foregroundColor) {
+			view.foregroundColor = fc
 		}
 
 		if view.numberFormatter !== configuration.numberFormatter {
@@ -207,8 +209,8 @@ extension DSFStepperView.SwiftUI {
 			view.font = nil
 		}
 
-		if let f = self.floatValue {
-			view.floatValue = NSNumber(value: Double(f))
+		if let fValue = self.floatValue {
+			view.floatValue = fValue
 		}
 	}
 }
