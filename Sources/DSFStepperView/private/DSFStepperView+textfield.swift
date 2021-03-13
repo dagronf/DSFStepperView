@@ -60,14 +60,13 @@ internal class DSFStepperTextField: NSTextField {
 		return newCell
 	}()
 
-	var fieldEnabled: Bool {
+	override var isEnabled: Bool {
 		get {
 			return super.isEnabled
 		}
 		set {
 			super.isEnabled = newValue
-			self.decrementButton.isEnabled = newValue
-			self.incrementButton.isEnabled = newValue
+			self.updateForEnableDisable()
 		}
 	}
 
@@ -136,7 +135,7 @@ internal class DSFStepperTextField: NSTextField {
 			let v = self.clamped(curr)
 			let val = Float(v)
 			self.stringValue = self.valueFormatter?.string(from: NSNumber(value: val)) ?? ""
-			self.enableDisable()
+			self.updateForEnableDisable()
 
 			if let value = self.current,
 				self.maximum != CGFloat.greatestFiniteMagnitude,
@@ -265,7 +264,8 @@ extension DSFStepperTextField {
 
 
 extension DSFStepperTextField {
-	private func enableDisable() {
+
+	private func updateForEnableDisable() {
 		self.decrementButton.isEnabled = self.current != self.minimum && self.isEnabled
 		self.incrementButton.isEnabled = self.current != self.maximum && self.isEnabled
 
@@ -353,7 +353,7 @@ extension DSFStepperTextField {
 			self.stringValue = ""
 		}
 
-		self.enableDisable()
+		self.updateForEnableDisable()
 
 		if let fn = self.font?.fontDescriptor,
 			let sz = self.font?.fontDescriptor.pointSize

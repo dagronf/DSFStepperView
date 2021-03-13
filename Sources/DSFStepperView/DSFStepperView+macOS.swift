@@ -56,7 +56,7 @@ public class DSFStepperView: NSView {
 	/// Enable or disable the control
 	@objc public var isEnabled: Bool = true {
 		didSet {
-			self.editField.fieldEnabled = self.isEnabled
+			self.editField.isEnabled = self.isEnabled
 		}
 	}
 
