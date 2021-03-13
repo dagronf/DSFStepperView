@@ -16,6 +16,8 @@ struct ContentView: View {
 		range: 0 ... 100, increment: 1
 	)
 
+	@ObservedObject var style = DSFStepperView.SwiftUI.Style()
+
 	/// A stepper [-10 ... 10] stepping by 0.5
 
 	static let FloatFormatter: NumberFormatter = {

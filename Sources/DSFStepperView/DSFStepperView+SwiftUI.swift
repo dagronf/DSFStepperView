@@ -40,6 +40,22 @@ extension DSFStepperView {
 
 		public typealias OnValueChangeType = ((CGFloat?) -> Void)
 
+		public class Style: ObservableObject {
+			/// The color to draw the central value
+			@Published public var textColor: DSFColor? = nil
+
+			/// The fill color
+			@Published public var fillColor: DSFColor? = nil
+
+			/// The border color
+			@Published public var strokeColor: DSFColor? = nil
+
+			/// The color to draw the indicator
+			@Published public var indicatorColor: DSFColor? = nil
+
+			public init() { }
+		}
+
 		public struct DisplaySettings {
 			let range: ClosedRange<CGFloat>
 			let increment: CGFloat

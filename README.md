@@ -38,7 +38,7 @@ I like the visual approach used with the SwiftUI settings pane, rather than havi
 
 Add `DSFStepperView` to your project via Swift Package Manager, or copy the sources in the Sources/DSFStepperView directly to your project
 
-Demos are available in the `Demo/DSFStepperField Demo` folder
+Demos are available in the `Demo/DSFStepperView Demo` folder
 
 ### Via Interface Builder
 

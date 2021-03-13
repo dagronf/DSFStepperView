@@ -14,8 +14,6 @@
 			);
 			dependencies = (
 				23414F2F25FC7A9000705632 /* PBXTargetDependency */,
-				23414F3125FC7A9000705632 /* PBXTargetDependency */,
-				23414F3325FC7A9000705632 /* PBXTargetDependency */,
 				23414F3525FC7A9000705632 /* PBXTargetDependency */,
 				23414F3725FC7A9000705632 /* PBXTargetDependency */,
 			);
@@ -42,14 +40,6 @@
 		23414EC125FC760300705632 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23414EBF25FC760300705632 /* MainMenu.xib */; };
 		23414EC425FC760300705632 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23414EC325FC760300705632 /* main.m */; };
 		23414ECD25FC763600705632 /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 23414ECC25FC763600705632 /* DSFStepperView */; };
-		23414EEB25FC788100705632 /* DSFStepperView_SwiftUI_DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23414ED925FC788000705632 /* DSFStepperView_SwiftUI_DemoApp.swift */; };
-		23414EEC25FC788100705632 /* DSFStepperView_SwiftUI_DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23414ED925FC788000705632 /* DSFStepperView_SwiftUI_DemoApp.swift */; };
-		23414EED25FC788100705632 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23414EDA25FC788000705632 /* ContentView.swift */; };
-		23414EEE25FC788100705632 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23414EDA25FC788000705632 /* ContentView.swift */; };
-		23414EEF25FC788100705632 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23414EDB25FC788100705632 /* Assets.xcassets */; };
-		23414EF025FC788100705632 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23414EDB25FC788100705632 /* Assets.xcassets */; };
-		23414F0325FC78AD00705632 /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 23414F0225FC78AD00705632 /* DSFStepperView */; };
-		23414F0525FC78B400705632 /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 23414F0425FC78B400705632 /* DSFStepperView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,20 +49,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 23414EB725FC760200705632;
 			remoteInfo = "DSFStepperView ObjC Demo";
-		};
-		23414F3025FC7A9000705632 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 23414E3225FC72CD00705632 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 23414EDF25FC788100705632;
-			remoteInfo = "DSFStepperView SwiftUI Demo (iOS)";
-		};
-		23414F3225FC7A9000705632 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 23414E3225FC72CD00705632 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 23414EE625FC788100705632;
-			remoteInfo = "DSFStepperView SwiftUI Demo (macOS)";
 		};
 		23414F3425FC7A9000705632 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -116,14 +92,6 @@
 		23414EC325FC760300705632 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		23414EC525FC760300705632 /* DSFStepperView_ObjC_Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DSFStepperView_ObjC_Demo.entitlements; sourceTree = "<group>"; };
 		23414ED125FC780900705632 /* DSFStepperView iOS Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DSFStepperView iOS Demo.entitlements"; sourceTree = "<group>"; };
-		23414ED925FC788000705632 /* DSFStepperView_SwiftUI_DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSFStepperView_SwiftUI_DemoApp.swift; sourceTree = "<group>"; };
-		23414EDA25FC788000705632 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		23414EDB25FC788100705632 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		23414EE025FC788100705632 /* DSFStepperView SwiftUI Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSFStepperView SwiftUI Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		23414EE225FC788100705632 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		23414EE725FC788100705632 /* DSFStepperView SwiftUI Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DSFStepperView SwiftUI Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		23414EE925FC788100705632 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		23414EEA25FC788100705632 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,22 +119,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23414EDD25FC788100705632 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				23414F0525FC78B400705632 /* DSFStepperView in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		23414EE425FC788100705632 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				23414F0325FC78AD00705632 /* DSFStepperView in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -177,7 +129,6 @@
 				23414E3C25FC72CD00705632 /* DSFStepperView macOS Demo */,
 				23414E5B25FC745000705632 /* DSFStepperView iOS Demo */,
 				23414EB925FC760200705632 /* DSFStepperView ObjC Demo */,
-				23414EFC25FC789200705632 /* DSFStepperView SwiftUI Demo */,
 				23414E3B25FC72CD00705632 /* Products */,
 				23414E5125FC731B00705632 /* Frameworks */,
 			);
@@ -189,8 +140,6 @@
 				23414E3A25FC72CD00705632 /* DSFStepperView macOS Demo.app */,
 				23414E5A25FC745000705632 /* DSFStepperView iOS Demo.app */,
 				23414EB825FC760200705632 /* DSFStepperView ObjC Demo.app */,
-				23414EE025FC788100705632 /* DSFStepperView SwiftUI Demo.app */,
-				23414EE725FC788100705632 /* DSFStepperView SwiftUI Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,43 +191,6 @@
 				23414EC525FC760300705632 /* DSFStepperView_ObjC_Demo.entitlements */,
 			);
 			path = "DSFStepperView ObjC Demo";
-			sourceTree = "<group>";
-		};
-		23414ED825FC788000705632 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				23414ED925FC788000705632 /* DSFStepperView_SwiftUI_DemoApp.swift */,
-				23414EDA25FC788000705632 /* ContentView.swift */,
-				23414EDB25FC788100705632 /* Assets.xcassets */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		23414EE125FC788100705632 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				23414EE225FC788100705632 /* Info.plist */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		23414EE825FC788100705632 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				23414EE925FC788100705632 /* Info.plist */,
-				23414EEA25FC788100705632 /* macOS.entitlements */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
-		23414EFC25FC789200705632 /* DSFStepperView SwiftUI Demo */ = {
-			isa = PBXGroup;
-			children = (
-				23414ED825FC788000705632 /* Shared */,
-				23414EE125FC788100705632 /* iOS */,
-				23414EE825FC788100705632 /* macOS */,
-			);
-			path = "DSFStepperView SwiftUI Demo";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,46 +256,6 @@
 			productReference = 23414EB825FC760200705632 /* DSFStepperView ObjC Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		23414EDF25FC788100705632 /* DSFStepperView SwiftUI Demo (iOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 23414EF125FC788100705632 /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI Demo (iOS)" */;
-			buildPhases = (
-				23414EDC25FC788100705632 /* Sources */,
-				23414EDD25FC788100705632 /* Frameworks */,
-				23414EDE25FC788100705632 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "DSFStepperView SwiftUI Demo (iOS)";
-			packageProductDependencies = (
-				23414F0425FC78B400705632 /* DSFStepperView */,
-			);
-			productName = "DSFStepperView SwiftUI Demo (iOS)";
-			productReference = 23414EE025FC788100705632 /* DSFStepperView SwiftUI Demo.app */;
-			productType = "com.apple.product-type.application";
-		};
-		23414EE625FC788100705632 /* DSFStepperView SwiftUI Demo (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 23414EF425FC788100705632 /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI Demo (macOS)" */;
-			buildPhases = (
-				23414EE325FC788100705632 /* Sources */,
-				23414EE425FC788100705632 /* Frameworks */,
-				23414EE525FC788100705632 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "DSFStepperView SwiftUI Demo (macOS)";
-			packageProductDependencies = (
-				23414F0225FC78AD00705632 /* DSFStepperView */,
-			);
-			productName = "DSFStepperView SwiftUI Demo (macOS)";
-			productReference = 23414EE725FC788100705632 /* DSFStepperView SwiftUI Demo.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -402,18 +274,12 @@
 					23414EB725FC760200705632 = {
 						CreatedOnToolsVersion = 12.4;
 					};
-					23414EDF25FC788100705632 = {
-						CreatedOnToolsVersion = 12.4;
-					};
-					23414EE625FC788100705632 = {
-						CreatedOnToolsVersion = 12.4;
-					};
 					23414F2425FC7A8300705632 = {
 						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
-			buildConfigurationList = 23414E3525FC72CD00705632 /* Build configuration list for PBXProject "DSFStepperView macOS Demo" */;
+			buildConfigurationList = 23414E3525FC72CD00705632 /* Build configuration list for PBXProject "DSFStepperView Demo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -429,8 +295,6 @@
 				23414E3925FC72CD00705632 /* DSFStepperView macOS Demo */,
 				23414E5925FC745000705632 /* DSFStepperView iOS Demo */,
 				23414EB725FC760200705632 /* DSFStepperView ObjC Demo */,
-				23414EDF25FC788100705632 /* DSFStepperView SwiftUI Demo (iOS) */,
-				23414EE625FC788100705632 /* DSFStepperView SwiftUI Demo (macOS) */,
 				23414F2425FC7A8300705632 /* All */,
 			);
 		};
@@ -465,22 +329,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23414EDE25FC788100705632 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				23414EEF25FC788100705632 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		23414EE525FC788100705632 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				23414EF025FC788100705632 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -512,24 +360,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23414EDC25FC788100705632 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				23414EED25FC788100705632 /* ContentView.swift in Sources */,
-				23414EEB25FC788100705632 /* DSFStepperView_SwiftUI_DemoApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		23414EE325FC788100705632 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				23414EEE25FC788100705632 /* ContentView.swift in Sources */,
-				23414EEC25FC788100705632 /* DSFStepperView_SwiftUI_DemoApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -537,16 +367,6 @@
 			isa = PBXTargetDependency;
 			target = 23414EB725FC760200705632 /* DSFStepperView ObjC Demo */;
 			targetProxy = 23414F2E25FC7A9000705632 /* PBXContainerItemProxy */;
-		};
-		23414F3125FC7A9000705632 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 23414EDF25FC788100705632 /* DSFStepperView SwiftUI Demo (iOS) */;
-			targetProxy = 23414F3025FC7A9000705632 /* PBXContainerItemProxy */;
-		};
-		23414F3325FC7A9000705632 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 23414EE625FC788100705632 /* DSFStepperView SwiftUI Demo (macOS) */;
-			targetProxy = 23414F3225FC7A9000705632 /* PBXContainerItemProxy */;
 		};
 		23414F3525FC7A9000705632 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -844,99 +664,6 @@
 			};
 			name = Release;
 		};
-		23414EF225FC788100705632 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3L6RK3LGGW;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "DSFStepperView SwiftUI Demo/iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darrenford.DSFStepperView.Demo.SwiftUI.iOS-SwiftUI-Demo";
-				PRODUCT_NAME = "DSFStepperView SwiftUI Demo";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		23414EF325FC788100705632 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3L6RK3LGGW;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "DSFStepperView SwiftUI Demo/iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.darrenford.DSFStepperView.Demo.SwiftUI.iOS-SwiftUI-Demo";
-				PRODUCT_NAME = "DSFStepperView SwiftUI Demo";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		23414EF525FC788100705632 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "DSFStepperView SwiftUI Demo/macOS/macOS.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3L6RK3LGGW;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "DSFStepperView SwiftUI Demo/macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.darrenford.DSFStepperView.Demo.SwiftUI.macOS;
-				PRODUCT_NAME = "DSFStepperView SwiftUI Demo";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		23414EF625FC788100705632 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "DSFStepperView SwiftUI Demo/macOS/macOS.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3L6RK3LGGW;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "DSFStepperView SwiftUI Demo/macOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.darrenford.DSFStepperView.Demo.SwiftUI.macOS;
-				PRODUCT_NAME = "DSFStepperView SwiftUI Demo";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		23414F2525FC7A8300705632 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -958,7 +685,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		23414E3525FC72CD00705632 /* Build configuration list for PBXProject "DSFStepperView macOS Demo" */ = {
+		23414E3525FC72CD00705632 /* Build configuration list for PBXProject "DSFStepperView Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				23414E4825FC72CD00705632 /* Debug */,
@@ -994,24 +721,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		23414EF125FC788100705632 /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI Demo (iOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				23414EF225FC788100705632 /* Debug */,
-				23414EF325FC788100705632 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		23414EF425FC788100705632 /* Build configuration list for PBXNativeTarget "DSFStepperView SwiftUI Demo (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				23414EF525FC788100705632 /* Debug */,
-				23414EF625FC788100705632 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		23414F2725FC7A8300705632 /* Build configuration list for PBXAggregateTarget "All" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1033,14 +742,6 @@
 			productName = DSFStepperView;
 		};
 		23414ECC25FC763600705632 /* DSFStepperView */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = DSFStepperView;
-		};
-		23414F0225FC78AD00705632 /* DSFStepperView */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = DSFStepperView;
-		};
-		23414F0425FC78B400705632 /* DSFStepperView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DSFStepperView;
 		};
