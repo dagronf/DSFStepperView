@@ -38,6 +38,9 @@ public class DSFStepperView: NSView {
 	// The default color for the text
 	static let defaultLabelColor: NSColor = NSColor.textColor
 
+	// The indicator color (off by default)
+	static let defaultIndicatorColor: NSColor? = nil
+
 	// MARK: - Delegate
 
 	/// The (optional) callback delegate
@@ -131,6 +134,13 @@ public class DSFStepperView: NSView {
 	@IBInspectable public var foregroundColor: NSColor = DSFStepperView.defaultLabelColor {
 		didSet {
 			self.editField.foregroundColor = self.foregroundColor
+		}
+	}
+
+	/// The color to draw the indicator
+	@IBInspectable public var indicatorColor: NSColor? = DSFStepperView.defaultIndicatorColor {
+		didSet {
+			self.editField.indicatorColor = self.indicatorColor
 		}
 	}
 
@@ -323,10 +333,6 @@ private extension DSFStepperView {
 	func setup() {
 
 		self.translatesAutoresizingMaskIntoConstraints = false
-
-		if self.editField.isReady {
-			return
-		}
 
 		self.addSubview(self.editField)
 

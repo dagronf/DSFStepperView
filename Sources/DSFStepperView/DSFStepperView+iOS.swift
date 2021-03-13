@@ -33,6 +33,9 @@ import Combine
 @IBDesignable
 public class DSFStepperView: UIView {
 
+	// The indicator color (off by default)
+	static let defaultIndicatorColor: UIColor? = UIColor.systemBlue
+
 	// The width of the hit target
 	static let hitTargetWidth: CGFloat = 50
 
@@ -89,7 +92,7 @@ public class DSFStepperView: UIView {
 	}
 
 	/// The color to draw the text
-	@IBInspectable public var foregroundColor = DSFStepperView.defaultLabelColor {
+	@IBInspectable public var foregroundColor: UIColor = DSFStepperView.defaultLabelColor {
 		didSet {
 			self.editField.textColor = self.foregroundColor
 			self.updateAvailability()
@@ -97,9 +100,9 @@ public class DSFStepperView: UIView {
 	}
 
 	/// The color to draw the indicator
-	@IBInspectable public var indicatorColor = UIColor.systemBlue {
+	@IBInspectable public var indicatorColor: UIColor? = DSFStepperView.defaultIndicatorColor {
 		didSet {
-			self.indicatorLayer.backgroundColor = self.indicatorColor.cgColor
+			self.indicatorLayer.backgroundColor = self.indicatorColor?.cgColor
 		}
 	}
 
@@ -302,7 +305,7 @@ public class DSFStepperView: UIView {
 		f.allowsFloats = false
 		self.numberFormatter = f
 
-		self.indicatorLayer.backgroundColor = self.indicatorColor.cgColor
+		self.indicatorLayer.backgroundColor = self.indicatorColor?.cgColor
 		self.layer.addSublayer(self.indicatorLayer)
 
 		self.layer.masksToBounds = true
@@ -422,6 +425,9 @@ private extension DSFStepperView {
 		self.editField.isEnabled = self.isEnabled
 
 		self.editField.textColor = self.isEnabled ? self.foregroundColor : .lightGray
+
+		self.indicatorLayer.backgroundColor =
+			self.isEnabled ? self.indicatorColor?.cgColor : self.indicatorColor?.withAlphaComponent(0.4).cgColor
 	}
 }
 

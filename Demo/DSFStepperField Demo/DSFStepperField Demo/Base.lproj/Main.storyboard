@@ -880,7 +880,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="initialValue">
                                         <real key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEmpty" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEmpty" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="fontName" value="Menlo"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="minimum">
                                         <real key="value" value="-50"/>
@@ -890,6 +890,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                         <real key="value" value="32"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                        <color key="value" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
@@ -913,6 +916,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEmpty" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="ordinal"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                        <color key="value" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="numberFormatter" destination="b1S-ex-hKN" id="Vg2-YQ-KQl"/>
@@ -949,6 +955,9 @@
                                         <color key="value" name="systemIndigoColor" catalog="System" colorSpace="catalog"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowKeyboardInput" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                        <color key="value" name="systemIndigoColor" catalog="System" colorSpace="catalog"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wJN-RF-6eb">

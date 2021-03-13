@@ -40,7 +40,8 @@ struct ContentView: View {
 
 	@State private var currentValue3: CGFloat? = 5
 	let demoConfig3 = DSFStepperView.SwiftUI.DisplaySettings(
-		minimum: -10, maximum: 10, increment: 0.5, numberFormatter: FloatFormatter,
+		minimum: -10, maximum: 10, increment: 0.5,
+		numberFormatter: FloatFormatter,
 		font: DSFFont.systemFont(ofSize: 24, weight: .heavy)
 	)
 
@@ -61,7 +62,9 @@ struct ContentView: View {
 			HStack(alignment: .center, spacing: 20) {
 				DSFStepperView.SwiftUI(
 					configuration: self.demoConfig2,
+					isEnabled: self.isEnabled,
 					foregroundColor: self.foregroundColor,
+					indicatorColor: self.foregroundColor,
 					floatValue: self.$currentValue2,
 					onValueChange: { value in
 						Swift.print("New value is \(String(describing: value))")

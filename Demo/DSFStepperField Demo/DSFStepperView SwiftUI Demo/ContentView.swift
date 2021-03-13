@@ -52,6 +52,7 @@ struct ContentView: View {
 			HStack(alignment: .center, spacing: 20) {
 				DSFStepperView.SwiftUI(configuration: self.demoConfig2,
 									   foregroundColor: self.foregroundColor,
+										indicatorColor: self.foregroundColor,
 									   floatValue: self.$currentValue2,
 									   onValueChange: { value in
 										Swift.print("New value is \(String(describing: value))")

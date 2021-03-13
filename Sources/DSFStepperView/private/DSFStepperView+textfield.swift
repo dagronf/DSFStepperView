@@ -39,9 +39,26 @@ internal class DSFStepperTextField: NSTextField {
 		return (self.superview as? DSFStepperView)
 	}
 
-	fileprivate var customCell: DSFStepperViewTextFieldCell? {
-		return self.cell as? DSFStepperViewTextFieldCell
-	}
+	fileprivate lazy var customCell: DSFStepperViewTextFieldCell = {
+
+		let newCell = DSFStepperViewTextFieldCell()
+		let oldCell = self.cell as! NSTextFieldCell
+		newCell.isEnabled = oldCell.isEnabled
+		newCell.isEditable = oldCell.isEditable
+		newCell.isSelectable = true
+		newCell.isScrollable = true
+
+		newCell.placeholderString = oldCell.placeholderString
+		newCell.isScrollable = false
+		newCell.isContinuous = oldCell.isContinuous
+		newCell.font = oldCell.font
+		newCell.alignment = .center
+		newCell.textColor = oldCell.textColor
+
+		newCell.formatter = oldCell.formatter
+
+		return newCell
+	}()
 
 	var fieldEnabled: Bool {
 		get {
@@ -52,11 +69,6 @@ internal class DSFStepperTextField: NSTextField {
 			self.decrementButton.isEnabled = newValue
 			self.incrementButton.isEnabled = newValue
 		}
-	}
-
-	/// Returns true if the setup() function has been called
-	var isReady: Bool {
-		return self.customCell != nil
 	}
 
 	/// The default number formatter (-∞ … ∞), no floating point
@@ -117,6 +129,7 @@ internal class DSFStepperTextField: NSTextField {
 			guard let curr = current else {
 				self.stringValue = ""
 				self.parent?.floatValue = nil
+				self.customCell.fractionalValue = -1
 				return
 			}
 
@@ -124,6 +137,15 @@ internal class DSFStepperTextField: NSTextField {
 			let val = Float(v)
 			self.stringValue = self.valueFormatter?.string(from: NSNumber(value: val)) ?? ""
 			self.enableDisable()
+
+			if let value = self.current,
+				self.maximum != CGFloat.greatestFiniteMagnitude,
+				self.minimum != -CGFloat.greatestFiniteMagnitude {
+				self.customCell.fractionalValue = (value - self.minimum) / (self.maximum - self.minimum)
+			}
+			else {
+				self.customCell.fractionalValue = -1
+			}
 
 			self.lastNonEmptyValue = v
 
@@ -135,11 +157,19 @@ internal class DSFStepperTextField: NSTextField {
 	var foregroundColor: NSColor? {
 		didSet {
 			self.textColor = self.foregroundColor
-			self.customCell?.textColor = self.foregroundColor
+			self.customCell.textColor = self.foregroundColor
 			if #available(OSX 10.14, *) {
 				self.incrementButton.contentTintColor = self.foregroundColor
 				self.decrementButton.contentTintColor = self.foregroundColor
 			}
+		}
+	}
+
+	// Set the foreground color for the text and buttons
+	var indicatorColor: NSColor? {
+		didSet {
+			self.customCell.indicatorColor = self.indicatorColor
+			self.needsDisplay = true
 		}
 	}
 
@@ -260,7 +290,7 @@ extension DSFStepperTextField {
 	/// Build up the label
 	func setup() {
 		let oldCell = self.cell as! NSTextFieldCell
-		let newCell = DSFStepperViewTextFieldCell()
+		let newCell = self.customCell
 
 		newCell.isEnabled = oldCell.isEnabled
 		newCell.isEditable = oldCell.isEditable
@@ -354,6 +384,10 @@ extension DSFStepperTextField: NSTextFieldDelegate {
 }
 
 private class DSFStepperViewTextFieldCell: NSTextFieldCell {
+
+	fileprivate var indicatorColor: NSColor? = nil
+	fileprivate var fractionalValue: CGFloat = -1
+
 	private func tweak(_ theRect: CGRect) -> NSRect {
 		// Get the parent's idea of where we should draw
 		var newRect: NSRect = super.drawingRect(forBounds: theRect)
@@ -375,11 +409,19 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 	}
 
 	override func select(withFrame rect: NSRect, in controlView: NSView, editor textObj: NSText, delegate: Any?, start selStart: Int, length selLength: Int) {
-		super.select(withFrame: self.tweak(rect), in: controlView, editor: textObj, delegate: delegate, start: selStart, length: selLength)
+		var textbounds = rect
+		if self.indicatorColor != nil, (0 ... 1).contains(self.fractionalValue) {
+			textbounds.size.height -= 3
+		}
+		super.select(withFrame: self.tweak(textbounds), in: controlView, editor: textObj, delegate: delegate, start: selStart, length: selLength)
 	}
 
 	override func edit(withFrame rect: NSRect, in controlView: NSView, editor textObj: NSText, delegate: Any?, event: NSEvent?) {
-		super.edit(withFrame: self.tweak(rect), in: controlView, editor: textObj, delegate: delegate, event: event)
+		var textbounds = rect
+		if self.indicatorColor != nil, (0 ... 1).contains(self.fractionalValue) {
+			textbounds.size.height -= 3
+		}
+		super.edit(withFrame: self.tweak(textbounds), in: controlView, editor: textObj, delegate: delegate, event: event)
 	}
 
 	override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
@@ -406,7 +448,21 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 
 		pth.fill()
 
-		super.drawInterior(withFrame: self.tweak(cellFrame), in: controlView)
+		var textBounds = cellFrame
+		if let color = self.indicatorColor, (0 ... 1).contains(self.fractionalValue) {
+			let drawColor = self.isEnabled ? color : color.withAlphaComponent(0.4)
+			pth.setClip()
+			drawColor.setFill()
+			var bds = cellFrame
+			bds.origin.y = bds.height - 3
+			bds.size.height = 3
+			bds.size.width *= self.fractionalValue
+			bds.fill()
+
+			textBounds.size.height -= 3
+		}
+
+		super.drawInterior(withFrame: self.tweak(textBounds), in: controlView)
 	}
 }
 

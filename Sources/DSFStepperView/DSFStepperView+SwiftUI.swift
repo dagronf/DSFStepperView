@@ -84,6 +84,9 @@ extension DSFStepperView {
 		/// The color to draw the central value
 		public var foregroundColor: DSFColor? = nil
 
+		/// The color to draw the indicator
+		public var indicatorColor: DSFColor? = nil
+
 		/// The current value for the control
 		@Binding public var floatValue: CGFloat?
 
@@ -94,12 +97,14 @@ extension DSFStepperView {
 		public init(configuration: DisplaySettings,
 						isEnabled: Bool = true,
 						foregroundColor: DSFColor? = nil,
+						indicatorColor: DSFColor? = nil,
 						floatValue: Binding<CGFloat?> = .constant(0),
 						onValueChange: OnValueChangeType? = nil) {
 
 			self.configuration = configuration
 			self.isEnabled = isEnabled
 			self.foregroundColor = foregroundColor
+			self.indicatorColor = indicatorColor
 			self._floatValue = floatValue
 			self.onValueChange = onValueChange
 		}
@@ -131,17 +136,7 @@ extension DSFStepperView.SwiftUI {
 		stepper.setContentHuggingPriority(.defaultLow, for: .horizontal)
 		stepper.setContentHuggingPriority(.defaultLow, for: .vertical)
 
-		if let iv = configuration.initialValue {
-			stepper.initialValue = iv
-		}
-
-		if let f = configuration.numberFormatter {
-			stepper.numberFormatter = f
-		}
-
-		if let nsFont = configuration.font {
-			stepper.font = nsFont
-		}
+		self.updateView(stepper)
 
 		return stepper
 	}
@@ -158,19 +153,10 @@ extension DSFStepperView.SwiftUI {
 		let stepper = DSFStepperView(frame: .zero)
 		stepper.translatesAutoresizingMaskIntoConstraints = false
 
-		if let iv = configuration.initialValue {
-			stepper.initialValue = iv
-		}
+		stepper.setContentHuggingPriority(.defaultLow, for: .horizontal)
+		stepper.setContentHuggingPriority(.defaultLow, for: .vertical)
 
-		if let f = configuration.numberFormatter {
-			stepper.numberFormatter = f
-		}
-
-		stepper.isEnabled = self.isEnabled
-
-		if let nsFont = configuration.font {
-			stepper.font = nsFont
-		}
+		self.updateView(stepper)
 
 		return stepper
 	}
@@ -194,6 +180,17 @@ extension DSFStepperView.SwiftUI {
 		let fc = self.foregroundColor ?? DSFStepperView.defaultLabelColor
 		if !fc.isEqual(view.foregroundColor) {
 			view.foregroundColor = fc
+		}
+
+		// Indicator color
+
+		if let ic = self.indicatorColor {
+			if !ic.isEqual(view.indicatorColor) {
+				view.indicatorColor = ic
+			}
+		}
+		else if view.indicatorColor != nil {
+			view.indicatorColor = nil
 		}
 
 		if view.numberFormatter !== configuration.numberFormatter {
