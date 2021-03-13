@@ -32,6 +32,10 @@ import Combine
 
 @IBDesignable
 public class DSFStepperView: UIView {
+
+	// The width of the hit target
+	static let hitTargetWidth: CGFloat = 50
+
 	static let borderStrokeDefault = UIColor.lightGray.withAlphaComponent(0.4)
 	static let borderFillDefault = UIColor.lightGray.withAlphaComponent(0.2)
 
@@ -273,9 +277,12 @@ public class DSFStepperView: UIView {
 		super.layoutSubviews()
 
 		let rect = self.bounds
-		self.minusButton.frame = CGRect(x: rect.minX, y: rect.minY, width: 50, height: rect.height)
-		self.editField.frame = CGRect(x: rect.minX + 50, y: rect.minY, width: rect.width - 100, height: rect.height)
-		self.plusButton.frame = CGRect(x: rect.maxX - 50, y: rect.minY, width: 50, height: rect.height)
+
+		let width = DSFStepperView.hitTargetWidth
+
+		self.minusButton.frame = CGRect(x: rect.minX, y: rect.minY, width: width, height: rect.height)
+		self.editField.frame = CGRect(x: rect.minX + width, y: rect.minY, width: rect.width - (2 * width), height: rect.height)
+		self.plusButton.frame = CGRect(x: rect.maxX - width, y: rect.minY, width: width, height: rect.height)
 
 		CATransaction.begin()
 		CATransaction.setDisableActions(true)

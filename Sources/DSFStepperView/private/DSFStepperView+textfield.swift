@@ -131,16 +131,22 @@ internal class DSFStepperTextField: NSTextField {
 		}
 	}
 
+	// Set the foreground color for the text and buttons
 	var foregroundColor: NSColor? {
 		didSet {
+			self.textColor = self.foregroundColor
 			self.customCell?.textColor = self.foregroundColor
+			if #available(OSX 10.14, *) {
+				self.incrementButton.contentTintColor = self.foregroundColor
+				self.decrementButton.contentTintColor = self.foregroundColor
+			}
 		}
 	}
 
 	// MARK: - Decrement Button definition
 
 	lazy var decrementImage: NSImage = {
-		let i = NSImage(named: "NSRemoveTemplate")!.resizeImage(maxSize: NSSize(width: 10, height: 10))
+		let i = NSImage(named: "NSRemoveTemplate")!.resizeImage(maxSize: NSSize(width: 12, height: 12))
 		i.isTemplate = true
 		return i
 	}()
@@ -170,7 +176,7 @@ internal class DSFStepperTextField: NSTextField {
 	// MARK: - Increment Button definition
 
 	lazy var incrementImage: NSImage = {
-		let i = NSImage(named: "NSAddTemplate")!.resizeImage(maxSize: NSSize(width: 10, height: 10))
+		let i = NSImage(named: "NSAddTemplate")!.resizeImage(maxSize: NSSize(width: 12, height: 12))
 		i.isTemplate = true
 		return i
 	}()

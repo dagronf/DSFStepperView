@@ -130,7 +130,7 @@ public class DSFStepperView: NSView {
 	/// The font color (default is the standard text color)
 	@IBInspectable public var foregroundColor: NSColor = DSFStepperView.defaultLabelColor {
 		didSet {
-			self.editField.textColor = self.foregroundColor
+			self.editField.foregroundColor = self.foregroundColor
 		}
 	}
 
