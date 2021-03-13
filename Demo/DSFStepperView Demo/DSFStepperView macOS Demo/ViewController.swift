@@ -78,19 +78,22 @@ class ViewController: NSViewController {
 extension ViewController: DSFStepperViewDelegateProtocol {
 	func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?) {
 		guard view === self.stepper3,
-		      let updated = value?.floatValue else
+				let updated = value?.floatValue else
 		{
 			return
 		}
 
 		if abs(updated) < 30 {
 			view.foregroundColor = .systemGreen
+			view.indicatorColor = .systemGreen
 		}
 		else if abs(updated) < 40 {
 			view.foregroundColor = .systemOrange
+			view.indicatorColor = .systemOrange
 		}
 		else {
 			view.foregroundColor = .systemRed
+			view.indicatorColor = .systemRed
 		}
 	}
 

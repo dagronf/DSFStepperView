@@ -751,7 +751,7 @@
                                             <customView horizontalHuggingPriority="100" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCj-mc-OPz" customClass="DSFStepperView" customModule="DSFStepperView">
                                                 <rect key="frame" x="0.0" y="13" width="87" height="50"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Default"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Inh"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="increment">
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
@@ -794,7 +794,7 @@
                                             <customView horizontalHuggingPriority="100" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bie-ia-geh" customClass="DSFStepperView" customModule="DSFStepperView">
                                                 <rect key="frame" x="0.0" y="13" width="87" height="50"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Default"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Inh"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="increment">
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>

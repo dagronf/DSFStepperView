@@ -71,8 +71,6 @@ struct ContentView: View {
 											  isEnabled: self.isEnabled,
 											  floatValue: self.$currentValue)
 				TextField("", value: $currentValue, formatter: NumberFormatter())
-					.padding()
-					.border(Color.gray, width: 1)
 			}
 			.frame(height: 30)
 
@@ -85,16 +83,14 @@ struct ContentView: View {
 					onValueChange: { value in
 						Swift.print("New value is \(String(describing: value))")
 					})
-				TextField("", value: $currentValue2, formatter: ContentView.FloatFormatter)
-					.padding(3)
-					.border(Color.gray, width: 1)
-				Button("E") {
+				Button("🌈") {
 					let cVal = DSFColor.random
 					self.style.textColor = cVal
 					self.style.strokeColor = cVal.withAlphaComponent(0.4)
 					self.style.fillColor = cVal.withAlphaComponent(0.1)
 					self.style.indicatorColor = cVal
 				}
+				TextField("", value: $currentValue2, formatter: ContentView.FloatFormatter)
 			}
 			.frame(height: 30)
 
