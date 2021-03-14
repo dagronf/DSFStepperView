@@ -33,9 +33,6 @@ import Combine
 @IBDesignable
 public class DSFStepperView: UIView {
 
-	// The indicator color (off by default)
-	static let defaultIndicatorColor: UIColor? = UIColor.systemBlue
-
 	// The width of the hit target
 	static let hitTargetWidth: CGFloat = 50
 
@@ -102,7 +99,7 @@ public class DSFStepperView: UIView {
 	}
 
 	/// The color to draw the indicator
-	@IBInspectable public var indicatorColor: UIColor? = DSFStepperView.defaultIndicatorColor {
+	@IBInspectable public var indicatorColor: UIColor? = nil {
 		didSet {
 			self.indicatorLayer.backgroundColor = self.indicatorColor?.cgColor
 		}
