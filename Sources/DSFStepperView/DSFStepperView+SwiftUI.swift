@@ -84,7 +84,7 @@ extension DSFStepperView {
 				initialValue: CGFloat = 0,
 				placeholderText: String? = nil,
 				numberFormatter: NumberFormatter? = nil,
-				allowsKeyboardInput: Bool = true,
+				allowsKeyboardInput: Bool = false,
 				allowsEmptyValue: Bool = false,
 				font: DSFFont? = nil
 			) {
@@ -118,7 +118,7 @@ extension DSFStepperView {
 		public init(configuration: DisplaySettings,
 						style: Style = Style(),
 						isEnabled: Bool = true,
-						floatValue: Binding<CGFloat?> = .constant(0),
+						floatValue: Binding<CGFloat?> = .constant(nil),
 						onValueChange: OnValueChangeType? = nil) {
 
 			self.configuration = configuration
@@ -199,7 +199,6 @@ extension DSFStepperView.SwiftUI {
 		if view.placeholder != configuration.placeholderText { view.placeholder = configuration.placeholderText }
 		if view.isEnabled != self.isEnabled { view.isEnabled = self.isEnabled }
 		if view.allowsKeyboardInput != configuration.allowsKeyboardInput { view.allowsKeyboardInput = configuration.allowsKeyboardInput }
-
 		if view.allowsEmpty != configuration.allowsEmptyValue { view.allowsEmpty = configuration.allowsEmptyValue }
 
 		let fc = self.style.textColor ?? DSFStepperView.defaultLabelColor
@@ -247,12 +246,9 @@ extension DSFStepperView.SwiftUI {
 		if let newFont = configuration.font {
 			view.font = newFont
 		}
-		else {
-			view.font = nil
-		}
 
-		if let fValue = self.floatValue {
-			view.floatValue = fValue
+		if view.floatValue != self.floatValue {
+			view.floatValue = self.floatValue
 		}
 	}
 }

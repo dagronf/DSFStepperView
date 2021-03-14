@@ -18,12 +18,16 @@
 @property (weak) IBOutlet DSFStepperView *blue;
 @property (weak) IBOutlet NSColorWell *colorWell;
 
+@property (strong) NSColorSpace* displayColorSpace;
+
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	// Insert code here to initialize your application
+
+	[self setDisplayColorSpace:[NSColorSpace sRGBColorSpace]];
+
 	[[self red] setDelegate: self];
 	[[self green] setDelegate: self];
 	[[self blue] setDelegate: self];
@@ -43,9 +47,11 @@
 - (IBAction)colorDidChange:(id)sender {
 	NSColor* c = [[self colorWell] color];
 
-	int r = [c redComponent] * 255;
-	int g = [c greenComponent] * 255;
-	int b = [c blueComponent] * 255;
+	/// Make sure that we are in the rgb colorspace, or else 'redComponent' etc. will fail.
+	id converted = [c colorUsingColorSpace:[self displayColorSpace]];
+	int r = [converted redComponent] * 255;
+	int g = [converted greenComponent] * 255;
+	int b = [converted blueComponent] * 255;
 
 	[[self red] setNumberValue:@(r)];
 	[[self green] setNumberValue:@(g)];
@@ -55,9 +61,9 @@
 - (void)stepperView:(DSFStepperView * _Nonnull)view didChangeValueTo:(NSNumber * _Nullable)value {
 
 	NSColor* c = [NSColor colorWithRed:[[_red numberValue] floatValue] / 255.0
-								 green:[[_green numberValue] floatValue] / 255.0
-								  blue:[[_blue numberValue] floatValue] / 255.0
-								 alpha:1.0];
+										  green:[[_green numberValue] floatValue] / 255.0
+											blue:[[_blue numberValue] floatValue] / 255.0
+										  alpha:1.0];
 	[_colorWell setColor:c];
 }
 

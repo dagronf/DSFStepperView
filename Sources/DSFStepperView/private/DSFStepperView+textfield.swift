@@ -39,26 +39,9 @@ internal class DSFStepperTextField: NSTextField {
 		return (self.superview as? DSFStepperView)
 	}
 
-	fileprivate lazy var customCell: DSFStepperViewTextFieldCell = {
-
-		let newCell = DSFStepperViewTextFieldCell()
-		let oldCell = self.cell as! NSTextFieldCell
-		newCell.isEnabled = oldCell.isEnabled
-		newCell.isEditable = oldCell.isEditable
-		newCell.isSelectable = true
-		newCell.isScrollable = true
-
-		newCell.placeholderString = oldCell.placeholderString
-		newCell.isScrollable = false
-		newCell.isContinuous = oldCell.isContinuous
-		newCell.font = oldCell.font
-		newCell.alignment = .center
-		newCell.textColor = oldCell.textColor
-
-		newCell.formatter = oldCell.formatter
-
-		return newCell
-	}()
+	fileprivate var customCell: DSFStepperViewTextFieldCell {
+		return self.cell as! DSFStepperViewTextFieldCell
+	}
 
 	override var isEnabled: Bool {
 		get {
@@ -82,15 +65,25 @@ internal class DSFStepperTextField: NSTextField {
 	/// The value formatter for the field. If nil, provides a default formatter
 	var valueFormatter: NumberFormatter? {
 		get {
-			return self.cell?.formatter as? NumberFormatter ?? DSFStepperTextField.DefaultFormatter
+			return self.customCell.formatter as? NumberFormatter ?? DSFStepperTextField.DefaultFormatter
 		}
 		set {
-			self.cell?.formatter = newValue ?? DSFStepperTextField.DefaultFormatter
+			self.customCell.formatter = newValue ?? DSFStepperTextField.DefaultFormatter
+			let v = self.current
+			self.current = v
+			//self.needsDisplay = true
 		}
 	}
 
 	// Does the field support empty values?
 	var allowsEmpty: Bool = true
+
+	var allowsKeyboardInput: Bool = false {
+		didSet {
+			self.isEditable = self.allowsKeyboardInput
+			//self.customCell.isEditable = self.allowsKeyboardInput
+		}
+	}
 
 	// The value of the field BEFORE the edit started.  Allows for hitting 'esc' during edit to cancel the change
 	private var beforeEditValue: CGFloat?
@@ -100,18 +93,22 @@ internal class DSFStepperTextField: NSTextField {
 	/// The minimum value defined for the control
 	var minimum: CGFloat = -CGFloat.greatestFiniteMagnitude {
 		didSet {
-			if let curr = self.current, self.minimum > curr {
-				self.current = self.minimum
+			var currVal: CGFloat? = self.current
+			if let curr = currVal, self.minimum > curr {
+				currVal = self.minimum
 			}
+			self.current = currVal
 		}
 	}
 
 	/// The maximum value defined for the control
 	var maximum = CGFloat.greatestFiniteMagnitude {
 		didSet {
-			if let curr = self.current, self.maximum < curr {
-				self.current = self.maximum
+			var currVal: CGFloat? = self.current
+			if let curr = currVal, self.maximum < curr {
+				currVal = self.maximum
 			}
+			self.current = currVal
 		}
 	}
 
@@ -152,6 +149,10 @@ internal class DSFStepperTextField: NSTextField {
 		}
 	}
 
+	private func clamped(_ value: CGFloat) -> CGFloat {
+		return max(self.minimum, min(self.maximum, value))
+	}
+
 	// Set the foreground color for the text and buttons
 	var foregroundColor: NSColor? {
 		didSet {
@@ -162,6 +163,7 @@ internal class DSFStepperTextField: NSTextField {
 				self.incrementButton.contentTintColor = labelColor
 				self.decrementButton.contentTintColor = labelColor
 			}
+			self.needsDisplay = true
 		}
 	}
 
@@ -266,20 +268,17 @@ extension DSFStepperTextField {
 extension DSFStepperTextField {
 
 	private func updateForEnableDisable() {
-		self.decrementButton.isEnabled = self.current != self.minimum && self.isEnabled
-		self.incrementButton.isEnabled = self.current != self.maximum && self.isEnabled
+		if let _ = self.current {
+			self.decrementButton.isEnabled = self.current != self.minimum && self.isEnabled
+			self.incrementButton.isEnabled = self.current != self.maximum && self.isEnabled
+		}
+		else {
+			self.decrementButton.isEnabled = true
+			self.incrementButton.isEnabled = true
+		}
 
 		self.decrementButton.isHidden = !self.isEnabled
 		self.incrementButton.isHidden = !self.isEnabled
-	}
-
-	private func clamped(_ value: CGFloat) -> CGFloat {
-		return max(self.minimum, min(self.maximum, value))
-	}
-
-	override func viewWillMove(toWindow newWindow: NSWindow?) {
-		super.viewWillMove(toWindow: newWindow)
-		self.setup()
 	}
 
 	override func drawFocusRingMask() {
@@ -313,29 +312,25 @@ extension DSFStepperTextField {
 
 extension DSFStepperTextField {
 	/// Build up the label
-	func setup() {
+	func configure() {
+		let newCell = DSFStepperViewTextFieldCell()
 		let oldCell = self.cell as! NSTextFieldCell
-		let newCell = self.customCell
 
-		newCell.isEnabled = oldCell.isEnabled
-		newCell.isEditable = oldCell.isEditable
-		newCell.isSelectable = true
-		newCell.isScrollable = true
+		self.cell = newCell
 
-		newCell.placeholderString = oldCell.placeholderString
+		self.isSelectable = true
 		newCell.isScrollable = false
-		newCell.isContinuous = oldCell.isContinuous
-		newCell.font = oldCell.font
-		newCell.alignment = .center
-		newCell.textColor = oldCell.textColor
 
-		newCell.formatter = oldCell.formatter
+		self.isContinuous = true
+		self.alignment = .center
+
+		self.font = oldCell.font
+		self.formatter = oldCell.formatter
+		self.placeholderString = oldCell.placeholderString
 
 		self.isBordered = false
 		self.isBezeled = false
 		self.drawsBackground = false
-
-		self.cell = newCell
 
 		// Add the buttons.  Since these are not autolayout managed, we'll need to position them manually in layout()
 		// (The reason for not making these autolayout is
@@ -354,13 +349,6 @@ extension DSFStepperTextField {
 		}
 
 		self.updateForEnableDisable()
-
-		if let fn = self.font?.fontDescriptor,
-			let sz = self.font?.fontDescriptor.pointSize
-		{
-			self.decrementButton.font = NSFont(descriptor: fn, size: sz - 2)
-			self.incrementButton.font = NSFont(descriptor: fn, size: sz - 2)
-		}
 
 		/// Set the accessibility role to match that defined in Xcode
 		self.setAccessibilityLabel(DSFStepperView.Localization.AccessibilityRole)
@@ -430,7 +418,7 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 
 		// If the indicator is shown, move the text up a bit
 		if self.validatedIndicatorColor != nil {
-			newRect.size.height -= 3
+			newRect.size.height -= 2
 		}
 
 		// Get our ideal size for current text

@@ -366,12 +366,18 @@ private extension DSFStepperView {
 			let newVal = val + self.increment
 			self.floatValue = newVal	// floatValue.set() will truncate if necessary
 		}
+		else {
+			self.floatValue = 0
+		}
 	}
 
 	@objc func performDecrement() {
 		if let val = self._floatValue {
 			let newVal = val - self.increment
 			self.floatValue = newVal	// floatValue.set() will truncate if necessary
+		}
+		else {
+			self.floatValue = 0
 		}
 	}
 }
@@ -414,8 +420,8 @@ private extension DSFStepperView {
 			canDecrease = self.isEnabled ? val > self.range.lowerBound : false
 		}
 		else {
-			canIncrease = false
-			canDecrease = false
+			canIncrease = true
+			canDecrease = true
 		}
 
 		let textColor = self.foregroundColor ?? DSFStepperView.defaultLabelColor

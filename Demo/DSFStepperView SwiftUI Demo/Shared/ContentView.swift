@@ -41,25 +41,32 @@ struct ContentView: View {
 		return format
 	}()
 
-	@State private var currentValue2: CGFloat? = -3.5
+	// 2
 
+	@State private var currentValue2: CGFloat? = -3.5
 	let demoConfig2 = DSFStepperView.SwiftUI.DisplaySettings(
 		range: -10 ... 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter,
 		font: DSFFont.monospacedSystemFont(ofSize: 18, weight: .regular)
 	)
 
+	// 3
 
-	@State private var currentValue3: CGFloat? = 5
 	let demoConfig3 = DSFStepperView.SwiftUI.DisplaySettings(
 		range: -10 ... 10, increment: 0.5,
 		numberFormatter: FloatFormatter,
 		font: DSFFont.systemFont(ofSize: 24, weight: .heavy)
 	)
+	@State private var currentValue3: CGFloat? = 5
 
+	// 4
 
-	@State private var currentValue4: CGFloat? = 0
+	@State var style4 = DSFStepperView.SwiftUI.Style(indicatorColor: DSFColor.systemGray)
+	@State private var currentValue4: CGFloat? = 5
 	let demoConfig4 = DSFStepperView.SwiftUI.DisplaySettings(
-		range: 0 ... 10, increment: 1, placeholderText: "inh", allowsEmptyValue: true
+		range: 0 ... 10, increment: 1,
+		initialValue: 5,
+		placeholderText: "inh",
+		allowsKeyboardInput: true, allowsEmptyValue: true
 	)
 
 
@@ -71,6 +78,8 @@ struct ContentView: View {
 											  isEnabled: self.isEnabled,
 											  floatValue: self.$currentValue)
 				TextField("", value: $currentValue, formatter: NumberFormatter())
+					.padding(4)
+					.border(Color.gray)
 			}
 			.frame(height: 30)
 
@@ -91,6 +100,8 @@ struct ContentView: View {
 					self.style.indicatorColor = cVal
 				}
 				TextField("", value: $currentValue2, formatter: ContentView.FloatFormatter)
+					.padding(4)
+					.border(Color.gray)
 			}
 			.frame(height: 30)
 
@@ -101,9 +112,10 @@ struct ContentView: View {
 
 			HStack(alignment: .center, spacing: 0) {
 				DSFStepperView.SwiftUI(configuration: self.demoConfig4,
+											  style: self.style4,
 											  isEnabled: self.isEnabled,
 											  floatValue: self.$currentValue4)
-					.frame(width: 120, height: 30)
+					.frame(width: 140, height: 30)
 			}
 		}
 		.padding()

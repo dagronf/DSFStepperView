@@ -70,7 +70,7 @@ public class DSFStepperView: NSView {
 	/// Allow the user to manually enter text
 	@IBInspectable public var allowsKeyboardInput: Bool = true {
 		didSet {
-			self.editField.isEditable = self.allowsKeyboardInput
+			self.editField.allowsKeyboardInput = self.allowsKeyboardInput
 		}
 	}
 
@@ -247,11 +247,7 @@ public class DSFStepperView: NSView {
 	// MARK: - Embedded edit field
 
 	// Custom edit field
-	private lazy var editField: DSFStepperTextField = {
-		let e = DSFStepperTextField()
-		//e.translatesAutoresizingMaskIntoConstraints = false
-		return e
-	}()
+	private let editField = DSFStepperTextField()
 
 	// MARK: - Tooltip handling callback tags
 	private var tooltipIncrementButton: NSView.ToolTipTag?
@@ -272,6 +268,17 @@ public class DSFStepperView: NSView {
 		}
 		return nil
 	}()
+
+	public override init(frame frameRect: NSRect) {
+		super.init(frame: frameRect)
+		self.setup()
+	}
+
+	public required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		self.setup()
+	}
+
 
 	// MARK: - Cleanup
 
@@ -319,14 +326,6 @@ extension DSFStepperView {
 public extension DSFStepperView {
 	override func prepareForInterfaceBuilder() {
 		self.setup()
-		self.editField.setup()
-	}
-
-	override func viewWillMove(toWindow newWindow: NSWindow?) {
-		super.viewWillMove(toWindow: newWindow)
-		if let _ = newWindow {
-			self.setup()
-		}
 	}
 
 	override var intrinsicContentSize: NSSize {
@@ -352,12 +351,17 @@ private extension DSFStepperView {
 
 		self.translatesAutoresizingMaskIntoConstraints = false
 
+		// Add and configure the edit field
 		self.addSubview(self.editField)
+		self.editField.configure()
 
 		self.editField.placeholderString = self.placeholder
 		self.editField.minimum = self.minimum
 		self.editField.maximum = self.maximum
 		self.editField.increment = self.increment
+
+		self.editField.allowsKeyboardInput = self.allowsKeyboardInput
+		self.editField.allowsEmpty = self.allowsEmpty
 
 		// Push down the initial value
 		self.updateEditFieldValue()
