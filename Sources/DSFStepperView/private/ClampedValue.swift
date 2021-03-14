@@ -24,17 +24,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 //
+//  Some value clamping utilities
+//
 
 import Foundation
 
 /// A clamping structure that clamps a value within a ClosedRange and indicating whether clamping took place
 public struct ClampedValue<Bound> where Bound: Comparable {
-
 	/// The type of clamping that occurred
 	public enum ClampType {
 		/// No clamping occurred - the value was within the specified range
 		case none
+		/// The input value was lower than the specified range and was clamped to the lower bound
 		case lowerBound
+		/// The input value was higher than the specified range and was clamped to the upper bound
 		case upperBound
 	}
 
@@ -65,15 +68,31 @@ public struct ClampedValue<Bound> where Bound: Comparable {
 	}
 }
 
+public extension Comparable {
+	/// Clamp a comparable value to a closed range and return the ClampedValue
+	@inlinable func clampedValue(for range: ClosedRange<Self>) -> ClampedValue<Self> {
+		return ClampedValue(value: self, range: range)
+	}
+
+	/// Clamp a comparable value to a closed range and return the clamped value
+	@inlinable func clamped(to range: ClosedRange<Self>) -> Self {
+		return Swift.min(range.upperBound, Swift.max(range.lowerBound, self))
+	}
+
+	/// If this value contained in the specified closed range?
+	@inlinable func isContained(in range: ClosedRange<Self>) -> Bool {
+		return range.contains(self)
+	}
+}
+
 public extension ClosedRange {
-	/// Clamp 'value' within this range, and return the (potentially clamped) value and whether
-	@inlinable func clamp(value: Bound) -> ClampedValue<Bound> {
+	/// Clamp 'value' within this range, and return the ClampedValue
+	@inlinable func clampedValue(_ value: Bound) -> ClampedValue<Bound> {
 		return ClampedValue(value: value, range: self)
 	}
 
-	/// Clamp 'value' within this range, and return the (potentially clamped) value and whether
+	/// Clamp 'value' within this range and return the (potentially clamped) value
 	@inlinable func clamp(value: Bound) -> Bound {
 		return Swift.min(self.upperBound, Swift.max(self.lowerBound, value))
 	}
 }
-

@@ -122,7 +122,7 @@ public class DSFStepperView: UIView {
 	/// The source of truth for the range of the control
 	public var range: ClosedRange<CGFloat> = -CGFloat.greatestFiniteMagnitude ... CGFloat.greatestFiniteMagnitude {
 		didSet {
-			if let clampedValue = self._floatValue?.clamped(to: self.range) {
+			if let clampedValue = self._floatValue?.clampedValue(for: self.range) {
 				if clampedValue.wasClamped {
 					self.floatValue = clampedValue.value
 				}
@@ -204,7 +204,7 @@ public class DSFStepperView: UIView {
 			return self._floatValue
 		}
 		set {
-			let clampedVal = newValue?.clamped(to: self.range)
+			let clampedVal = newValue?.clampedValue(for: self.range)
 			self._floatValue = clampedVal?.value
 		}
 	}

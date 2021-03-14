@@ -2,16 +2,22 @@
 
 A custom stepper text field for macOS and iOS (Swift/SwiftUI/Objective-C/Catalyst).
 
-<img src="https://github.com/dagronf/dagronf.github.io/blob/master/art/projects/DSFStepperView/DSFStepperView.jpg?raw=true" alt="drawing" width="406"/>
-
-![](https://img.shields.io/github/v/tag/dagronf/DSFStepperView) 
-![](https://img.shields.io/badge/macOS-10.12+-red)
-![](https://img.shields.io/badge/iOS-13+-blue)
-![](https://img.shields.io/badge/Swift-5.0-orange.svg)
-![](https://img.shields.io/badge/SwiftUI-1.0+-green)
-![](https://img.shields.io/badge/macCatalyst-13.0+-purple)
-![](https://img.shields.io/badge/License-MIT-lightgrey) 
-[![](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager)
+<p align="center">
+  <img src="https://github.com/dagronf/dagronf.github.io/blob/master/art/projects/DSFStepperView/DSFStepperView.jpg?raw=true" alt="drawing" width="406"/>
+  <br/><br/>
+  <img src="https://github.com/dagronf/dagronf.github.io/blob/master/art/projects/DSFStepperView/indicators.png?raw=true" alt="drawing" width="406"/>
+  <br/><br/>
+<img src="https://img.shields.io/github/v/tag/dagronf/DSFStepperView"/>
+<img src="https://img.shields.io/badge/macOS-10.12+-red"/>
+<img src="https://img.shields.io/badge/iOS-13+-blue"/>
+<img src="https://img.shields.io/badge/Swift-5.0-orange.svg"/>
+<img src="https://img.shields.io/badge/SwiftUI-1.0+-green"/>
+<img src="https://img.shields.io/badge/macCatalyst-13.0+-purple"/>
+<img src="https://img.shields.io/badge/License-MIT-lightgrey"/>
+<a href="https://swift.org/package-manager">
+   <img src="https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)"/>
+</a>
+</p>
 
 ## Why?
 
@@ -19,9 +25,9 @@ I like the visual approach used with the SwiftUI settings pane, rather than havi
 
 ## Features
 
-* Support for macOS, iOS.
+* Support for macOS and iOS.
 * Cross-platform SwiftUI and Catalyst support for a consistent look.
-* `IBDesignable` support so you can see and configure your stepper views in Interface Builder
+* `IBDesignable` support so you can see and configure your stepper views in Interface Builder.
 * Increment decrement buttons with repeat (click/press and hold to continuously increment/decrement)
 * Indicator bar to indicate the current fractional value of the control *(optional)*
 * Editable via keyboard *(optional)*
@@ -32,13 +38,12 @@ I like the visual approach used with the SwiftUI settings pane, rather than havi
 * Specify a delegate to receive value change updates, or bind to the field's value.
 * Optional delegate to request tooltip strings depending on whether hovering over increment/decrement/text segments
 * Support for Combine publishing
-* Preliminary SwiftUI support
 
 ## Usage
 
 Add `DSFStepperView` to your project via Swift Package Manager, or copy the sources in the Sources/DSFStepperView directly to your project
 
-Demos are available in the `Demo/DSFStepperView Demo` folder
+Demos are available in the `Demo/` subfolder.
 
 ### Via Interface Builder
 
@@ -63,22 +68,15 @@ stepperView.floatValue = nil
 
 There are three methods for dynamically receiving value updates.
 
-### Receiving value changes via a method on the delegate.
+### Receiving value changes via a delegate.
+
+Implement the protocol `DSFStepperViewDelegateProtocol` on an object and set it as the delegate for an instance of `DSFStepperView`. Updates to the value will be received via the
 
 ```swift
 func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?)
 ```
 
-### Binding to `numberValue` on an instance of the control.
-
-You can use bindings to observe the `numberValue` member variable.
-
-```swift
-self.stepperObserver = self.observe(\.stepper.numberValue, options: [.new], changeHandler: { (_, value) in
-   guard let val = value.newValue else { return }
-   Swift.print("\(val)")
-})
-```
+interface.
 
 ### Using the Combine framework on macOS 10.15, iOS 13 and later
 
@@ -95,7 +93,18 @@ self.cancellable = myStepper.publishedValue.sink(receiveValue: { currentValue in
 })
 ```
 
-### Number Formatting
+### Binding to `numberValue` on an instance of the control.
+
+You can use bindings to observe the `numberValue` member variable.
+
+```swift
+self.stepperObserver = self.observe(\.stepper.numberValue, options: [.new], changeHandler: { (_, value) in
+   guard let val = value.newValue else { return }
+   Swift.print("\(val)")
+})
+```
+
+## Value Display Formatting
 
 If you want to allow non-integer values (such as 0.5), you will need to provide a `NumberFormatter` instance to format and validate the value in the field. `DSFStepperView` provides a default NumberFormatter which provides integer only values in the range  (-∞ ... ∞) which you can override.
 
@@ -115,7 +124,8 @@ stepperView.numberFormatter = format
 
 In Interface Builder you can hook your instance's `numberFormatter` outlet to an instance of NumberFormatter in xib or storyboard.
 
-### Tooltips (macOS only)
+
+## Tooltips (macOS only)
 
 You can specify a tooltip for the entire control the usual way using Interface Builder or programatically via 
 
@@ -157,36 +167,46 @@ These properties can all be configured via Interface Builder or programatically.
 
 ## SwiftUI
 
-A SwiftUI container is also provided.
+A SwiftUI wrapper is available, supporting both iOS and macOS.  There is a demo project for iOS and macOS in the `Demo` subfolder.
+
+<details>
+<summary>Example</summary>
 
 ```swift
 struct ContentView: View {
 
    @State private var currentValue: CGFloat? = 23
    @State private var isEnabled: Bool = true
-   	let demoConfig = DSFStepperView.SwiftUI.DisplaySettings(
-		minimum: 0, maximum: 100, increment: 1
-	)
-...
+   
+   let configuration = DSFStepperView.SwiftUI.DisplaySettings(
+      minimum: 0, maximum: 100, increment: 1
+   )
+   let style = DSFStepperView.SwiftUI.Style(
+      font: DSFFont.systemFont(ofSize: 24, weight: .heavy),
+      indicatorColor: DSFColor.systemBlue)
+
    var body: some View {
       DSFStepperView.SwiftUI(
-         configuration: self.demoConfig,
+         configuration: self.configuration,
+         style: self.style,
          isEnabled: self.isEnabled,
          floatValue: self.$currentValue,
          onValueChange: { value in
-            Swift.print("New value is \(value)")
-         })
-      }
+            Swift.print("New value is \(String(describing: value))")
+         }
+      )
    }
 }
 ```
+
+</details>
 
 ## History
 
 * `2.0.0`:
   - Added iOS implementation for cross-platform compatibility (both SwiftUI and Catalyst support)
   - Separated `floatValue` into `floatValue` (Swift only) and `numberValue` (an NSNumber for objc). If you have used bindings in your XIB that previously observed `floatValue` you will need to update them to use `numberValue` instead.
-  - Removed the ability to *set* the value via the publisher in Combine.
+  - Removed the ability to *set* the value via the publisher in Combine (was a dumb idea).
 * `1.1.4`: Added Objc demo, fixed delegate visibility
 * `1.1.3`: Fixed issue with default SwiftUI initializer not exported.
 * `1.1.2`: Some updates for accessibility
