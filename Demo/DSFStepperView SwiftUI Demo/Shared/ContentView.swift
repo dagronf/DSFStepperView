@@ -25,7 +25,6 @@ struct ContentView: View {
 		range: 0 ... 100, increment: 1
 	)
 
-	@State var style = DSFStepperView.SwiftUI.Style(textColor: DSFColor.systemTeal, indicatorColor: DSFColor.systemBlue)
 	@State var disabledStyle = DSFStepperView.SwiftUI.Style()
 
 	/// A stepper [-10 ... 10] stepping by 0.5
@@ -44,17 +43,22 @@ struct ContentView: View {
 	// 2
 
 	@State private var currentValue2: CGFloat? = -3.5
+	@State var style2 = DSFStepperView.SwiftUI.Style(
+		textColor: DSFColor.systemTeal,
+		font: DSFFont.monospacedSystemFont(ofSize: 18, weight: .regular),
+		indicatorColor: DSFColor.systemBlue)
 	let demoConfig2 = DSFStepperView.SwiftUI.DisplaySettings(
-		range: -10 ... 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter,
-		font: DSFFont.monospacedSystemFont(ofSize: 18, weight: .regular)
+		range: -10 ... 10, increment: 0.5, initialValue: 23, numberFormatter: ContentView.FloatFormatter
 	)
 
 	// 3
 
+	@State var style3 = DSFStepperView.SwiftUI.Style(
+		font: DSFFont.systemFont(ofSize: 24, weight: .heavy),
+		indicatorColor: DSFColor.systemBlue)
 	let demoConfig3 = DSFStepperView.SwiftUI.DisplaySettings(
 		range: -10 ... 10, increment: 0.5,
-		numberFormatter: FloatFormatter,
-		font: DSFFont.systemFont(ofSize: 24, weight: .heavy)
+		numberFormatter: FloatFormatter
 	)
 	@State private var currentValue3: CGFloat? = 5
 
@@ -86,7 +90,7 @@ struct ContentView: View {
 			HStack(alignment: .center, spacing: 20) {
 				DSFStepperView.SwiftUI(
 					configuration: self.demoConfig2,
-					style: self.style,
+					style: self.style2,
 					isEnabled: self.isEnabled,
 					floatValue: self.$currentValue2,
 					onValueChange: { value in
@@ -94,10 +98,10 @@ struct ContentView: View {
 					})
 				Button("🌈") {
 					let cVal = DSFColor.random
-					self.style.textColor = cVal
-					self.style.strokeColor = cVal.withAlphaComponent(0.4)
-					self.style.fillColor = cVal.withAlphaComponent(0.1)
-					self.style.indicatorColor = cVal
+					self.style2.textColor = cVal
+					self.style2.strokeColor = cVal.withAlphaComponent(0.4)
+					self.style2.fillColor = cVal.withAlphaComponent(0.1)
+					self.style2.indicatorColor = cVal
 				}
 				TextField("", value: $currentValue2, formatter: ContentView.FloatFormatter)
 					.padding(4)
@@ -106,6 +110,7 @@ struct ContentView: View {
 			.frame(height: 30)
 
 			DSFStepperView.SwiftUI(configuration: self.demoConfig3,
+										  style: self.style3,
 										  isEnabled: self.isEnabled,
 										  floatValue: self.$currentValue3)
 				.frame(height: 70)

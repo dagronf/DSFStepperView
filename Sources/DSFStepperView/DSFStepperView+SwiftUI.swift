@@ -40,43 +40,56 @@ extension DSFStepperView {
 
 		public typealias OnValueChangeType = ((CGFloat?) -> Void)
 
+		/// A style object to define the look and feel of a DSFStepperView.SwiftUI control
 		public struct Style {
 			/// The color to draw the central value
 			public var textColor: DSFColor?
-
+			/// The font to use.
+			public let font: DSFFont?
 			/// The fill color
 			public var fillColor: DSFColor?
-
 			/// The border color
 			public var strokeColor: DSFColor?
-
 			/// The color to draw the indicator
 			public var indicatorColor: DSFColor?
 
+			/// A style object
+			/// - Parameters:
+			///   - textColor: The color to draw the text. If nil, uses the default label color
+			///   - font: The font to use when drawing the value
+			///   - fillColor: The background fill color for the control. If nil, uses the default color
+			///   - strokeColor: The border color for the control. If nil, uses the default color
+			///   - indicatorColor: The indicator color for the control. If nil, no indicator is drawn
 			public init(textColor: DSFColor? = nil,
+							font: DSFFont? = nil,
 							fillColor: DSFColor? = nil,
 							strokeColor: DSFColor? = nil,
 							indicatorColor: DSFColor? = nil) {
 				self.textColor = textColor
+				self.font = font
 				self.fillColor = fillColor
 				self.strokeColor = strokeColor
 				self.indicatorColor = indicatorColor
 			}
 		}
 
+		/// A style object to define the look and feel of a DSFStepperView.SwiftUI control
 		public struct DisplaySettings {
+			/// The allowable range of values
 			let range: ClosedRange<CGFloat>
+			/// How much to increment/decrement
 			let increment: CGFloat
-
+			/// The initial value to display in the control
 			let initialValue: CGFloat?
+			/// If the control allows 'empty' values, the placeholder text to display
 			var placeholderText: String?
-
+			/// The formatter to use when displaying/validating values
 			var numberFormatter: NumberFormatter?
-
+			/// Can the control be 'empty'?
 			var allowsEmptyValue: Bool
+			/// If true, allows the user to manually enter (type) a value into the control
 			var allowsKeyboardInput: Bool
 
-			let font: DSFFont?
 
 			public init(
 				range: ClosedRange<CGFloat> = -CGFloat.greatestFiniteMagnitude ... CGFloat.greatestFiniteMagnitude,
@@ -85,8 +98,7 @@ extension DSFStepperView {
 				placeholderText: String? = nil,
 				numberFormatter: NumberFormatter? = nil,
 				allowsKeyboardInput: Bool = false,
-				allowsEmptyValue: Bool = false,
-				font: DSFFont? = nil
+				allowsEmptyValue: Bool = false
 			) {
 				self.range = range
 				self.increment = increment
@@ -95,7 +107,6 @@ extension DSFStepperView {
 				self.numberFormatter = numberFormatter
 				self.allowsKeyboardInput = allowsKeyboardInput
 				self.allowsEmptyValue = allowsEmptyValue
-				self.font = font
 			}
 		}
 
@@ -243,7 +254,7 @@ extension DSFStepperView.SwiftUI {
 			}
 		}
 
-		if let newFont = configuration.font {
+		if let newFont = style.font {
 			view.font = newFont
 		}
 

@@ -69,7 +69,7 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="allowsKeyboardInput" value="YES"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderBackground">
-                                                <color key="value" red="0.0" green="0.97680455450000003" blue="0.0" alpha="0.099145644203910616" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="0.10240130717527933" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="foregroundColor">
                                                 <color key="value" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
