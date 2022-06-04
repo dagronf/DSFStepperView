@@ -187,7 +187,7 @@ public class DSFStepperView: NSView {
 	// MARK: - Formatter
 
 	/// A number formatter for display and validation within the control (optional)
-	@IBOutlet var numberFormatter: NumberFormatter? {
+	@IBOutlet public var numberFormatter: NumberFormatter? {
 		didSet {
 			self.editField.valueFormatter = self.numberFormatter
 		}

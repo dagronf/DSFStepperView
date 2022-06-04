@@ -203,6 +203,7 @@ struct ContentView: View {
 
 ## History
 
+* `2.0.1`: Fixed [issue 4](https://github.com/dagronf/DSFStepperView/issues/4) 
 * `2.0.0`:
   - Added iOS implementation for cross-platform compatibility (both SwiftUI and Catalyst support)
   - Separated `floatValue` into `floatValue` (Swift only) and `numberValue` (an NSNumber for objc). If you have used bindings in your XIB that previously observed `floatValue` you will need to update them to use `numberValue` instead.
