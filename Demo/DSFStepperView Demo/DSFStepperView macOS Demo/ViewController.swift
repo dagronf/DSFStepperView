@@ -35,6 +35,9 @@ class ViewController: NSViewController {
 		self.stepper3.delegate = self
 		self.ordinalStepper.isEnabled = false
 
+		// Verify visibility for numberFormatter
+		let _ = self.ordinalStepper.numberFormatter
+
 		self.noEditStepper.font = NSFont.boldSystemFont(ofSize: 50)
 
 		if #available(macOS 10.15, *) {
