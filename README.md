@@ -203,6 +203,7 @@ struct ContentView: View {
 
 ## History
 
+* `3.0.0`: Explicitly define both static and dynamic libraries in the package.
 * `2.0.1`: Fixed [issue 4](https://github.com/dagronf/DSFStepperView/issues/4) 
 * `2.0.0`:
   - Added iOS implementation for cross-platform compatibility (both SwiftUI and Catalyst support)
