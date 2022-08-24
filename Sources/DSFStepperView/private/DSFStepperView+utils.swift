@@ -77,39 +77,6 @@ extension NSNumber {
 
 import AppKit
 
-// MARK: - Dark Mode
-
-internal extension NSAppearance {
-	/// Is the appearance dark aqua?
-	@inlinable var isDarkMode: Bool {
-		if #available(macOS 10.14, *), self.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua {
-			return true
-		}
-		return false
-	}
-}
-
-internal extension NSView {
-	/// Is this view displaying in dark mode?
-	///
-	/// Note that just because the application is in dark mode doesn't mean that each view is displaying in dark mode.
-	/// The 'effective appearance' of the view depends on many elements, such as the parent and any effect view(s) that
-	/// contain it.
-	@inlinable var isDarkMode: Bool {
-		return self.effectiveAppearance.isDarkMode
-	}
-}
-
-/// A global method to determine if the system is running in dark mode.
-@inlinable func IsDarkMode() -> Bool {
-	if #available(OSX 10.14, *) {
-		if let style = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") {
-			return style.lowercased().contains("dark")
-		}
-	}
-	return false
-}
-
 // MARK: - Image scaling
 
 internal extension NSImage {
@@ -147,81 +114,6 @@ internal extension NSImage {
 
 		// Return the new image
 		return imageWithNewSize
-	}
-}
-
-// MARK: - Simple accessibility wrapper
-
-@objc internal class Accessibility: NSObject {
-
-	/// Get the current accessibility display option for reduce transparency. If this property's value is true, UI (mainly window) backgrounds should not be semi-transparent; they should be opaque.
-	///
-	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
-	///
-	/// See: `NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency`
-	@inlinable @objc static var ReduceTransparency: Bool {
-		if #available(OSX 10.10, *) {
-			return NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency
-		}
-		else {
-			return false
-		}
-	}
-
-	/// Get the current accessibility display option for reduce motion. If this property's value is true, UI should avoid large animations, especially those that simulate the third dimension.
-	///
-	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
-	///
-	/// See: `NSWorkspace.shared.accessibilityDisplayShouldReduceMotion`.
-	@inlinable @objc static var ReduceMotion: Bool {
-		if #available(OSX 10.12, *) {
-			return NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
-		}
-		else {
-			// Fallback on earlier versions
-			return false
-		}
-	}
-
-	/// Get the current accessibility display option for high-contrast UI.  If this is true, UI should be presented with high contrast such as utilizing a less subtle color palette or bolder lines.
-	///
-	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
-	///
-	/// See: `NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast`.
-	@inlinable @objc static var IncreaseContrast: Bool {
-		if #available(OSX 10.10, *) {
-			return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
-		}
-		else {
-			return false
-		}
-	}
-	/// Get the current accessibility display option for differentiate without color. If this is true, UI should not convey information using color alone and instead should use shapes or glyphs to convey information.
-	///
-	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
-	///
-	/// See: `NSWorkspace.shared.accessibilityDisplayShouldDifferentiateWithoutColor`.
-	@inlinable @objc static var DifferentiateWithoutColor: Bool {
-		if #available(OSX 10.10, *) {
-			return NSWorkspace.shared.accessibilityDisplayShouldDifferentiateWithoutColor
-		}
-		else {
-			return false
-		}
-	}
-
-	/// Get the current accessibility display option for invert colors. If this property's value is true then the display will be inverted. In these cases it may be needed for UI drawing to be adjusted to in order to display optimally when inverted.
-	///
-	/// You may listen for `DSFAccessibility.DidChange` to be notified when this changes.
-	///
-	/// See: `NSWorkspace.shared.accessibilityDisplayShouldInvertColors`
-	@inlinable @objc static var InvertColors: Bool {
-		if #available(OSX 10.12, *) {
-			return NSWorkspace.shared.accessibilityDisplayShouldInvertColors
-		}
-		else {
-			return false
-		}
 	}
 }
 

@@ -28,6 +28,7 @@
 #if canImport(AppKit) && os(macOS)
 
 import AppKit
+import DSFAppearanceManager
 
 /// A simple NSButton that supports a delayed button repeat if the user clicks and holds the button
 internal class DSFDelayedRepeatingButton: NSButton {
@@ -152,14 +153,14 @@ internal class DSFDelayedRepeatingButton: NSButton {
 	// MARK: Mouse Tracking
 
 	@inlinable internal var mouseOverColor: CGColor {
-		let alpha: CGFloat = Accessibility.ReduceTransparency ? 0.3 : 0.1
+		let alpha: CGFloat = DSFAppearanceManager.ReduceTransparency ? 0.3 : 0.1
 		return CGColor(gray: 0.5, alpha: alpha)
 	}
 
 	private func createBaseFadeAnimation() -> CABasicAnimation {
 		let b = CABasicAnimation(keyPath: "backgroundColor")
 		b.autoreverses = false
-		b.duration = Accessibility.ReduceMotion ? 0.01 : 0.1
+		b.duration = DSFAppearanceManager.ReduceMotion ? 0.01 : 0.1
 		b.isRemovedOnCompletion = false
 		b.fillMode = .forwards
 		return b

@@ -28,6 +28,7 @@
 #if canImport(AppKit) && os(macOS)
 
 import AppKit
+import DSFAppearanceManager
 
 /// A stepper text field
 internal class DSFStepperTextField: NSTextField {
@@ -463,7 +464,7 @@ private class DSFStepperViewTextFieldCell: NSTextFieldCell {
 			if let s = self.borderColor {
 				stroke = s
 			}
-			else if Accessibility.IncreaseContrast {
+			else if DSFAppearanceManager.IncreaseContrast {
 				stroke = NSColor.textColor
 			}
 			else {
