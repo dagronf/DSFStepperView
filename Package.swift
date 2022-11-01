@@ -11,7 +11,8 @@ let package = Package(
 		.tvOS(.v13)
 	],
 	products: [
-		.library(name: "DSFStepperView", type: .static, targets: ["DSFStepperView"]),
+		.library(name: "DSFStepperView", targets: ["DSFStepperView"]),
+		.library(name: "DSFStepperView-static", type: .static, targets: ["DSFStepperView"]),
 		.library(name: "DSFStepperView-shared", type: .dynamic, targets: ["DSFStepperView"]),
 	],
 	dependencies: [

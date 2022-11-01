@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		236C028E2911D55200D8BC6D /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 236C028D2911D55200D8BC6D /* DSFStepperView */; };
 		23B04CDA25FC892D004FBBF5 /* DSFStepperView_SwiftUI_DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B04CC725FC892D004FBBF5 /* DSFStepperView_SwiftUI_DemoApp.swift */; };
 		23B04CDB25FC892D004FBBF5 /* DSFStepperView_SwiftUI_DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B04CC725FC892D004FBBF5 /* DSFStepperView_SwiftUI_DemoApp.swift */; };
 		23B04CDC25FC892D004FBBF5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B04CC825FC892D004FBBF5 /* ContentView.swift */; };
@@ -14,7 +15,6 @@
 		23B04CDE25FC892D004FBBF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23B04CC925FC892D004FBBF5 /* Assets.xcassets */; };
 		23B04CDF25FC892D004FBBF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23B04CC925FC892D004FBBF5 /* Assets.xcassets */; };
 		23B04CF125FC8975004FBBF5 /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 23B04CF025FC8975004FBBF5 /* DSFStepperView */; };
-		23B04CF325FC897B004FBBF5 /* DSFStepperView in Frameworks */ = {isa = PBXBuildFile; productRef = 23B04CF225FC897B004FBBF5 /* DSFStepperView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23B04CF325FC897B004FBBF5 /* DSFStepperView in Frameworks */,
+				236C028E2911D55200D8BC6D /* DSFStepperView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +121,7 @@
 			);
 			name = "DSFStepperView SwiftUI Demo (iOS)";
 			packageProductDependencies = (
-				23B04CF225FC897B004FBBF5 /* DSFStepperView */,
+				236C028D2911D55200D8BC6D /* DSFStepperView */,
 			);
 			productName = "DSFStepperView SwiftUI Demo (iOS)";
 			productReference = 23B04CCE25FC892D004FBBF5 /* DSFStepperView SwiftUI Demo.app */;
@@ -461,11 +461,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		23B04CF025FC8975004FBBF5 /* DSFStepperView */ = {
+		236C028D2911D55200D8BC6D /* DSFStepperView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DSFStepperView;
 		};
-		23B04CF225FC897B004FBBF5 /* DSFStepperView */ = {
+		23B04CF025FC8975004FBBF5 /* DSFStepperView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DSFStepperView;
 		};
