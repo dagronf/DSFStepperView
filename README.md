@@ -8,10 +8,10 @@ A custom stepper text field for macOS and iOS (Swift/SwiftUI/Objective-C/Catalys
   <img src="https://github.com/dagronf/dagronf.github.io/blob/master/art/projects/DSFStepperView/indicators.png?raw=true" alt="drawing" width="406"/>
   <br/><br/>
 <img src="https://img.shields.io/github/v/tag/dagronf/DSFStepperView"/>
-<img src="https://img.shields.io/badge/macOS-10.12+-red"/>
+<img src="https://img.shields.io/badge/macOS-10.13+-red"/>
 <img src="https://img.shields.io/badge/iOS-13+-blue"/>
-<img src="https://img.shields.io/badge/Swift-5.0-orange.svg"/>
-<img src="https://img.shields.io/badge/SwiftUI-1.0+-green"/>
+<img src="https://img.shields.io/badge/Swift-5.4-orange.svg"/>
+<img src="https://img.shields.io/badge/SwiftUI-2.0+-green"/>
 <img src="https://img.shields.io/badge/macCatalyst-13.0+-purple"/>
 <img src="https://img.shields.io/badge/License-MIT-lightgrey"/>
 <a href="https://swift.org/package-manager">
@@ -203,6 +203,9 @@ struct ContentView: View {
 
 ## History
 
+* `4.0.0`:
+  - Move to minimum macOS 10.13 target, Swift 5.4.
+  - Added inline SwiftUI previews for swiftui source.
 * `3.0.0`: Explicitly define both static and dynamic libraries in the package.
 * `2.0.1`: Fixed [issue 4](https://github.com/dagronf/DSFStepperView/issues/4) 
 * `2.0.0`:

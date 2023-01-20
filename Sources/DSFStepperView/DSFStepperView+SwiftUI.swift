@@ -60,11 +60,13 @@ extension DSFStepperView {
 			///   - fillColor: The background fill color for the control. If nil, uses the default color
 			///   - strokeColor: The border color for the control. If nil, uses the default color
 			///   - indicatorColor: The indicator color for the control. If nil, no indicator is drawn
-			public init(textColor: DSFColor? = nil,
-							font: DSFFont? = nil,
-							fillColor: DSFColor? = nil,
-							strokeColor: DSFColor? = nil,
-							indicatorColor: DSFColor? = nil) {
+			public init(
+				textColor: DSFColor? = nil,
+				font: DSFFont? = nil,
+				fillColor: DSFColor? = nil,
+				strokeColor: DSFColor? = nil,
+				indicatorColor: DSFColor? = nil
+			) {
 				self.textColor = textColor
 				self.font = font
 				self.fillColor = fillColor
@@ -90,7 +92,7 @@ extension DSFStepperView {
 			/// If true, allows the user to manually enter (type) a value into the control
 			var allowsKeyboardInput: Bool
 
-
+			/// Create
 			public init(
 				range: ClosedRange<CGFloat> = -CGFloat.greatestFiniteMagnitude ... CGFloat.greatestFiniteMagnitude,
 				increment: CGFloat = 1,
@@ -125,13 +127,14 @@ extension DSFStepperView {
 		/// An optional change value callback
 		public var onValueChange: OnValueChangeType? = nil
 
-		/// Initializer
-		public init(configuration: DisplaySettings,
-						style: Style = Style(),
-						isEnabled: Bool = true,
-						floatValue: Binding<CGFloat?> = .constant(nil),
-						onValueChange: OnValueChangeType? = nil) {
-
+		/// Create a stepper view control
+		public init(
+			configuration: DisplaySettings,
+			style: Style = Style(),
+			isEnabled: Bool = true,
+			floatValue: Binding<CGFloat?> = .constant(nil),
+			onValueChange: OnValueChangeType? = nil
+		) {
 			self.configuration = configuration
 			self.style = style
 			self.isEnabled = isEnabled
@@ -298,5 +301,164 @@ extension DSFStepperView.SwiftUI {
 		}
 	}
 }
+
+// MARK :- SwiftUI preview
+
+#if DEBUG
+
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
+struct DemoValues {
+	static let __demoConfig = DSFStepperView.SwiftUI.DisplaySettings(
+		range: 0 ... 100, increment: 1, allowsKeyboardInput: true
+	)
+
+	static let __demoStyle = DSFStepperView.SwiftUI.Style(
+		font: DSFFont.monospacedSystemFont(ofSize: 14, weight: .regular)
+	)
+
+	static let __demoStyle1 = DSFStepperView.SwiftUI.Style(
+		font: DSFFont.monospacedSystemFont(ofSize: 10, weight: .regular)
+	)
+
+	static let __demoStyle2 = DSFStepperView.SwiftUI.Style(
+		textColor: DSFColor.systemRed,
+		font: DSFFont.monospacedSystemFont(ofSize: 14, weight: .regular)
+	)
+
+	static let __demoStyle3 = DSFStepperView.SwiftUI.Style(
+		font: DSFFont.monospacedSystemFont(ofSize: 14, weight: .regular),
+		strokeColor: DSFColor.systemBlue
+	)
+
+	static let __demoStyle4 = DSFStepperView.SwiftUI.Style(
+		textColor: DSFColor.white,
+		font: DSFFont.monospacedDigitSystemFont(ofSize: 14, weight: .regular),
+		fillColor: DSFColor.systemBlue
+	)
+
+	static let __demoStyle5 = DSFStepperView.SwiftUI.Style(
+		font: DSFFont.monospacedDigitSystemFont(ofSize: 14, weight: .regular),
+		indicatorColor: DSFColor.systemBlue
+	)
+
+	static let __smallw: CGFloat = {
+		#if os(macOS)
+		100
+		#else
+		130
+		#endif
+	}()
+}
+
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
+struct StepperPreviews: PreviewProvider {
+	static var previews: some View {
+		ScrollView(.vertical) {
+			VStack {
+				VStack(alignment: .leading) {
+					Text("Default settings")
+					HStack {
+						DSFStepperView.SwiftUI(
+							configuration: DemoValues.__demoConfig,
+							style: DemoValues.__demoStyle,
+							isEnabled: true,
+							floatValue: .constant(75),
+							onValueChange: { value in
+								Swift.print("New value is \(String(describing: value))")
+							}
+						)
+						.frame(width: DemoValues.__smallw, height: 28)
+
+						DSFStepperView.SwiftUI(
+							configuration: DemoValues.__demoConfig,
+							style: DemoValues.__demoStyle,
+							isEnabled: false,
+							floatValue: .constant(75),
+							onValueChange: { value in
+								Swift.print("New value is \(String(describing: value))")
+							}
+						)
+						.frame(width: DemoValues.__smallw, height: 28)
+
+						DSFStepperView.SwiftUI(
+							configuration: DemoValues.__demoConfig,
+							style: DemoValues.__demoStyle,
+							isEnabled: true,
+							floatValue: .constant(75),
+							onValueChange: { value in
+								Swift.print("New value is \(String(describing: value))")
+							}
+						)
+						.frame(width: DemoValues.__smallw, height: 28)
+					}
+				}
+
+				VStack(alignment: .leading) {
+					Text("Change the text color")
+					DSFStepperView.SwiftUI(
+						configuration: DemoValues.__demoConfig,
+						style: DemoValues.__demoStyle2,
+						isEnabled: true,
+						floatValue: .constant(99),
+						onValueChange: { value in
+							Swift.print("New value is \(String(describing: value))")
+						}
+					)
+					.frame(height: 36)
+					Divider()
+				}
+
+				VStack(alignment: .leading) {
+					Text("Change the outline (stroke) color")
+					DSFStepperView.SwiftUI(
+						configuration: DemoValues.__demoConfig,
+						style: DemoValues.__demoStyle3,
+						isEnabled: true,
+						floatValue: .constant(55),
+						onValueChange: { value in
+							Swift.print("New value is \(String(describing: value))")
+						}
+					)
+					.frame(height: 36)
+					Divider()
+				}
+
+				VStack(alignment: .leading) {
+					Text("Change the fill color")
+					DSFStepperView.SwiftUI(
+						configuration: DemoValues.__demoConfig,
+						style: DemoValues.__demoStyle4,
+						isEnabled: true,
+						floatValue: .constant(45),
+						onValueChange: { value in
+							Swift.print("New value is \(String(describing: value))")
+						}
+					)
+					.frame(height: 36)
+					Divider()
+				}
+
+				VStack(alignment: .leading) {
+					Text("Show a stripe indicator")
+					DSFStepperView.SwiftUI(
+						configuration: DemoValues.__demoConfig,
+						style: DemoValues.__demoStyle5,
+						isEnabled: true,
+						floatValue: .constant(33),
+						onValueChange: { value in
+							Swift.print("New value is \(String(describing: value))")
+						}
+					)
+					.frame(height: 36)
+					Divider()
+				}
+			}
+			.padding()
+		}
+		.frame(width: 400)
+	}
+}
+
+#endif
 
 #endif

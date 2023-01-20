@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version: 5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
 	name: "DSFStepperView",
 	platforms: [
-		.macOS(.v10_11),
+		.macOS(.v10_13),
 		.iOS(.v13),
 		.tvOS(.v13)
 	],
@@ -16,7 +16,7 @@ let package = Package(
 		.library(name: "DSFStepperView-shared", type: .dynamic, targets: ["DSFStepperView"]),
 	],
 	dependencies: [
-		.package(url: "https://github.com/dagronf/DSFAppearanceManager", from: "3.0.0"),
+		.package(url: "https://github.com/dagronf/DSFAppearanceManager", from: "3.3.0"),
 	],
 	targets: [
 		.target(name: "DSFStepperView", dependencies: ["DSFAppearanceManager"]),
