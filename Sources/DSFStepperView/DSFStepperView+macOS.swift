@@ -213,6 +213,9 @@ public class DSFStepperView: NSView {
 
 			// If there's a delegate set, call the change method
 			self.delegate?.stepperView(self, didChangeValueTo: self.floatValue?.numberValue)
+
+			// If there's a value change block, call it with the new value
+			self.onValueChange?(floatValue)
 		}
 	}
 
@@ -243,6 +246,9 @@ public class DSFStepperView: NSView {
 			}
 		}
 	}
+
+	/// A block to call when the value changes
+	public var onValueChange: ((CGFloat?) -> Void)?
 
 	// MARK: - Embedded edit field
 

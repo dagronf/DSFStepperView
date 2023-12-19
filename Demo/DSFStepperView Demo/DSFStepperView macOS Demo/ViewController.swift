@@ -59,6 +59,10 @@ class ViewController: NSViewController {
 			guard val != oldVal else { return }
 			Swift.print("\(val)")
 		})
+
+		self.ordinalStepper.onValueChange = { newValue in
+			Swift.print("Ordinal value did change to \(String(describing: newValue)) ")
+		}
 	}
 
 	override var representedObject: Any? {

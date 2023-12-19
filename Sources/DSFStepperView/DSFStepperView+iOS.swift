@@ -194,6 +194,9 @@ public class DSFStepperView: UIView {
 
 			// Notify the delegate of the change
 			self.delegate?.stepperView(self, didChangeValueTo: resultValue)
+
+			// If there's a value change block, call it with the new value
+			self.onValueChange?(_floatValue)
 		}
 	}
 
@@ -224,6 +227,9 @@ public class DSFStepperView: UIView {
 
 	/// The percentage value for the current value between the two bounds.
 	@objc private(set) public var fractionalPosition: CGFloat = 0
+
+	/// A block to call when the value changes
+	public var onValueChange: ((CGFloat?) -> Void)?
 
 	// MARK: - Formatter
 

@@ -66,7 +66,7 @@ stepperView.floatValue = nil
 
 ## Receiving value changes
 
-There are three methods for dynamically receiving value updates.
+There are four methods for dynamically receiving value updates.
 
 ### Receiving value changes via a delegate.
 
@@ -77,6 +77,16 @@ func stepperView(_ view: DSFStepperView, didChangeValueTo value: NSNumber?)
 ```
 
 interface.
+
+### Providing a change value block
+
+You can provide a block to call via the `onValueChange` property on the stepper view.
+
+```swift
+self.stepper.onValueChange = { [weak self] newValue in
+   Swift.print("Ordinal value did change to \(String(describing: newValue)) ")
+}
+```
 
 ### Using the Combine framework on macOS 10.15, iOS 13 and later
 
