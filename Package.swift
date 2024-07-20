@@ -15,7 +15,7 @@ let package = Package(
 		.library(name: "DSFStepperView-shared", type: .dynamic, targets: ["DSFStepperView"]),
 	],
 	dependencies: [
-		.package(url: "https://github.com/dagronf/DSFAppearanceManager", from: "3.4.0"),
+		.package(url: "https://github.com/dagronf/DSFAppearanceManager", from: "3.5.0"),
 	],
 	targets: [
 		.target(
