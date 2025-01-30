@@ -204,7 +204,9 @@ internal class DSFDelayedRepeatingButton: UIButton {
 
 	private func setup() {
 		self.addTarget(self, action: #selector(startPress), for: .touchDown)
-        self.addTarget(self, action: #selector(endPress), for: [.touchUpOutside, .touchUpInside, .touchCancel])
+		self.addTarget(self, action: #selector(endPress), for: [
+			.touchUpOutside, .touchUpInside, .touchCancel, .touchDragExit
+		])
 	}
 
 	@objc func startPress(_ sender: Any?) {
