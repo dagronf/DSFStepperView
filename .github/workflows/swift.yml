@@ -26,4 +26,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build iOS
-        run: xcodebuild -scheme DSFSparkline build -destination "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=latest"
+        run: xcodebuild -scheme DSFStepperView build -destination "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=latest"
